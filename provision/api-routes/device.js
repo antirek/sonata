@@ -1,10 +1,11 @@
 // Showing that you don't need to have apiDoc defined on methodHandlers.
-const config = require('config');
+// const config = require('config');
 
 module.exports = () => {
   const doc = {
     get: [(req, res, next) => {
-
+      console.log('in', req.query.id);
+      res.json({status: 'ok'});
     }],
   };
 
@@ -13,6 +14,13 @@ module.exports = () => {
     operationId: 'get',
     tags: ['config'],
     parameters: [
+      {
+        name: 'id',
+        in: 'path',
+        type: 'string',
+        required: true,
+        description: 'id',
+      },
     ],
     responses: {
       200: {

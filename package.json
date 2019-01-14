@@ -4,7 +4,7 @@
   "description": "Provisioning server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "provision-start": "node provision/index",
     "lint-fix": "npx eslint --fix ."
   },
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "eslint": "^5.12.0",
-    "eslint-config-google": "^0.11.0"
+    "eslint-config-google": "^0.11.0",
+    "jasmine": "^3.3.1"
   }
 }

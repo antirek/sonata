@@ -2,7 +2,7 @@
 <gs_provision version="1">
     <config version="1">
 	<P270></P270>
-	<P47>antirek.ru</P47>
+	<P47>{{domain}}</P47>
 	<P35></P35>
 	<P36></P36>
 	<P34></P34>
