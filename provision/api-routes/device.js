@@ -4,7 +4,7 @@ const config = require('config');
 module.exports = () => {
   const doc = {
     get: [(req, res, next) => {
-     
+
     }],
   };
 

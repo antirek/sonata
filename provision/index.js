@@ -24,7 +24,7 @@ openapi.initialize({
   docsPath: '/api',
   paths: path.resolve(__dirname, 'api-routes'),
   dependencies: {
-    Device
+    Device,
   },
 });
 
