@@ -1,0 +1,26 @@
+{
+  "name": "sonata",
+  "version": "0.0.1",
+  "description": "Provisioning server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antirek/sonata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antirek/sonata/issues"
+  },
+  "homepage": "https://github.com/antirek/sonata#readme",
+  "dependencies": {
+    "config": "^3.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-openapi": "^4.1.0",
+    "mongoose": "^5.4.3"
+  }
+}
