@@ -7,6 +7,7 @@ const template = (device) => {
 
   const basePath = './provision/vendors/';
   const templatePath = path.resolve(basePath, vendor, model + '.xml');
+  console.log('template path:', templatePath);
   const template = fs.readFileSync(templatePath);
 
   // console.log('template', template);

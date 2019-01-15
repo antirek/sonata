@@ -1,3 +1,5 @@
+const template = require('./../../../template');
+
 module.exports = function(Device) {
   /**
   *
@@ -5,24 +7,30 @@ module.exports = function(Device) {
   * @param {Object} res
   */
   function get(req, res) {
-    console.log('qqw', req.params);
+    console.log('request params', req.params);
 
-    Device.find(null, {'_id': 0, '__v': 0, 'items._id': 0})
+
+    Device.findById(req.params.id)
         .then((result) => {
-          // console.log(result)
-          res.status(200).json(result);
+          console.log('db find:', result);
           const device = result;
-          const vendor = device.vendor;
 
-          console.log('vendor', vendor);
+          if (!device) {
+            console.log('no device');
+            res.status(500).send();
+            return;
+          }
+
+          console.log(device);
+          const t = template(device);
+          console.log('vendor', device.vendor);
+          console.log('config template', t);
+          res.status(200).type('application/xml').send(t);
+        })
+        .catch((err) => {
+          console.log('error', err);
+          res.status(500).send();
         });
-    /*
-    res.status(200).json({
-      id: req.params.id,
-      name: req.query.name,
-      age: req.query.age,
-    });
-    */
   }
 
   get.apiDoc = {
