@@ -1,29 +1,53 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?> 
 <gs_provision version="1">
-    <config version="1">
-	<P270></P270>
-	<P47>{{domain}}</P47>
-	<P35></P35>
-	<P36></P36>
-	<P34></P34>
-	<P3></P3>
-	<P32></P32>
-	<P2397></P2397>
-	<P2398></P2398>
-	<P40></P40>
-	<P2547></P2547>
-	<P78></P78>
-	<P84></P84>
-	<P30></P30>
-	<P122></P122>
-	<P64></P64>
-	<P2></P2>
-	<P238></P238>
-	<P194></P194>
-	<P193></P193>
-	<P8375></P8375>
-	<P6767></P6767>
-	<P192></P192>
-	<P1362></P1362>
-    </config>
+<config version="1"> 
+<!-- Account Name  -->
+<P270>{{account_1_name}}</P270>
+<!-- SIP Server -->
+<P47>{{account_1_sip_register}}</P47>
+<!-- SIP User ID -->
+<P35>{{account_1_sip_user}}</P35>
+<!-- SIP Authenticate ID -->
+<P36>{{account_1_sip_auth}}</P36>
+<!-- SIP Authenticate Password -->
+<P34>{{account_1_sip_password}}</P34>
+<!-- Name (Display Name, e.g., John Doe, callerid(name))-->
+<P3>{{account_1_sip_name}}</P3>
+<!-- -->
+<P32>5</P32>
+<!-- -->
+<P2397>1</P2397>
+<!-- -->
+<P2398>15</P2398>
+<!-- -->
+<P40>5060</P40>
+<!-- -->
+<P2547>1</P2547>
+<!-- -->
+<P78>1</P78>
+<!-- -->
+<P84>15</P84>
+<!-- -->
+<P30>{{ntp_server}}</P30>
+<!-- -->
+<P122>1</P122>
+<!-- -->
+<P64>{{timezone}}</P64>
+<!-- -->
+<P2>admin</P2> 
+<!-- -->
+<P238>0</P238>
+<!-- -->
+<P194>1</P194>
+<!-- -->
+<P193>10080</P193>
+<!-- -->
+<P8375>1</P8375>
+<!-- -->
+<P6767>1</P6767>
+<!-- -->
+<P192>firmware.grandstream.com</P192> 
+<!-- -->
+<P1362>ru</P1362> 
+</config> 
 </gs_provision>

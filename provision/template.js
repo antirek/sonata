@@ -11,8 +11,19 @@ const template = (device) => {
   const template = fs.readFileSync(templatePath);
 
   // console.log('template', template);
-  const config = template.toString('utf8').replace('{{domain}}', device.domain);
+  let config = template.toString('utf8')
+    .replace('{{timezone}}', device.timezone)
+    .replace('{{ntp_server}}', device.ntp_server);
 
+  let accounts = device.accounts;
+  accounts.forEach((element) => {
+    for (prop in element) {
+      let mask = '{{' + (['account', element.position, prop].join('_')) + '}}';
+      //console.log(mask)
+      config = config.replace(mask, element[prop]);
+    }
+  });
+  
   return config;
 };
 
