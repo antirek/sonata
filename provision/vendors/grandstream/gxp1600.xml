@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <gs_provision version="1">
 <config version="1"> 
-<!-- Account Name  -->
+<!-- Account 1 Name  -->
 <P270>{{account_1_name}}</P270>
+<!-- Account 1 enabled: 1 - yes, 0 - no -->
+<P271>1</P271>
 <!-- SIP Server -->
 <P47>{{account_1_sip_register}}</P47>
 <!-- SIP User ID -->

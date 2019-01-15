@@ -3,7 +3,7 @@ const device = {
   id: 'sdgjdeu9443908590sfdsf8u984',
   model: 'gxp1600',
   vendor: 'grandstream',
-  mac: 'E2ABB34347812',
+  mac: '001565113af8',
   timezone: 'UTC+03',
   ntp_server: 'pool.ntp.org',
   accounts: [
