@@ -12,18 +12,22 @@ const template = (device) => {
 
   // console.log('template', template);
   let config = template.toString('utf8')
-    .replace('{{timezone}}', device.timezone)
-    .replace('{{ntp_server}}', device.ntp_server);
+      .replace('{{timezone}}', device.timezone)
+      .replace('{{ntp_server}}', device.ntp_server);
 
-  let accounts = device.accounts;
+  const accounts = device.accounts;
   accounts.forEach((element) => {
     for (prop in element) {
-      let mask = '{{' + (['account', element.position, prop].join('_')) + '}}';
-      //console.log(mask)
-      config = config.replace(mask, element[prop]);
+      if (Object.prototype.hasOwnProperty.call(element, prop)) {
+        const mask = '{{' + (
+          ['account', element.position, prop].join('_')
+        ) + '}}';
+        // console.log(mask)
+        config = config.replace(mask, element[prop]);
+      }
     }
   });
-  
+
   return config;
 };
 

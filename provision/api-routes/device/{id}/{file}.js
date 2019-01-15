@@ -9,16 +9,13 @@ module.exports = function(Device) {
   function get(req, res) {
     console.log('request params', req.params);
 
-
     Device.findById(req.params.id)
         .then((result) => {
           console.log('db find:', result);
           const device = result;
 
           if (!device) {
-            console.log('no device');
-            res.status(500).send();
-            return;
+            return Promise.reject(new Error('no device'));
           }
 
           console.log(device);
@@ -29,7 +26,7 @@ module.exports = function(Device) {
         })
         .catch((err) => {
           console.log('error', err);
-          res.status(500).send();
+          res.status(404).send();
         });
   }
 
@@ -54,22 +51,21 @@ module.exports = function(Device) {
     },
   };
 
-
   return {
     parameters: [
-      {
-        name: 'vendor',
-        in: 'path',
-        type: 'string',
-        required: true,
-        description: 'vendor',
-      },
       {
         name: 'id',
         in: 'path',
         type: 'string',
         required: true,
         description: 'id',
+      },
+      {
+        name: 'file',
+        in: 'path',
+        type: 'string',
+        required: true,
+        description: 'file',
       },
     ],
     get: get,

@@ -24,8 +24,8 @@ const device = {
       sip_user: 'sip102',
       sip_password: '4321',
       sip_auth: 'sip102',
-    }
-  ]
+    },
+  ],
 };
 
 const template = require('./../provision/template');
