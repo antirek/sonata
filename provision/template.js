@@ -13,7 +13,9 @@ const template = (device) => {
   // console.log('template', template);
   let config = template.toString('utf8')
       .replace('{{timezone}}', device.timezone)
-      .replace('{{ntp_server}}', device.ntp_server);
+      .replace('{{ntp_server}}', device.ntp_server)
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/\n\n/g, '\n')
 
   const accounts = device.accounts;
   accounts.forEach((element) => {
