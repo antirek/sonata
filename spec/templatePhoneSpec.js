@@ -1,5 +1,5 @@
 
-const device = {
+const grandstreamPhone = {
   id: 'sdgjdeu9443908590sfdsf8u984',
   model: 'gxp1600',
   vendor: 'grandstream',
@@ -32,7 +32,7 @@ const template = require('./../provision/template');
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(device);
+    const config = template(grandstreamPhone);
     // console.log('config:', config);
     expect(config.includes('<config version="1">')).toBe(true);
     expect(config.includes('<P47>sip.mangosip.ru</P47>')).toBe(true);
