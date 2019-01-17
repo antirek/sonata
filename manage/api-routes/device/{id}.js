@@ -1,6 +1,10 @@
 module.exports = function(Device) {
-
-  function get (req, res) {
+  /**
+  *
+  * @param {Object} req
+  * @param {Object} res
+  */
+  function get(req, res) {
 
   }
   /**
@@ -13,21 +17,20 @@ module.exports = function(Device) {
     console.log('request body:', req.body);
 
     Device.findByIdAndUpdate(req.params.id, req.body, {upsert: true})
-      .then(()=>{
-        return Device.findById(req.params.id)
-      })
-      .then((device) => {
-      
-        console.log('db return:', device);
-        if (!device) {
-          return Promise.reject(new Error('no device'));
-        }
-        res.status(200).json(device);
-      })
-      .catch((err) => {
-        console.log('error', err);
-        res.status(404).send();
-      });
+        .then(()=>{
+          return Device.findById(req.params.id);
+        })
+        .then((device) => {
+          console.log('db return:', device);
+          if (!device) {
+            return Promise.reject(new Error('no device'));
+          }
+          res.status(200).json(device);
+        })
+        .catch((err) => {
+          console.log('error', err);
+          res.status(404).send();
+        });
   }
 
   get.apiDoc = {
@@ -57,14 +60,14 @@ module.exports = function(Device) {
     tags: ['config'],
     parameters: [
       {
-        in: "body",
-        name: "user",
-        description: "The user to create.",
-        //type: 'object',
+        in: 'body',
+        name: 'user',
+        description: 'The user to create.',
+        // type: 'object',
         schema: {
-          type: "object"
-        }
-      }
+          type: 'object',
+        },
+      },
     ],
     produces: [
       'application/json',
@@ -91,9 +94,9 @@ module.exports = function(Device) {
         type: 'string',
         required: true,
         description: 'id',
-      }
+      },
     ],
-    //get: get,
+    // get: get,
     post: post,
   };
 };

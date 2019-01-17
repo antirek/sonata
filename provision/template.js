@@ -15,7 +15,7 @@ const template = (device) => {
       .replace('{{timezone}}', device.timezone)
       .replace('{{ntp_server}}', device.ntp_server)
       .replace(/<!--[\s\S]*?-->/g, '')
-      .replace(/\n\n/g, '\n')
+      .replace(/\n\n/g, '\n');
 
   const accounts = device.accounts;
   accounts.forEach((element) => {

@@ -2,7 +2,6 @@ const config = require('config');
 const mongoose = require('mongoose');
 
 
-
 const createApp = require('./app').createApp;
 
 const deviceSchema = require('./../models/device');
@@ -11,7 +10,7 @@ const Device = mongoose.model(
 );
 
 mongoose.connect(config.mongodb, {useNewUrlParser: true});
-let app = createApp(Device);
+const app = createApp(Device);
 
 console.log('config', config);
 app.listen(config.provision.port);

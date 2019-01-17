@@ -25,6 +25,6 @@ const createApp = (Device) => {
   });
 
   return app;
-}
+};
 
 exports.createApp = createApp;
