@@ -14,7 +14,7 @@ const grandstreamPhone = {
     {
       sip_register: 'sip.mangosip.ru',
       id: 1,
-    }
+    },
   ],
   accounts: [
     {
@@ -28,7 +28,7 @@ const grandstreamPhone = {
     },
     {
       name: 'манго',
-      position: 2,      
+      position: 2,
       sip_name: 'sip102',
       sip_user: 'sip102',
       sip_password: '4321',

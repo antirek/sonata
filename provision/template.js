@@ -4,10 +4,10 @@ const devices = require('./vendors/index');
 
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
-    .replace('{{timezone}}', device.timezone)
-    .replace('{{ntp_server}}', device.ntp_server)
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/\n\n/g, '\n');
+      .replace('{{timezone}}', device.timezone)
+      .replace('{{ntp_server}}', device.ntp_server)
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/\n\n/g, '\n');
 
   const accounts = device.accounts;
   accounts.forEach((element) => {
@@ -22,15 +22,15 @@ const phoneReplace = (template, device) => {
     }
   });
   return config;
-}
+};
 
 
 const gatewayReplace = (template, device) => {
   let config = template.toString('utf8')
-    .replace('{{timezone}}', device.timezone)
-    .replace('{{ntp_server}}', device.ntp_server)
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/\n\n/g, '\n');
+      .replace('{{timezone}}', device.timezone)
+      .replace('{{ntp_server}}', device.ntp_server)
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/\n\n/g, '\n');
 
   const accounts = device.accounts;
   accounts.forEach((element) => {
@@ -59,7 +59,7 @@ const gatewayReplace = (template, device) => {
   });
 
   return config;
-}
+};
 
 const template = (device) => {
   const vendor = device.vendor;
@@ -68,9 +68,9 @@ const template = (device) => {
 
   const basePath = './provision/vendors/';
   const deviceSpec = devices[vendor][model];
-  
+
   const templatePath = path.resolve(basePath, vendor, deviceSpec.template);
-  //console.log('template path:', templatePath);
+  // console.log('template path:', templatePath);
   const template = fs.readFileSync(templatePath);
 
   // console.log('template', template);
