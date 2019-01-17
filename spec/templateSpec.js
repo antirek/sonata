@@ -33,7 +33,14 @@ const template = require('./../provision/template');
 describe('template', () => {
   it('do good', (done) => {
     const config = template(device);
-    console.log('config:', config);
+    //console.log('config:', config);
+    expect(config.includes('<config version="1">')).toBe(true);
+    expect(config.includes('<P47>sip.mangosip.ru</P47>')).toBe(true);
+    expect(config.includes('<P35>sip101</P35>')).toBe(true);
+    expect(config.includes('<P36>sip101</P36>')).toBe(true);
+    expect(config.includes('<P2>admin</P2>')).toBe(true);
+    expect(config.includes('<P34>1234</P34>')).toBe(true);
+    
     done();
   });
 });
