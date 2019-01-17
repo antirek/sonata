@@ -22,18 +22,16 @@ const DeviceSchema = (collection) => {
       type: String,
       required: true,
     },
+    ntp_server: {
+      type: String,
+      required: true,
+    },
     status: {
       'type': Boolean,
       'required': true,
       'default': true,
     },
-    items: [
-      {
-        line: String,
-        name: String,
-        phone: String,
-      },
-    ],
+    accounts: [],
   }, {
     collection: collection,
   });

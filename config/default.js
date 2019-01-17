@@ -3,4 +3,7 @@ module.exports = {
   provision: {
     port: 3020,
   },
+  manage: {
+    port: 3021,
+  },
 };

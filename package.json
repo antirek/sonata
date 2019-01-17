@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jasmine",
     "provision-start": "node provision/index",
+    "manage-start": "node manage/index",
     "lint-fix": "npx eslint --fix ."
   },
   "repository": {
