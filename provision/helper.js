@@ -5,7 +5,7 @@
   */
 function isFreshUpdate(device) {
   let result = false;
-  
+
   const deviceUpdateTime = Date.parse(device.updated_at);
   const nowTime = Date.now();
   const expiredMinutes = 10;

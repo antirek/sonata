@@ -1,3 +1,5 @@
+const path = require('path');
+const fetch = require('node-fetch');
 
 const device = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -37,9 +39,15 @@ const Device = {
   },
 };
 
-const createApp = require('./../provision/app').createApp;
-const app = createApp(Device);
-const fetch = require('node-fetch');
+const createApp = require('./../app').createApp;
+const app = createApp({
+  apiDoc: require('./../provision/api-doc.js'),
+  paths: path.resolve(__dirname, './../provision/api-routes'),
+  dependencies: {
+    Device,
+  },
+});
+
 
 describe('provision', ()=> {
   it('get xml config', (done) => {

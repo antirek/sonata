@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jasmine",
-    "provision-start": "node provision/index",
-    "manage-start": "node manage/index",
+    "start": "node index",
     "lint-fix": "npx eslint --fix ."
   },
   "repository": {
