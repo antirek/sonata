@@ -14,23 +14,25 @@ module.exports = function(Device) {
   */
   function post(req, res) {
     console.log('request params', req.params);
-    console.log('request body:', req.body);
+    console.log('request body:', JSON.stringify(req.body));
 
-    Device.findByIdAndUpdate(req.params.id, req.body, {upsert: true})
-        .then(()=>{
-          return Device.findById(req.params.id);
-        })
-        .then((device) => {
-          console.log('db return:', device);
-          if (!device) {
-            return Promise.reject(new Error('no device'));
-          }
-          res.status(200).json(device);
-        })
-        .catch((err) => {
-          console.log('error', err);
-          res.status(404).send();
-        });
+    Device.findOneAndUpdate({_id: req.params.id}, req.body, {
+      upsert: true, 
+      returnNewDocument: true
+    }).then(() => {
+        return Device.findOne({_id: req.params.id});
+      })
+      .then((device) => {
+        console.log('db return:', JSON.stringify(device));
+        if (!device) {
+          return Promise.reject(new Error('no device'));
+        }
+        res.status(200).json(device);
+      })
+      .catch((err) => {
+        console.log('error', err);
+        res.status(404).send();
+      });
   }
 
   get.apiDoc = {

@@ -6,6 +6,7 @@ const device = {
   mac: '001565113af8',
   timezone: 'UTC+03',
   ntp_server: 'pool.ntp.org',
+  status: 'enabled',
   accounts: [
     {
       name: 'манго',
@@ -29,25 +30,36 @@ const device = {
 };
 
 const Device = {
-  findById: () => {
+  findOneAndUpdate: () => {
+    return Promise.resolve(device);
+  },
+  findOne: () => {
     return Promise.resolve(device);
   },
 };
 
-const createApp = require('./../provision/app').createApp;
+const createApp = require('./../manage/app').createApp;
 const app = createApp(Device);
 const fetch = require('node-fetch');
 
-describe('provision', ()=> {
-  it('get xml config', (done) => {
+describe('manage', ()=> {
+  it('post config to server', (done) => {
     const server = app.listen(3000);
-    fetch('http://localhost:3000/v1/device/1/cfg.xml')
-        .then((res) => res.text())
+
+    fetch('http://localhost:3000/v1/device/1/', {
+      method: 'post',
+      body: JSON.stringify(device),
+      headers: {'Content-Type': 'application/json'},
+    })
         .then((res) => {
           // console.log(res);
-          const containXml = res.includes('<config version="1">');
+          return res.json();
+        })
+        .then((json) => {
+          console.log(json);
+          // const containXml = res.includes('<config version="1">');
           // console.log('containXml', containXml);
-          expect(containXml).toBe(true);
+          // expect(containXml).toBe(true);
         })
         .then(() => {
           server.close();
