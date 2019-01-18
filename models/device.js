@@ -35,6 +35,10 @@ const DeviceSchema = (collection) => {
     profiles: [],
   }, {
     collection: collection,
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
   });
 };
 

@@ -1,4 +1,5 @@
 const template = require('./../../../template');
+const helper = require('./../../../helper');
 
 module.exports = function(Device) {
   /**
@@ -15,13 +16,17 @@ module.exports = function(Device) {
           const device = result;
 
           if (!device) {
-            return Promise.reject(new Error('no device'));
+            return Promise.reject(new Error('no device config'));
           }
 
           console.log('device:', device);
 
           if (!device.status) {
-            return Promise.reject(new Error('device status disabled'));
+            return Promise.reject(new Error('device config status disabled'));
+          }
+
+          if (!helper.isFreshUpdate(device)) {
+            return Promise.reject(new Error('device config expired'));
           }
 
           const t = template(device);

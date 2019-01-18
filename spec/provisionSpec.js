@@ -7,6 +7,8 @@ const device = {
   timezone: 'UTC+03',
   ntp_server: 'pool.ntp.org',
   status: true,
+  created_at: '2019-01-18T15:39:15.645Z',
+  updated_at: (new Date()).toISOString(),
   accounts: [
     {
       name: 'манго',
