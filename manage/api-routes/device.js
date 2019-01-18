@@ -4,23 +4,18 @@ module.exports = function(Device) {
   * @param {Object} req
   * @param {Object} res
   */
-  function get(req, res) {
-
-  }
-  /**
-  *
-  * @param {Object} req
-  * @param {Object} res
-  */
   function post(req, res) {
     console.log('request params', req.params);
     console.log('request body:', JSON.stringify(req.body));
 
-    Device.findOneAndUpdate({_id: req.params.id}, req.body, {
-      upsert: true,
-      returnNewDocument: true,
-    }).then(() => {
-      return Device.findOne({_id: req.params.id});
+    const device = new Device(req.body);
+    console.log('device', device);
+    device.save().then((res) => {
+      // console.log('res save', res);
+      console.log('save new config by id:', res._id);
+      return res._id;
+    }).then((id) => {
+      return Device.findOne({_id: id});
     })
         .then((device) => {
           console.log('db return:', JSON.stringify(device));
@@ -35,37 +30,15 @@ module.exports = function(Device) {
         });
   }
 
-  get.apiDoc = {
-    description: 'get by id',
-    operationId: 'get config',
-    tags: ['config'],
-    produces: [
-      'application/json',
-    ],
-    responses: {
-      200: {
-        description: 'requested device',
-      },
-
-      default: {
-        description: 'Unexpected error',
-        schema: {
-          $ref: '#/definitions/Error',
-        },
-      },
-    },
-  };
 
   post.apiDoc = {
-    description: 'update config by id',
-    operationId: 'update config',
+    description: 'create device config ',
     tags: ['config'],
     parameters: [
       {
         in: 'body',
-        name: 'user',
-        description: 'The user to create.',
-        // type: 'object',
+        name: 'device',
+        description: 'The device to create.',
         schema: {
           type: 'object',
         },
@@ -89,16 +62,6 @@ module.exports = function(Device) {
   };
 
   return {
-    parameters: [
-      {
-        name: 'id',
-        in: 'path',
-        type: 'string',
-        required: true,
-        description: 'id',
-      },
-    ],
-    // get: get,
     post: post,
   };
 };

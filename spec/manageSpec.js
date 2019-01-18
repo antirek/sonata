@@ -29,21 +29,30 @@ const device = {
   ],
 };
 
-const Device = {
-  findOneAndUpdate: () => {
+const Device = class {
+  /**
+   * @return {Promise}
+   */
+  save() {
     return Promise.resolve(device);
-  },
-  findOne: () => {
-    return Promise.resolve(device);
-  },
+  }
 };
+
+Device.findOneAndUpdate = () => {
+  return Promise.resolve(device);
+};
+
+Device.findOne = () => {
+  return Promise.resolve(device);
+};
+
 
 const createApp = require('./../manage/app').createApp;
 const app = createApp(Device);
 const fetch = require('node-fetch');
 
 describe('manage', ()=> {
-  it('post config to server', (done) => {
+  it('update config on server', (done) => {
     const server = app.listen(3000);
 
     fetch('http://localhost:3000/v1/device/1/', {
@@ -52,7 +61,34 @@ describe('manage', ()=> {
       headers: {'Content-Type': 'application/json'},
     })
         .then((res) => {
+          // console.log('res status', res.status);
           // console.log(res);
+          expect(res.status).toBe(200);
+          return res.json();
+        })
+        .then((json) => {
+          console.log(json);
+          // const containXml = res.includes('<config version="1">');
+          // console.log('containXml', containXml);
+          // expect(containXml).toBe(true);
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
+  });
+
+  it('create config on server', (done) => {
+    const server = app.listen(3000);
+
+    fetch('http://localhost:3000/v1/device/', {
+      method: 'post',
+      body: JSON.stringify(device),
+      headers: {'Content-Type': 'application/json'},
+    })
+        .then((res) => {
+          // console.log(res);
+          expect(res.status).toBe(200);
           return res.json();
         })
         .then((json) => {

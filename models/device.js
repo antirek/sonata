@@ -32,6 +32,7 @@ const DeviceSchema = (collection) => {
       'default': true,
     },
     accounts: [],
+    profiles: [],
   }, {
     collection: collection,
   });
