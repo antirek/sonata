@@ -6,6 +6,7 @@ const device = {
   mac: '001565113af8',
   timezone: 'UTC+03',
   ntp_server: 'pool.ntp.org',
+  status: true,
   accounts: [
     {
       name: 'манго',

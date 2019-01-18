@@ -18,7 +18,12 @@ module.exports = function(Device) {
             return Promise.reject(new Error('no device'));
           }
 
-          console.log(device);
+          console.log('device:', device);
+
+          if (!device.status) {
+            return Promise.reject(new Error('device status disabled'));
+          }
+
           const t = template(device);
           console.log('vendor', device.vendor);
           console.log('config template', t);

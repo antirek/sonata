@@ -6,7 +6,7 @@ const device = {
   mac: '001565113af8',
   timezone: 'UTC+03',
   ntp_server: 'pool.ntp.org',
-  status: 'enabled',
+  status: true,
   accounts: [
     {
       name: 'манго',
@@ -46,12 +46,35 @@ Device.findOne = () => {
   return Promise.resolve(device);
 };
 
+Device.findOneAndRemove = () => {
+  return Promise.resolve(device);
+};
+
 
 const createApp = require('./../manage/app').createApp;
 const app = createApp(Device);
 const fetch = require('node-fetch');
 
 describe('manage', ()=> {
+  it('get config on server', (done) => {
+    const server = app.listen(3000);
+
+    fetch('http://localhost:3000/v1/device/1/')
+        .then((res) => {
+          console.log(res);
+          expect(res.status).toBe(200);
+          return res.json();
+        })
+        .then((json) => {
+          console.log('json:', json);
+          expect(json.status).toEqual(true);
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
+  });
+
   it('update config on server', (done) => {
     const server = app.listen(3000);
 
@@ -71,6 +94,28 @@ describe('manage', ()=> {
           // const containXml = res.includes('<config version="1">');
           // console.log('containXml', containXml);
           // expect(containXml).toBe(true);
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
+  });
+
+  it('delete config on server', (done) => {
+    const server = app.listen(3000);
+
+    fetch('http://localhost:3000/v1/device/1/', {
+      method: 'DELETE',
+    })
+        .then((res) => {
+          // console.log('res status', res.status);
+          console.log(res);
+          expect(res.status).toBe(200);
+          return res.json();
+        })
+        .then((json) => {
+          console.log('json:', json);
+          expect(json.status).toEqual('OK');
         })
         .then(() => {
           server.close();
