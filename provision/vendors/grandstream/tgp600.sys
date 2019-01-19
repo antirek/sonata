@@ -1,0 +1,20 @@
+# PCC Standard Format File #
+
+FIRM_UPGRADE_ENABLE="Y"
+FIRM_FILE_PATH=""
+HTTPD_PORTOPEN_AUTO="Y"
+ADMINPASS="adminpass"
+NTP_ADDR="ntp1.stratum2.ru"
+TIME_ZONE="420"
+PORT_PUNCH_INTVL="15"
+
+## account 1
+SIP_RGSTR_ADDR_1="{{account_1_sip_register}}"
+SIP_PRXY_ADDR_1="{{account_1_sip_proxy}}"
+PHONE_NUMBER_1="{{account_1_sip_name}}"
+SIP_AUTHID_1="{{account_1_sip_auth}}"
+SIP_PASS_1="{{account_1_sip_password}}"
+REG_EXPIRE_TIME_1="150"
+SIP_DETECT_SSAF_1="Y"
+RTCP_ENABLE_1="Y"
+CW_ENABLE_1="N"
