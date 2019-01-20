@@ -20,4 +20,16 @@ module.exports = {
       template: 'tgp600.sys',
     },
   },
+  yealink: {
+    t19: {
+      type: 'phone',
+      template: 't19.cfg',
+    },
+  },
+  fanvil: {
+    c58: {
+      type: 'phone',
+      template: 'c58.cfg',
+    },
+  },
 };
