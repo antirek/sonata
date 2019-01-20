@@ -4,6 +4,7 @@ services:
     image: antirek/sonata:19.1.1
     ports:
       - "3020:3020"
+      - "3021:3021"
     environment:
       - NODE_ENV=production
       - NODE_CONFIG_DIR=/etc/sonata
@@ -12,10 +13,10 @@ services:
       - "./config:/etc/sonata"
     restart: always
     working_dir: /usr/src/app
-    command: npm run provision-start
+    command: npm start
 
   mongodb:
-    image: mongo:3.6
+    image: mongo:4.0
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/var/store/sonata/mongodb/db:/data/db"
