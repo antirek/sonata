@@ -8,7 +8,8 @@ module.exports = function(Device) {
   * @param {Object} res
   */
   function get(req, res) {
-    console.log('request params', req.params);
+    console.log('request params:', req.params);
+    console.log('request user-agent:', req.headers['user-agent']);
 
     Device.findById(req.params.id)
         .then((result) => {
