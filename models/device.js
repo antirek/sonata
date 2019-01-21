@@ -24,7 +24,7 @@ const DeviceSchema = (collection) => {
     },
     ntp_server: {
       type: String,
-      required: true,
+      required: false,
     },
     status: {
       'type': Boolean,

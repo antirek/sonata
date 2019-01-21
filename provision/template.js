@@ -14,9 +14,8 @@ const phoneReplace = (template, device) => {
     for (prop in element) {
       if (Object.prototype.hasOwnProperty.call(element, prop)) {
         const mask = '{{' + (
-          ['account', element.position, prop].join('_')
+          ['account', element.line, prop].join('_')
         ) + '}}';
-        // console.log(mask)
         config = config.replace(mask, element[prop]);
       }
     }
@@ -37,9 +36,8 @@ const gatewayReplace = (template, device) => {
     for (prop in element) {
       if (Object.prototype.hasOwnProperty.call(element, prop)) {
         const mask = '{{' + (
-          ['account', element.position, prop].join('_')
+          ['account', element.line, prop].join('_')
         ) + '}}';
-        // console.log(mask)
         config = config.replace(mask, element[prop]);
       }
     }

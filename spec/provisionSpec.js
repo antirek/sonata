@@ -14,7 +14,7 @@ const device = {
   accounts: [
     {
       name: 'манго',
-      position: 1,
+      line: 1,
       sip_register: 'sip.mangosip.ru',
       sip_name: 'sip101',
       sip_user: 'sip101',
@@ -23,7 +23,7 @@ const device = {
     },
     {
       name: 'Мобилон',
-      position: 2,
+      line: 2,
       sip_register: 'sip.mobilonsip.ru',
       sip_name: 'sip102',
       sip_user: 'sip102',
