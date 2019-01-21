@@ -8,15 +8,15 @@ module.exports = function(Device) {
     console.log('request params', req.params);
     console.log('request body:', JSON.stringify(req.body));
 
-    const device = new Device(req.body);
-    console.log('device', device);
-    device.save().then((res) => {
-      // console.log('res save', res);
-      console.log('save new config by id:', res._id);
-      return res._id;
-    }).then((id) => {
-      return Device.findOne({_id: id});
+    const key = req.body.key;
+    console.log('key:', key);
+    Device.findOneAndUpdate({key}, req.body, {
+      upsert: true,
+      returnNewDocument: true,
     })
+        .then(() => {
+          return Device.findOne({key});
+        })
         .then((device) => {
           console.log('db return:', JSON.stringify(device));
           if (!device) {

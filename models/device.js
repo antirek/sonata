@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const DeviceSchema = (collection) => {
   return new mongoose.Schema({
+    key: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,

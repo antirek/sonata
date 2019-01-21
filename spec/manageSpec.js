@@ -83,32 +83,6 @@ describe('manage', ()=> {
         });
   });
 
-  it('update config on server', (done) => {
-    const server = app.listen(3000);
-
-    fetch('http://localhost:3000/v1/device/1/', {
-      method: 'post',
-      body: JSON.stringify(device),
-      headers: {'Content-Type': 'application/json'},
-    })
-        .then((res) => {
-          // console.log('res status', res.status);
-          // console.log(res);
-          expect(res.status).toBe(200);
-          return res.json();
-        })
-        .then((json) => {
-          console.log(json);
-          // const containXml = res.includes('<config version="1">');
-          // console.log('containXml', containXml);
-          // expect(containXml).toBe(true);
-        })
-        .then(() => {
-          server.close();
-          done();
-        });
-  });
-
   it('delete config on server', (done) => {
     const server = app.listen(3000);
 

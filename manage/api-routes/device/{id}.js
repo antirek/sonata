@@ -42,63 +42,6 @@ module.exports = function(Device) {
     },
   };
 
-  /**
-  *
-  * @param {Object} req
-  * @param {Object} res
-  */
-  function post(req, res) {
-    console.log('post request params', req.params);
-    console.log('request body:', JSON.stringify(req.body));
-
-    Device.findOneAndUpdate({_id: req.params.id}, req.body, {
-      upsert: true,
-      returnNewDocument: true,
-    }).then(() => {
-      return Device.findOne({_id: req.params.id});
-    }).then((device) => {
-      console.log('db return:', JSON.stringify(device));
-      if (!device) {
-        return Promise.reject(new Error('no device'));
-      }
-      res.status(200).json(device);
-    })
-        .catch((err) => {
-          console.log('error', err);
-          res.status(404).send();
-        });
-  }
-
-  post.apiDoc = {
-    description: 'update config by id',
-    operationId: 'update config',
-    tags: ['config'],
-    parameters: [
-      {
-        in: 'body',
-        name: 'user',
-        description: 'The user to create.',
-        schema: {
-          type: 'object',
-        },
-      },
-    ],
-    produces: [
-      'application/json',
-    ],
-    responses: {
-      200: {
-        description: 'requested device',
-      },
-
-      default: {
-        description: 'Unexpected error',
-        schema: {
-          $ref: '#/definitions/Error',
-        },
-      },
-    },
-  };
 
   /**
   *
@@ -154,7 +97,6 @@ module.exports = function(Device) {
       },
     ],
     get: get,
-    post: post,
     del: del,
   };
 };
