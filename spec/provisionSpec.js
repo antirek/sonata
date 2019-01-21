@@ -34,7 +34,7 @@ const device = {
 };
 
 const Device = {
-  findById: () => {
+  findOne: () => {
     return Promise.resolve(device);
   },
 };

@@ -11,10 +11,12 @@ module.exports = function(Device) {
     console.log('request params:', req.params);
     console.log('request user-agent:', req.headers['user-agent']);
 
-    Device.findById(req.params.id)
-        .then((result) => {
-          console.log('db find:', result);
-          const device = result;
+    let key = req.params.key;
+    console.log('key:', key);
+
+    Device.findOne({key})
+        .then((device) => {
+          console.log('db find:', device);
 
           if (!device) {
             return Promise.reject(new Error('no device config'));
@@ -42,8 +44,8 @@ module.exports = function(Device) {
   }
 
   get.apiDoc = {
-    description: 'get by id',
-    operationId: 'get config',
+    description: 'get by key',
+    operationId: 'get device config',
     tags: ['config'],
     produces: [
       'application/xml',
@@ -65,11 +67,11 @@ module.exports = function(Device) {
   return {
     parameters: [
       {
-        name: 'id',
+        name: 'key',
         in: 'path',
         type: 'string',
         required: true,
-        description: 'id',
+        description: 'device config key',
       },
       {
         name: 'file',
