@@ -11,7 +11,7 @@ module.exports = function(Device) {
     console.log('request params:', req.params);
     console.log('request user-agent:', req.headers['user-agent']);
 
-    let key = req.params.key;
+    const key = req.params.key;
     console.log('key:', key);
 
     Device.findOne({key})

@@ -52,6 +52,29 @@
 <!-- -->
 <P1362>ru</P1362>
 
+<!-- Account 2 enabled -->
+<P401>1</P401>
+<!-- Account 2 Name -->
+<P417>{{account_2_name}}</P417>
+
+<P402>{{account_2_sip_register}}</P402>
+
+<!-- Account 2 sip user -->
+<P404>{{account_2_sip_user}}</P404>
+<!-- Account 2 auth -->
+<P405>{{account_2_sip_auth}}</P405>
+<!-- Account 2 pass -->
+<P406>{{account_2_sip_password}}</P406>
+<!-- Account 2 sip name -->
+<P407>{{account_2_sip_name}}</P407>
+
+<P412>1</P412>
+<P2495>0</P2495>
+<P2497>1</P2497>
+<P2498>15</P2498>
+<P2495>0</P2495>
+<P2447>1</P2447>
+
 <!-- P2392=<int> <0|1|2> Enable RTCP 0: Disable 1: RTCP 2: RTCP-XR -->
 <P2392>0</P2392>
 

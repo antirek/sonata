@@ -13,11 +13,11 @@ const offsets = {
   'GMT+09': 'TZZ-9',
   'GMT+10': 'EST-10',
   'GMT+11': 'TZc-11',
-}
+};
 
 const getTimezoneByOffset = (offset) => {
   return offsets[offset];
-}
+};
 
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')

@@ -5,6 +5,14 @@ module.exports = {
       type: 'phone',
       template: 'gxp1600.xml',
     },
+    gxp1610: {
+      type: 'phone',
+      template: 'gxp1600.xml',
+    },
+    gxp1620: {
+      type: 'phone',
+      template: 'gxp1600.xml',
+    },
     ht812: {
       type: 'gateway',
       template: 'ht812.xml',
