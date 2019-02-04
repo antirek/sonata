@@ -6,7 +6,7 @@ const device = {
   model: 'gxp1600',
   vendor: 'grandstream',
   mac: '001565113af8',
-  timezone: 'UTC+03',
+  timezone_offset: 'GMT+03',
   ntp_server: 'pool.ntp.org',
   status: true,
   created_at: '2019-01-18T15:39:15.645Z',

@@ -2,9 +2,26 @@ const fs = require('fs');
 const path = require('path');
 const devices = require('./vendors/index');
 
+
+const offsets = {
+  'GMT+03': 'MSK-3MSD,M3.5.0/2,M10.5.0/3',
+  'GMT+04': 'TZR-4',
+  'GMT+05': 'TZS-5',
+  'GMT+06': 'TZV-6',
+  'GMT+07': 'TZX-7',
+  'GMT+08': 'TZY-8',
+  'GMT+09': 'TZZ-9',
+  'GMT+10': 'EST-10',
+  'GMT+11': 'TZc-11',
+}
+
+const getTimezoneByOffset = (offset) => {
+  return offsets[offset];
+}
+
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
-      .replace('{{timezone}}', device.timezone)
+      .replace('{{timezone}}', getTimezoneByOffset(device.timezone_offset))
       .replace('{{ntp_server}}', device.ntp_server)
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\n\n/g, '\n');

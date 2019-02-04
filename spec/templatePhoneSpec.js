@@ -4,7 +4,7 @@ const grandstreamPhone = {
   model: 'gxp1600',
   vendor: 'grandstream',
   mac: '001565113af8',
-  timezone: 'UTC+03',
+  timezone_offset: 'GMT+03',
   ntp_server: 'pool.ntp.org',
   accounts: [
     {
@@ -38,8 +38,9 @@ describe('template', () => {
     expect(config.includes('<P47>sip.mangosip.ru</P47>')).toBe(true);
     expect(config.includes('<P35>sip101</P35>')).toBe(true);
     expect(config.includes('<P36>sip101</P36>')).toBe(true);
-    expect(config.includes('<P2>admin</P2>')).toBe(true);
+    expect(config.includes('<P2>admin1</P2>')).toBe(true);
     expect(config.includes('<P34>1234</P34>')).toBe(true);
+    expect(config.includes('<P64>MSK-3MSD,M3.5.0/2,M10.5.0/3</P64>')).toBe(true);
 
     done();
   });

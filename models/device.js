@@ -22,7 +22,7 @@ const DeviceSchema = (collection) => {
       type: String,
       required: true,
     },
-    timezone: {
+    timezone_offset: {
       type: String,
       required: true,
     },

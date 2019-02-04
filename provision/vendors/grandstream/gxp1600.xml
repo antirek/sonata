@@ -36,7 +36,7 @@
 <!-- -->
 <P64>{{timezone}}</P64>
 <!-- -->
-<P2>admin</P2> 
+<P2>admin1</P2>
 <!-- -->
 <P238>0</P238>
 <!-- -->
@@ -50,6 +50,11 @@
 <!-- -->
 <P192>firmware.grandstream.com</P192> 
 <!-- -->
-<P1362>ru</P1362> 
+<P1362>ru</P1362>
+
+<!-- P2392=<int> <0|1|2> Enable RTCP 0: Disable 1: RTCP 2: RTCP-XR -->
+<P2392>0</P2392>
+
+
 </config> 
 </gs_provision>
