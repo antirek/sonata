@@ -41,7 +41,7 @@ describe('template', () => {
     expect(config.includes('<P2>admin1</P2>')).toBe(true);
     expect(config.includes('<P34>1234</P34>')).toBe(true);
 
-    expect(config.includes('<P64>MSK-3MSD,M3.5.0/2,M10.5.0/3</P64>'))
+    expect(config.includes('<P64>TZQ-3</P64>'))
         .toBe(true);
 
     done();

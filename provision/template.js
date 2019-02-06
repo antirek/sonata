@@ -2,9 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const devices = require('./vendors/index');
 
-
 const offsets = {
-  'GMT+03': 'MSK-3MSD,M3.5.0/2,M10.5.0/3',
+  'GMT+01': 'CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00',
+  'GMT+02': 'TZP-2',
+  'GMT+03': 'TZQ-3',
   'GMT+04': 'TZR-4',
   'GMT+05': 'TZS-5',
   'GMT+06': 'TZV-6',
