@@ -52,9 +52,10 @@
 <!-- -->
 <P1362>ru</P1362>
 
-<!-- P2392=<int> <0|1|2> Enable RTCP 0: Disable 1: RTCP 2: RTCP-XR -->
-<P2392>0</P2392>
-
+<!--  Enable Session Timer. 0 - No, 1 - Yes. Default is 1 -->
+<!--  Number: 0, 1 -->
+<!--  Mandatory -->
+<P2395>0</P2395>
 
 </config> 
 </gs_provision>
