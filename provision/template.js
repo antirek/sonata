@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const devices = require('./vendors/index');
+const preprocess = require('preprocess');
 
 const offsets = {
   'GMT+01': 'CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00',
@@ -90,11 +91,25 @@ const template = (device) => {
   const template = fs.readFileSync(templatePath);
 
   // console.log('template', template);
+
+  const check = (id) => {
+    return device.accounts.find((item) => {
+      return Number.parseInt(item.line) === id;
+    })
+  }
+
+  let templateProcess = preprocess.preprocess(template, {
+    ACCOUNT1: check(1),
+    ACCOUNT2: check(2),
+    ACCOUNT3: check(3),
+    ACCOUNT4: check(4),
+  });
+
   let config;
   if (deviceSpec.type === 'phone') {
-    config = phoneReplace(template, device);
+    config = phoneReplace(templateProcess, device);
   } else if (deviceSpec.type === 'gateway') {
-    config = gatewayReplace(template, device);
+    config = gatewayReplace(templateProcess, device);
   }
 
   return config;

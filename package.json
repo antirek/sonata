@@ -23,7 +23,9 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-openapi": "^4.1.0",
-    "mongoose": "^5.4.3"
+    "mongoose": "^5.4.3",
+    "preprocess": "^3.1.0",
+    "strip-passwords": "^1.1.2"
   },
   "devDependencies": {
     "eslint": "^5.12.0",

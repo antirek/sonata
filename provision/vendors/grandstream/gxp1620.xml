@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <gs_provision version="1">
 <config version="1"> 
+
+<!-- @ifdef ACCOUNT1 -->
 <!-- Account 1 Name  -->
 <P270>{{account_1_name}}</P270>
 <!-- Account 1 enabled: 1 - yes, 0 - no -->
@@ -15,6 +17,7 @@
 <P34>{{account_1_sip_password}}</P34>
 <!-- Name (Display Name, e.g., John Doe, callerid(name))-->
 <P3>{{account_1_sip_name}}</P3>
+<!-- @endif -->
 <!-- -->
 <P32>5</P32>
 <!-- -->
@@ -52,13 +55,13 @@
 <!-- -->
 <P1362>ru</P1362>
 
+
+<!-- @ifdef ACCOUNT2 -->
 <!-- Account 2 enabled -->
 <P401>1</P401>
 <!-- Account 2 Name -->
 <P417>{{account_2_name}}</P417>
-
 <P402>{{account_2_sip_register}}</P402>
-
 <!-- Account 2 sip user -->
 <P404>{{account_2_sip_user}}</P404>
 <!-- Account 2 auth -->
@@ -67,6 +70,7 @@
 <P406>{{account_2_sip_password}}</P406>
 <!-- Account 2 sip name -->
 <P407>{{account_2_sip_name}}</P407>
+<!-- @endif -->
 
 <P412>5</P412>
 <P2495>0</P2495>

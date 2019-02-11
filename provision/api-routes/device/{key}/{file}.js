@@ -1,7 +1,8 @@
 const template = require('./../../../template');
 const helper = require('./../../../helper');
+const strip = require('strip-passwords');
 
-module.exports = function(Device) {
+module.exports = (Device) => {
   /**
   *
   * @param {Object} req
@@ -16,13 +17,13 @@ module.exports = function(Device) {
 
     Device.findOne({key})
         .then((device) => {
-          console.log('db find:', device);
+          console.log('db find:', strip(device));
 
           if (!device) {
             return Promise.reject(new Error('no device config'));
           }
 
-          console.log('device:', device);
+          console.log('device:', strip(device));
 
           if (!device.status) {
             return Promise.reject(new Error('device config status disabled'));
@@ -84,4 +85,3 @@ module.exports = function(Device) {
     get: get,
   };
 };
-

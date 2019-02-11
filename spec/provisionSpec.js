@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 
 const device = {
   id: 'sdgjdeu9443908590sfdsf8u984',
-  model: 'gxp1600',
+  model: 'gxp1620',
   vendor: 'grandstream',
   mac: '001565113af8',
   timezone_offset: 'GMT+03',
@@ -55,6 +55,7 @@ describe('provision', ()=> {
     fetch('http://localhost:3000/v1/device/1/cfg.xml')
         .then((res) => res.text())
         .then((res) => {
+          // console.log(' ------------------- ')
           // console.log(res);
           const containXml = res.includes('<config version="1">');
           // console.log('containXml', containXml);
