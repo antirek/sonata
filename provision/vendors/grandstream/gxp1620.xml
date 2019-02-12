@@ -6,7 +6,7 @@
 <!-- Account 1 Name  -->
 <P270>{{account_1_name}}</P270>
 <!-- Account 1 enabled: 1 - yes, 0 - no -->
-<P271>1</P271>
+<P271>{{account_1_enabled}}</P271>
 <!-- SIP Server -->
 <P47>{{account_1_sip_register}}</P47>
 <!-- SIP User ID -->
@@ -58,7 +58,7 @@
 
 <!-- @ifdef ACCOUNT2 -->
 <!-- Account 2 enabled -->
-<P401>1</P401>
+<P401>{{account_2_enabled}}</P401>
 <!-- Account 2 Name -->
 <P417>{{account_2_name}}</P417>
 <P402>{{account_2_sip_register}}</P402>
@@ -70,7 +70,6 @@
 <P406>{{account_2_sip_password}}</P406>
 <!-- Account 2 sip name -->
 <P407>{{account_2_sip_name}}</P407>
-<!-- @endif -->
 
 <P412>5</P412>
 <P2495>0</P2495>
@@ -78,6 +77,7 @@
 <P2498>15</P2498>
 <P2495>0</P2495>
 <P2447>1</P2447>
+<!-- @endif -->
 
 <!--  Enable Session Timer. 0 - No, 1 - Yes. Default is 1 -->
 <!--  Number: 0, 1 -->

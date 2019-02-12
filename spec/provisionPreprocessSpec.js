@@ -20,7 +20,7 @@ const deviceWithOneAccount = {
       sip_user: 'sip101',
       sip_password: '1234',
       sip_auth: 'sip101',
-    }
+    },
   ],
 };
 
@@ -63,7 +63,6 @@ describe('provision device with one account', ()=> {
           expect(config.includes('<P405>sip102</P405>')).toBe(false);
           expect(config.includes('<P406>4321</P406>')).toBe(false);
           expect(config.includes('<P407>sip102</P407>')).toBe(false);
-
         })
         .then(() => {
           server.close();
@@ -71,8 +70,6 @@ describe('provision device with one account', ()=> {
         });
   });
 });
-
-
 
 
 const deviceWithTwoAccounts = {
@@ -133,6 +130,7 @@ describe('provision device with two accounts', ()=> {
           // console.log(config);
 
           expect(config.includes('<config version="1">')).toBe(true);
+          expect(config.includes('<P271>1</P271>')).toBe(true);
           expect(config.includes('<P47>sip.mangosip.ru</P47>')).toBe(true);
           expect(config.includes('<P35>sip101</P35>')).toBe(true);
           expect(config.includes('<P36>sip101</P36>')).toBe(true);
@@ -146,7 +144,6 @@ describe('provision device with two accounts', ()=> {
           expect(config.includes('<P405>sip102</P405>')).toBe(true);
           expect(config.includes('<P406>4321</P406>')).toBe(true);
           expect(config.includes('<P407>sip102</P407>')).toBe(true);
-
         })
         .then(() => {
           server.close();

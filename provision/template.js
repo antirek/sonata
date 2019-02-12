@@ -30,6 +30,7 @@ const phoneReplace = (template, device) => {
 
   const accounts = device.accounts;
   accounts.forEach((element) => {
+    element = findEnabledAndSet(element);
     for (prop in element) {
       if (Object.prototype.hasOwnProperty.call(element, prop)) {
         const mask = '{{' + (
@@ -42,6 +43,15 @@ const phoneReplace = (template, device) => {
   return config;
 };
 
+const findEnabledAndSet = (account) => {
+  if (!account.hasOwnProperty('enabled')) {
+    account.enabled = 1;
+  }
+  if (!account.enabled) {
+    account.enabled = 0;
+  }
+  return account;
+};
 
 const gatewayReplace = (template, device) => {
   let config = template.toString('utf8')
@@ -52,6 +62,7 @@ const gatewayReplace = (template, device) => {
 
   const accounts = device.accounts;
   accounts.forEach((element) => {
+    element = findEnabledAndSet(element);
     for (prop in element) {
       if (Object.prototype.hasOwnProperty.call(element, prop)) {
         const mask = '{{' + (
@@ -95,10 +106,10 @@ const template = (device) => {
   const check = (id) => {
     return device.accounts.find((item) => {
       return Number.parseInt(item.line) === id;
-    })
-  }
+    });
+  };
 
-  let templateProcess = preprocess.preprocess(template, {
+  const templateProcess = preprocess.preprocess(template, {
     ACCOUNT1: check(1),
     ACCOUNT2: check(2),
     ACCOUNT3: check(3),
