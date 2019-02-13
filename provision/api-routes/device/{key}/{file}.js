@@ -2,6 +2,20 @@ const template = require('./../../../template');
 const helper = require('./../../../helper');
 const strip = require('strip-passwords');
 
+const isUntilTimeRule = (device) => {
+  return device.rules && device.rules.time && device.rules.time.until;
+}
+
+const isExpiredUntilTimeRule = (device) => {
+  let result = false;
+  let dateUntil = (new Date(device.rules.time.until)).getTime();
+  let dateActual = (new Date()).getTime();
+  //console.log('until:', dateUntil, 'actual:', dateActual);
+  result = dateUntil - dateActual > 0 ? false : true;
+  return result;
+} 
+
+
 module.exports = (Device) => {
   /**
   *
@@ -27,6 +41,10 @@ module.exports = (Device) => {
 
           if (!device.status) {
             return Promise.reject(new Error('device config status disabled'));
+          }
+
+          if (isUntilTimeRule(device) && isExpiredUntilTimeRule(device)) {
+            return Promise.reject(new Error('device until time rule expired'));
           }
 
           if (!helper.isFreshUpdate(device)) {
