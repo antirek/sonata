@@ -35,8 +35,14 @@ const DeviceSchema = (collection) => {
       'required': true,
       'default': true,
     },
+    token: {
+      type: String,
+    },
     accounts: [],
     profiles: [],
+    rules: {
+      'type': Object,
+    }
   }, {
     collection: collection,
     timestamps: {
