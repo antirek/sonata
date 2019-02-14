@@ -4,17 +4,24 @@ const strip = require('strip-passwords');
 
 const isUntilTimeRule = (device) => {
   return device.rules && device.rules.time && device.rules.time.until;
-}
+};
 
 const isExpiredUntilTimeRule = (device) => {
   let result = false;
-  let dateUntil = (new Date(device.rules.time.until)).getTime();
-  let dateActual = (new Date()).getTime();
-  //console.log('until:', dateUntil, 'actual:', dateActual);
+  const dateUntil = (new Date(device.rules.time.until)).getTime();
+  const dateActual = (new Date()).getTime();
+  // console.log('until:', dateUntil, 'actual:', dateActual);
   result = dateUntil - dateActual > 0 ? false : true;
   return result;
-} 
+};
 
+const isMacRule = (device) => {
+  return device.rules && device.rules.mac && device.rules.hasOwnProperty('mac');
+};
+
+const isValidMac = (device, mac) => {
+  return device.mac && (device.mac === mac);
+};
 
 module.exports = (Device) => {
   /**
@@ -28,6 +35,12 @@ module.exports = (Device) => {
 
     const key = req.params.key;
     console.log('key:', key);
+
+    const file = req.params.file;
+    console.log('file:', file);
+
+    const mac = file.match(new RegExp('cfg(.*).xml'))[1];
+    console.log('mac:', mac);
 
     Device.findOne({key})
         .then((device) => {
@@ -45,6 +58,10 @@ module.exports = (Device) => {
 
           if (isUntilTimeRule(device) && isExpiredUntilTimeRule(device)) {
             return Promise.reject(new Error('device until time rule expired'));
+          }
+
+          if (isMacRule(device) && !isValidMac(device, mac)) {
+            return Promise.reject(new Error('device mac is not valid'));
           }
 
           if (!helper.isFreshUpdate(device)) {
