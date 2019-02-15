@@ -32,6 +32,7 @@ module.exports = (Device) => {
   function get(req, res) {
     console.log('request params:', req.params);
     console.log('request user-agent:', req.headers['user-agent']);
+    console.log('ip info:', req.ipInfo);
 
     const key = req.params.key;
     console.log('key:', key);
