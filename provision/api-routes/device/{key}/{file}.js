@@ -1,6 +1,7 @@
 const template = require('./../../../template');
 const helper = require('./../../../helper');
 const strip = require('strip-passwords');
+const ipRangeCheck = require('ip-range-check');
 
 const isUntilTimeRule = (device) => {
   return device.rules && device.rules.time && device.rules.time.until;
@@ -23,6 +24,14 @@ const isValidMac = (device, mac) => {
   return device.mac && (device.mac === mac);
 };
 
+const isIpRule = (device) => {
+  return device.rules && device.rules.ip && device.rules.hasOwnProperty('ip');
+};
+
+const isValidIP = (device, ip) => {
+  return ipRangeCheck(ip, device.rules.ip);
+};
+
 module.exports = (Device) => {
   /**
   *
@@ -32,7 +41,8 @@ module.exports = (Device) => {
   function get(req, res) {
     console.log('request params:', req.params);
     console.log('request user-agent:', req.headers['user-agent']);
-    console.log('ip info:', req.ipInfo);
+    console.log('remote ip:', req.remote_ip);
+    console.log('remote ip info:', req.ipInfo);
 
     const key = req.params.key;
     console.log('key:', key);
@@ -63,6 +73,10 @@ module.exports = (Device) => {
 
           if (isMacRule(device) && !isValidMac(device, mac)) {
             return Promise.reject(new Error('device mac is not valid'));
+          }
+
+          if (isIpRule(device) && !isValidIP(device, req.remote_ip)) {
+            return Promise.reject(new Error('device ip is not valid'));
           }
 
           if (!helper.isFreshUpdate(device)) {

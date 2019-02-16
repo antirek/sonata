@@ -42,7 +42,7 @@ const DeviceSchema = (collection) => {
     profiles: [],
     rules: {
       'type': Object,
-    }
+    },
   }, {
     collection: collection,
     timestamps: {

@@ -2,16 +2,25 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const openapi = require('express-openapi');
-// const path = require('path');
 const expressip = require('express-ip');
+
+const getIP = (req, res, next) => {
+  const xForwardedFor = (req.headers['x-forwarded-for'] || '')
+      .replace(/:\d+$/, '');
+
+  req.remote_ip = xForwardedFor || req.connection.remoteAddress;
+  next();
+};
 
 const createApp = (api) => {
   const app = express();
 
   app.use(bodyParser.json());
   app.use(cors());
-  
+
+  app.use(getIP);
   app.use(expressip().getIpInfoMiddleware);
+
 
   openapi.initialize({
     apiDoc: api.apiDoc, // require('./api-doc.js'),

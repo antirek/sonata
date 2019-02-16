@@ -32,9 +32,7 @@ const deviceActual = {
     },
   ],
   rules: {
-    time: {
-      until: (new Date((new Date()).getTime() + 10*60000)).toISOString(),
-    },
+    ip: '178.169.87.100',
   },
 };
 
@@ -54,10 +52,17 @@ const app = createApp({
 });
 
 
-describe('provision', ()=> {
-  it('get xml config', (done) => {
+describe('provision', () => {
+  it('get xml config with valid ip', (done) => {
     const server = app.listen(3000);
-    fetch('http://localhost:3000/v1/device/1/cfg.xml')
+    const headers = {
+      'x-forwarded-for': '178.169.87.100',
+    };
+
+    fetch('http://localhost:3000/v1/device/1/cfg001565113af8.xml', {
+      method: 'GET',
+      headers: headers,
+    })
         .then((res) => res.text())
         .then((res) => {
           // console.log(' ------------------- ')
@@ -73,66 +78,17 @@ describe('provision', ()=> {
   });
 });
 
+describe('provision', () => {
+  it('get xml config with not valid ip', (done) => {
+    const server = app.listen(3000);
+    const headers = {
+      'x-forwarded-for': '178.169.87.150',
+    };
 
-const deviceNonActual = {
-  id: 'sdgjdeu9443908590sfdsf8u984',
-  model: 'gxp1620',
-  vendor: 'grandstream',
-  mac: '001565113af8',
-  timezone_offset: 'GMT+03',
-  ntp_server: 'pool.ntp.org',
-  status: true,
-  created_at: '2019-01-18T15:39:15.645Z',
-  updated_at: (new Date()).toISOString(),
-  accounts: [
-    {
-      name: 'манго',
-      line: 1,
-      sip_register: 'sip.mangosip.ru',
-      sip_name: 'sip101',
-      sip_user: 'sip101',
-      sip_password: '1234',
-      sip_auth: 'sip101',
-    },
-    {
-      name: 'Мобилон',
-      line: 2,
-      sip_register: 'sip.mobilonsip.ru',
-      sip_name: 'sip102',
-      sip_user: 'sip102',
-      sip_password: '4321',
-      sip_auth: 'sip102',
-    },
-  ],
-  rules: {
-    time: {
-      until: (new Date((new Date()).getTime() - 30*60000)).toISOString(),
-    },
-    ip: {
-      network: '192.168.0.0',
-    },
-  },
-};
-
-const DeviceNonActual = {
-  findOne: () => {
-    return Promise.resolve(deviceNonActual);
-  },
-};
-
-const app2 = createApp({
-  apiDoc: require('./../provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../provision/api-routes'),
-  dependencies: {
-    Device: DeviceNonActual,
-  },
-});
-
-
-describe('provision', ()=> {
-  it('get xml config', (done) => {
-    const server = app2.listen(3000);
-    fetch('http://localhost:3000/v1/device/1/cfg.xml')
+    fetch('http://localhost:3000/v1/device/1/cfg001565113af8.xml', {
+      method: 'GET',
+      headers: headers,
+    })
         .then((res) => res.text())
         .then((res) => {
           // console.log(' ------------------- ')
