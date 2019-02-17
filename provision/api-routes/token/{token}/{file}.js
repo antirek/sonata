@@ -1,27 +1,6 @@
 const template = require('./../../../template');
-const helper = require('./../../../helper');
 const strip = require('strip-passwords');
-
-const isUntilTimeRule = (device) => {
-  return device.rules && device.rules.time && device.rules.time.until;
-};
-
-const isExpiredUntilTimeRule = (device) => {
-  let result = false;
-  const dateUntil = (new Date(device.rules.time.until)).getTime();
-  const dateActual = (new Date()).getTime();
-  // console.log('until:', dateUntil, 'actual:', dateActual);
-  result = dateUntil - dateActual > 0 ? false : true;
-  return result;
-};
-
-const isMacRule = (device) => {
-  return device.rules && device.rules.mac && device.rules.hasOwnProperty('mac');
-};
-
-const isValidMac = (device, mac) => {
-  return device.mac && (device.mac === mac);
-};
+const ruleVerification = require('./../../../verification').ruleVerification;
 
 module.exports = (Device) => {
   /**
@@ -42,32 +21,17 @@ module.exports = (Device) => {
     const mac = file.match(new RegExp('cfg(.*).xml'))[1];
     console.log('mac:', mac);
 
+    const requestInfo = {
+      remote_ip: req.remote_ip,
+      mac,
+    };
+
     Device.findOne({token, mac})
         .then((device) => {
           console.log('db find:', strip(device));
-
-          if (!device) {
-            return Promise.reject(new Error('no device config'));
-          }
-
-          console.log('device:', strip(device));
-
-          if (!device.status) {
-            return Promise.reject(new Error('device config status disabled'));
-          }
-
-          if (isUntilTimeRule(device) && isExpiredUntilTimeRule(device)) {
-            return Promise.reject(new Error('device until time rule expired'));
-          }
-
-          if (isMacRule(device) && !isValidMac(device, mac)) {
-            return Promise.reject(new Error('device mac is not valid'));
-          }
-
-          if (!helper.isFreshUpdate(device)) {
-            return Promise.reject(new Error('device config expired'));
-          }
-
+          return ruleVerification(device, requestInfo);
+        })
+        .then((device) => {
           const t = template(device);
           console.log('vendor', device.vendor);
           console.log('config template', t);

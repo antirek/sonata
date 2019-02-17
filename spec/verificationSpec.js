@@ -1,5 +1,5 @@
 
-const helper = require('./../provision/helper');
+const helper = require('./../provision/verification');
 
 const deviceExpired = {
   updated_at: '2019-01-18T15:41:15.645Z',

@@ -55,7 +55,7 @@ const app = createApp({
 
 
 describe('provision', ()=> {
-  it('get xml config', (done) => {
+  it('get xml config actual until time', (done) => {
     const server = app.listen(3000);
     fetch('http://localhost:3000/v1/device/1/cfg.xml')
         .then((res) => res.text())
@@ -108,9 +108,6 @@ const deviceNonActual = {
     time: {
       until: (new Date((new Date()).getTime() - 30*60000)).toISOString(),
     },
-    ip: {
-      network: '192.168.0.0',
-    },
   },
 };
 
@@ -130,7 +127,7 @@ const app2 = createApp({
 
 
 describe('provision', ()=> {
-  it('get xml config', (done) => {
+  it('get xml config expired until time', (done) => {
     const server = app2.listen(3000);
     fetch('http://localhost:3000/v1/device/1/cfg.xml')
         .then((res) => res.text())
