@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <gs_provision version="1">
 <config version="1"> 
+
+<!-- @ifdef ACCOUNT1 -->
 <!-- Account 1 Name  -->
 <P270>{{account_1_name}}</P270>
 <!-- Account 1 enabled: 1 - yes, 0 - no -->
-<P271>1</P271>
+<P271>{{account_1_enabled}}</P271>
 <!-- SIP Server -->
 <P47>{{account_1_sip_register}}</P47>
 <!-- SIP User ID -->
@@ -15,6 +17,7 @@
 <P34>{{account_1_sip_password}}</P34>
 <!-- Name (Display Name, e.g., John Doe, callerid(name))-->
 <P3>{{account_1_sip_name}}</P3>
+<!-- @endif -->
 <!-- -->
 <P32>5</P32>
 <!-- -->
@@ -52,13 +55,13 @@
 <!-- -->
 <P1362>ru</P1362>
 
+
+<!-- @ifdef ACCOUNT2 -->
 <!-- Account 2 enabled -->
-<P401>1</P401>
+<P401>{{account_2_enabled}}</P401>
 <!-- Account 2 Name -->
 <P417>{{account_2_name}}</P417>
-
 <P402>{{account_2_sip_register}}</P402>
-
 <!-- Account 2 sip user -->
 <P404>{{account_2_sip_user}}</P404>
 <!-- Account 2 auth -->
@@ -68,16 +71,18 @@
 <!-- Account 2 sip name -->
 <P407>{{account_2_sip_name}}</P407>
 
-<P412>1</P412>
+<P412>5</P412>
 <P2495>0</P2495>
 <P2497>1</P2497>
 <P2498>15</P2498>
 <P2495>0</P2495>
 <P2447>1</P2447>
+<!-- @endif -->
 
-<!-- P2392=<int> <0|1|2> Enable RTCP 0: Disable 1: RTCP 2: RTCP-XR -->
-<P2392>0</P2392>
-
+<!--  Enable Session Timer. 0 - No, 1 - Yes. Default is 1 -->
+<!--  Number: 0, 1 -->
+<!--  Mandatory -->
+<P2395>0</P2395>
 
 </config> 
 </gs_provision>

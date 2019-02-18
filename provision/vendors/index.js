@@ -1,17 +1,20 @@
 
 module.exports = {
   grandstream: {
-    gxp1600: {
+    gxp1400: {
       type: 'phone',
-      template: 'gxp1600.xml',
+      template: 'gxp1400.xml',
+      accounts: 2,
     },
     gxp1610: {
       type: 'phone',
       template: 'gxp1610.xml',
+      accounts: 1,
     },
     gxp1620: {
       type: 'phone',
       template: 'gxp1620.xml',
+      accounts: 2,
     },
     ht812: {
       type: 'gateway',
@@ -29,7 +32,7 @@ module.exports = {
     },
   },
   yealink: {
-    t19: {
+    t28p: {
       type: 'phone',
       template: 't19.cfg',
     },

@@ -97,6 +97,10 @@ const template = (device) => {
   const basePath = './provision/vendors/';
   const deviceSpec = devices[vendor][model];
 
+  if (!deviceSpec || !deviceSpec.template) {
+    return null;
+  }
+
   const templatePath = path.resolve(basePath, vendor, deviceSpec.template);
   // console.log('template path:', templatePath);
   const template = fs.readFileSync(templatePath);
