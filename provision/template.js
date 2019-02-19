@@ -49,6 +49,8 @@ const findEnabledAndSet = (account) => {
   }
   if (!account.enabled) {
     account.enabled = 0;
+  } else {
+    account.enabled = 1;
   }
   return account;
 };
