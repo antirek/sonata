@@ -2,6 +2,18 @@ const template = require('./../../../template');
 const strip = require('strip-passwords');
 const ruleVerification = require('./../../../verification').ruleVerification;
 
+const getMacFromFile = (filename) => {
+  const macArray = filename.match(new RegExp('cfg(.*).xml'));
+  if (macArray && macArray[1]) {
+    return macArray[1];
+  }
+  const macArray2 = filename.match(new RegExp('cfg(.*)'));
+  if (macArray2 && macArray2[1]) {
+    return macArray2[2];
+  }
+};
+
+
 module.exports = (Device) => {
   /**
   *
@@ -9,8 +21,11 @@ module.exports = (Device) => {
   * @param {Object} res
   */
   function get(req, res) {
+    console.log('request token + mac');
     console.log('request params:', req.params);
     console.log('request user-agent:', req.headers['user-agent']);
+    console.log('remote ip:', req.remote_ip);
+    console.log('remote ip info:', req.ipInfo);
 
     const token = req.params.token;
     console.log('token:', token);
@@ -18,7 +33,7 @@ module.exports = (Device) => {
     const file = req.params.file;
     console.log('file:', file);
 
-    const mac = file.match(new RegExp('cfg(.*).xml'))[1];
+    const mac = getMacFromFile(file);
     console.log('mac:', mac);
 
     const requestInfo = {
@@ -26,7 +41,16 @@ module.exports = (Device) => {
       mac,
     };
 
-    Device.findOne({token, mac})
+    (() => {
+      if (mac) {
+        return Promise.resolve(mac);
+      } else {
+        return Promise.reject(new Error('no mac'));
+      }
+    })()
+        .then((mac) => {
+          return Device.findOne({token, mac});
+        })
         .then((device) => {
           console.log('db find:', strip(device));
           return ruleVerification(device, requestInfo);

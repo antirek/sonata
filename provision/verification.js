@@ -86,6 +86,6 @@ const ruleVerification = (device, requestInfo) => {
 };
 
 module.exports = {
-  ruleVerification, 
-  isFreshUpdate
+  ruleVerification,
+  isFreshUpdate,
 };

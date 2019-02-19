@@ -3,6 +3,17 @@ const strip = require('strip-passwords');
 
 const ruleVerification = require('./../../../verification').ruleVerification;
 
+const getMacFromFile = (filename) => {
+  const macArray = filename.match(new RegExp('cfg(.*).xml'));
+  if (macArray && macArray[1]) {
+    return macArray[1];
+  }
+  const macArray2 = filename.match(new RegExp('cfg(.*)'));
+  if (macArray2 && macArray2[1]) {
+    return macArray2[2];
+  }
+};
+
 module.exports = (Device) => {
   /**
   *
@@ -10,6 +21,7 @@ module.exports = (Device) => {
   * @param {Object} res
   */
   function get(req, res) {
+    console.log('request device id');
     console.log('request params:', req.params);
     console.log('request user-agent:', req.headers['user-agent']);
     console.log('remote ip:', req.remote_ip);
@@ -21,7 +33,7 @@ module.exports = (Device) => {
     const file = req.params.file;
     console.log('file:', file);
 
-    const mac = file.match(new RegExp('cfg(.*).xml'))[1];
+    const mac = getMacFromFile(file);
     console.log('mac:', mac);
 
     const requestInfo = {

@@ -49,7 +49,6 @@ describe('template', () => {
 });
 
 
-
 const grandstreamPhoneNoTemplate = {
   id: 'sdgjdeu9443908590sfdsf8u984',
   model: 'gxp16000000',
@@ -84,12 +83,11 @@ describe('template', () => {
   it('do good', (done) => {
     const config = template(grandstreamPhoneNoTemplate);
     // console.log('config:', config);
-    expect(config).toBe(null);    
+    expect(config).toBe(null);
 
     done();
   });
 });
-
 
 
 const grandstreamPhoneWithDisabledAccountsTemplate = {
