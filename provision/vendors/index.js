@@ -16,6 +16,12 @@ module.exports = {
       template: 'gxp1620.xml',
       accounts: 2,
     },
+    dp715: {
+      type: 'gateway',
+      template: 'dp715.xml',
+      accounts: 5,
+      profiles: 2,
+    },
     ht812: {
       type: 'gateway',
       template: 'ht812.xml',
