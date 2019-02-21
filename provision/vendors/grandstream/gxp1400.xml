@@ -51,7 +51,9 @@
 <!-- -->
 <P6767>1</P6767>
 <!-- -->
-<P192>firmware.grandstream.com</P192> 
+<!-- @ifdef set_firmware_url -->
+<P192>firmware.grandstream.com</P192>
+<!-- @endif -->
 <!-- -->
 <P1362>ru</P1362>
 
