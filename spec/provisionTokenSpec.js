@@ -65,4 +65,39 @@ describe('provision', () => {
           done();
         });
   });
+
+  it('get xml config by token', (done) => {
+    const server = app.listen(3000);
+    fetch('http://localhost:3000/v1/token/1/001565113af8.xml')
+        .then((res) => res.text())
+        .then((res) => {
+          // console.log(' ------------------- ')
+          // console.log(res);
+          const containXml = res.includes('<config version="1">');
+          // console.log('containXml', containXml);
+          expect(containXml).toBe(true);
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
+  });
+
+  it('get xml config by token', (done) => {
+    const server = app.listen(3000);
+    fetch('http://localhost:3000/v1/token/1/cfg001565113af8')
+        .then((res) => res.text())
+        .then((res) => {
+          // console.log(' ------------------- ')
+          // console.log(res);
+          const containXml = res.includes('<config version="1">');
+          // console.log('containXml', containXml);
+          expect(containXml).toBe(true);
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
+  });
+  
 });

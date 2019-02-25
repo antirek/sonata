@@ -9,7 +9,12 @@ const getMacFromFile = (filename) => {
   }
   const macArray2 = filename.match(new RegExp('cfg(.*)'));
   if (macArray2 && macArray2[1]) {
-    return macArray2[2];
+    return macArray2[1];
+  }
+
+  const macArray3 = filename.match(new RegExp('(.*).xml'));
+  if (macArray3 && macArray3[1]) {
+    return macArray3[1];
   }
 };
 
