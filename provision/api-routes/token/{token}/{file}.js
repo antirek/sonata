@@ -16,6 +16,11 @@ const getMacFromFile = (filename) => {
   if (macArray3 && macArray3[1]) {
     return macArray3[1];
   }
+
+  const macArray4 = filename.match(new RegExp('(.*).cfg'));
+  if (macArray4 && macArray4[1]) {
+    return macArray4[1];
+  }
 };
 
 
