@@ -109,17 +109,28 @@ const template = (device) => {
 
   // console.log('template', template);
 
-  const check = (id) => {
+  const checkAccount = (id) => {
     return device.accounts.find((item) => {
       return Number.parseInt(item.line) === id;
     });
   };
 
+  const checkProfile = (id) => {
+    if (!device.profiles) return null;
+
+    return device.profiles.find((item) => {
+      return Number.parseInt(item.id) === id;
+    });
+  };
+
   const templateProcess = preprocess.preprocess(template, {
-    ACCOUNT1: check(1),
-    ACCOUNT2: check(2),
-    ACCOUNT3: check(3),
-    ACCOUNT4: check(4),
+    ACCOUNT1: checkAccount(1),
+    ACCOUNT2: checkAccount(2),
+    ACCOUNT3: checkAccount(3),
+    ACCOUNT4: checkAccount(4),
+    ACCOUNT5: checkAccount(5),
+    PROFILE0: checkProfile(0),
+    PROFILE1: checkProfile(1),
   });
 
   let config;

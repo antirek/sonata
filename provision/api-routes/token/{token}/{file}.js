@@ -52,11 +52,13 @@ module.exports = (Device) => {
     };
 
     (() => {
-      if (mac) {
-        return Promise.resolve(mac);
-      } else {
-        return Promise.reject(new Error('no mac'));
-      }
+      return new Promise((resolve, reject) => {
+        if (mac) {
+          resolve(mac.toLowerCase());
+        } else {
+          reject(new Error('no mac'));
+        }
+      })
     })()
         .then((mac) => {
           return Device.findOne({token, mac});
