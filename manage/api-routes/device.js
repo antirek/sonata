@@ -10,7 +10,12 @@ module.exports = function(Device) {
 
     const key = req.body.key;
     console.log('key:', key);
-    Device.findOneAndUpdate({key}, req.body, {
+    console.log('token:', req.body.token || '');
+    console.log('mac:', req.body.mac);
+    let device = req.body;
+    device.mac = device.mac.toLowerCase();
+
+    Device.findOneAndUpdate({key}, device, {
       upsert: true,
       returnNewDocument: true,
     })
