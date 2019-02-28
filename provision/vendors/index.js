@@ -41,6 +41,7 @@ module.exports = {
     t28p: {
       type: 'phone',
       template: 't19.cfg',
+      accounts: 6,
     },
   },
   fanvil: {
