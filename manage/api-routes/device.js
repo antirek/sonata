@@ -1,3 +1,5 @@
+const helper = require('./../helper');
+
 module.exports = function(Device) {
   /**
   *
@@ -12,8 +14,10 @@ module.exports = function(Device) {
     console.log('key:', key);
     console.log('token:', req.body.token || '');
     console.log('mac:', req.body.mac);
+    
     let device = req.body;
-    device.mac = device.mac.toLowerCase();
+    device.mac = helper.prepareMAC(device.mac);
+    console.log('device prepared for db:', device);
 
     Device.findOneAndUpdate({key}, device, {
       upsert: true,
