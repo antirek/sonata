@@ -19,5 +19,5 @@ describe('helper', () => {
     const result = helper.prepareMAC(mac);
     expect(result).toBe('00aa00ff00aa');
     done();
-  });  
+  });
 });

@@ -58,7 +58,7 @@ module.exports = (Device) => {
         } else {
           reject(new Error('no mac'));
         }
-      })
+      });
     })()
         .then((mac) => {
           return Device.findOne({token, mac});

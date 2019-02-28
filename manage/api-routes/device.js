@@ -14,8 +14,8 @@ module.exports = function(Device) {
     console.log('key:', key);
     console.log('token:', req.body.token || '');
     console.log('mac:', req.body.mac);
-    
-    let device = req.body;
+
+    const device = req.body;
     device.mac = helper.prepareMAC(device.mac);
     console.log('device prepared for db:', device);
 
