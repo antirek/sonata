@@ -25,10 +25,14 @@ module.exports = {
     ht812: {
       type: 'gateway',
       template: 'ht812.xml',
+      accounts: 2,
+      profiles: 2,
     },
     ht814: {
       type: 'gateway',
       template: 'ht814.xml',
+      accounts: 4,
+      profiles: 2,
     },
   },
   panasonic: {
@@ -40,7 +44,7 @@ module.exports = {
   yealink: {
     t28p: {
       type: 'phone',
-      template: 't19.cfg',
+      template: 't28p.cfg',
       accounts: 6,
     },
   },

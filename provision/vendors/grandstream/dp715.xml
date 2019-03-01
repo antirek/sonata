@@ -38,7 +38,7 @@
 <P2495>0</P2495>
 <!-- @endif -->
 
-
+<!--- Line1 -->
 <!-- @ifdef ACCOUNT1 -->
 <P4060>{{account_1_sip_user}}</P4060>
 <P4090>{{account_1_sip_auth}}</P4090>
@@ -54,6 +54,24 @@
 <P4121>{{account_2_sip_password}}</P4121>
 <P4181>{{account_2_sip_name}}</P4181>
 <P4151>{{account_2_profile_id}}</P4151>
+<!-- @endif -->
+
+<!--- Line3 -->
+<!-- @ifdef ACCOUNT3 -->
+<P4062>{{account_3_sip_user}}</P4062>
+<P4092>{{account_3_sip_auth}}</P4092>
+<P4122>{{account_3_sip_password}}</P4122>
+<P4182>{{account_3_sip_name}}</P4182>
+<P4152>{{account_3_profile_id}}</P4152>
+<!-- @endif -->
+
+<!--- Line4 -->
+<!-- @ifdef ACCOUNT4 -->
+<P4063>{{account_4_sip_user}}</P4063>
+<P4093>{{account_4_sip_auth}}</P4093>
+<P4123>{{account_4_sip_password}}</P4123>
+<P4183>{{account_4_sip_name}}</P4183>
+<P4153>{{account_4_profile_id}}</P4153>
 <!-- @endif -->
 
 </config>
