@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const devices = require('./vendors/index');
 const preprocess = require('preprocess');
+const url = require('url-parse');
 
 const offsets = {
   'GMT+01': 'CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00',
@@ -20,6 +21,27 @@ const offsets = {
 const getTimezoneByOffset = (offset) => {
   return offsets[offset];
 };
+
+const replacePhonebookVars = (config, phonebooks) => {
+  phonebooks.forEach((element, id) => {
+    const maskUrl = '{{' + (
+      ['phonebook', id + 1, 'url'].join('_')
+    ) + '}}';
+    console.log('mask url', maskUrl);
+    const pbUrl = url(element.url);
+    config = config.replace(maskUrl, pbUrl['host'] + pbUrl['pathname']
+      + pbUrl['query'] + pbUrl['hash']);
+
+    const maskProtocol = '{{' + (
+      ['phonebook', id + 1, 'protocol'].join('_')
+    ) + '}}';
+    const protocol = url(element.url).protocol === 'https:' ? '3' : '1';
+
+    config = config.replace(maskProtocol, protocol);
+  });
+  return config;
+};
+
 
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
@@ -40,6 +62,12 @@ const phoneReplace = (template, device) => {
       }
     }
   });
+
+  if (device.phonebooks && device.phonebooks.length > 0) {
+    console.log('replace phonebooks');
+    config = replacePhonebookVars(config, device.phonebooks);
+  }
+
   return config;
 };
 
@@ -123,6 +151,12 @@ const template = (device) => {
     });
   };
 
+  const checkPhonebook = (id) => {
+    if (!device.phonebooks) return null;
+
+    return device.phonebooks[id - 1];
+  };
+
   const templateProcess = preprocess.preprocess(template, {
     ACCOUNT1: checkAccount(1),
     ACCOUNT2: checkAccount(2),
@@ -131,6 +165,8 @@ const template = (device) => {
     ACCOUNT5: checkAccount(5),
     PROFILE0: checkProfile(0),
     PROFILE1: checkProfile(1),
+    PHONEBOOK1: checkPhonebook(1),
+    PHONEBOOK2: checkPhonebook(2),
   });
 
   let config;

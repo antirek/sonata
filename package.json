@@ -27,7 +27,8 @@
     "ip-range-check": "0.0.2",
     "mongoose": "^5.4.3",
     "preprocess": "^3.1.0",
-    "strip-passwords": "^1.1.2"
+    "strip-passwords": "^1.1.2",
+    "url-parse": "^1.4.4"
   },
   "devDependencies": {
     "eslint": "^5.12.0",

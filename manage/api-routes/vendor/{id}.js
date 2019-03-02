@@ -13,13 +13,15 @@ module.exports = () => {
     (() => {
       return new Promise((resolve, reject) => {
         const deviceList = vendors[id];
-        let preparedDeviceList = [];
-        for (let device in deviceList) {
+        const preparedDeviceList = [];
+        for (const device in deviceList) {
+          if (Object.prototype.hasOwnProperty.call(deviceList, device)) {
             preparedDeviceList.push({
-                id: device,
-                name: device,
-                type: deviceList[device].type,
-            })
+              id: device,
+              name: device,
+              type: deviceList[device].type,
+            });
+          }
         }
         res.status(200).json(preparedDeviceList);
         resolve();
@@ -51,7 +53,6 @@ module.exports = () => {
       },
     },
   };
-
 
   return {
     parameters: [

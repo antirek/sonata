@@ -40,6 +40,7 @@ const DeviceSchema = (collection) => {
     },
     accounts: [],
     profiles: [],
+    phonebooks: [],
     rules: {
       'type': Object,
     },
