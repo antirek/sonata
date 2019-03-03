@@ -27,7 +27,7 @@ const replacePhonebooksVars = (config, phonebooks) => {
     const maskUrl = '{{' + (
       ['phonebook', id + 1, 'url'].join('_')
     ) + '}}';
-    console.log('mask url', maskUrl);
+    // console.log('mask url', maskUrl);
     const pbUrl = url(element.url);
     config = config.replace(maskUrl, pbUrl['host'] + pbUrl['pathname']
       + pbUrl['query'] + pbUrl['hash']);
@@ -36,8 +36,18 @@ const replacePhonebooksVars = (config, phonebooks) => {
       ['phonebook', id + 1, 'protocol'].join('_')
     ) + '}}';
     const protocol = url(element.url).protocol === 'https:' ? '3' : '1';
-
     config = config.replace(maskProtocol, protocol);
+
+
+    const maskFullUrl = '{{' + (
+      ['phonebook', id + 1, 'fullurl'].join('_')
+    ) + '}}';
+    config = config.replace(maskFullUrl, element.url);
+
+    const maskName = '{{' + (
+      ['phonebook', id + 1, 'name'].join('_')
+    ) + '}}';
+    config = config.replace(maskName, element.name);
   });
   return config;
 };
