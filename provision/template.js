@@ -22,7 +22,7 @@ const getTimezoneByOffset = (offset) => {
   return offsets[offset];
 };
 
-const replacePhonebookVars = (config, phonebooks) => {
+const replacePhonebooksVars = (config, phonebooks) => {
   phonebooks.forEach((element, id) => {
     const maskUrl = '{{' + (
       ['phonebook', id + 1, 'url'].join('_')
@@ -42,15 +42,7 @@ const replacePhonebookVars = (config, phonebooks) => {
   return config;
 };
 
-
-const phoneReplace = (template, device) => {
-  let config = template.toString('utf8')
-      .replace('{{timezone}}', getTimezoneByOffset(device.timezone_offset))
-      .replace('{{ntp_server}}', device.ntp_server)
-      .replace(/<!--[\s\S]*?-->/g, '')
-      .replace(/\n\n/g, '\n');
-
-  const accounts = device.accounts;
+const replaceAccountsVars = (config, accounts) => {
   accounts.forEach((element) => {
     element = findEnabledAndSet(element);
     for (prop in element) {
@@ -62,10 +54,23 @@ const phoneReplace = (template, device) => {
       }
     }
   });
+  return config;
+};
+
+const phoneReplace = (template, device) => {
+  let config = template.toString('utf8')
+      .replace('{{timezone}}', getTimezoneByOffset(device.timezone_offset))
+      .replace('{{ntp_server}}', device.ntp_server)
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/\n\n/g, '\n');
+
+  if (device.accounts) {
+    config = replaceAccountsVars(config, device.accounts);
+  }
 
   if (device.phonebooks && device.phonebooks.length > 0) {
     console.log('replace phonebooks');
-    config = replacePhonebookVars(config, device.phonebooks);
+    config = replacePhonebooksVars(config, device.phonebooks);
   }
 
   return config;
@@ -83,27 +88,7 @@ const findEnabledAndSet = (account) => {
   return account;
 };
 
-const gatewayReplace = (template, device) => {
-  let config = template.toString('utf8')
-      .replace('{{timezone}}', device.timezone)
-      .replace('{{ntp_server}}', device.ntp_server)
-      .replace(/<!--[\s\S]*?-->/g, '')
-      .replace(/\n\n/g, '\n');
-
-  const accounts = device.accounts;
-  accounts.forEach((element) => {
-    element = findEnabledAndSet(element);
-    for (prop in element) {
-      if (Object.prototype.hasOwnProperty.call(element, prop)) {
-        const mask = '{{' + (
-          ['account', element.line, prop].join('_')
-        ) + '}}';
-        config = config.replace(mask, element[prop]);
-      }
-    }
-  });
-
-  const profiles = device.profiles;
+const replaceProfilesVars = (config, profiles) => {
   profiles.forEach((element) => {
     for (prop in element) {
       if (Object.prototype.hasOwnProperty.call(element, prop)) {
@@ -115,6 +100,23 @@ const gatewayReplace = (template, device) => {
       }
     }
   });
+  return config;
+};
+
+const gatewayReplace = (template, device) => {
+  let config = template.toString('utf8')
+      .replace('{{timezone}}', device.timezone)
+      .replace('{{ntp_server}}', device.ntp_server)
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/\n\n/g, '\n');
+
+  if (device.accounts) {
+    config = replaceAccountsVars(config, device.accounts);
+  }
+
+  if (device.profiles) {
+    config = replaceProfilesVars(config, device.profiles);
+  }
 
   return config;
 };
