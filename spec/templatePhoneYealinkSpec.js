@@ -43,6 +43,7 @@ describe('template', () => {
     expect(config.includes('account.2.display_name = sip102')).toBe(true);
     expect(config.includes('account.2.password = 4321')).toBe(true);
 
+    expect(config.includes('local_time.time_zone = +3')).toBe(true);
     done();
   });
 });

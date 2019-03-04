@@ -4,22 +4,39 @@ const devices = require('./vendors/index');
 const preprocess = require('preprocess');
 const url = require('url-parse');
 
-const offsets = {
-  'GMT+01': 'CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00',
-  'GMT+02': 'TZP-2',
-  'GMT+03': 'TZQ-3',
-  'GMT+04': 'TZR-4',
-  'GMT+05': 'TZS-5',
-  'GMT+06': 'TZV-6',
-  'GMT+07': 'TZX-7',
-  'GMT+08': 'TZY-8',
-  'GMT+09': 'TZZ-9',
-  'GMT+10': 'EST-10',
-  'GMT+11': 'TZc-11',
-};
 
-const getTimezoneByOffset = (offset) => {
-  return offsets[offset];
+
+const getTimezoneByOffset = (offset, vendor) => {
+  const offsets = {
+    'grandstream': {
+      'GMT+01': 'CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00',
+      'GMT+02': 'TZP-2',
+      'GMT+03': 'TZQ-3',
+      'GMT+04': 'TZR-4',
+      'GMT+05': 'TZS-5',
+      'GMT+06': 'TZV-6',
+      'GMT+07': 'TZX-7',
+      'GMT+08': 'TZY-8',
+      'GMT+09': 'TZZ-9',
+      'GMT+10': 'EST-10',
+      'GMT+11': 'TZc-11',
+    },
+    'yealink': {
+      'GMT+01': '+1',
+      'GMT+02': '+2',
+      'GMT+03': '+3',
+      'GMT+04': '+4',
+      'GMT+05': '+5',
+      'GMT+06': '+6',
+      'GMT+07': '+7',
+      'GMT+08': '+8',
+      'GMT+09': '+9',
+      'GMT+10': '+10',
+      'GMT+11': '+11',
+    }
+  }
+
+  return offsets[vendor] ? offsets[vendor][offset] : null;
 };
 
 const replacePhonebooksVars = (config, phonebooks) => {
@@ -69,7 +86,8 @@ const replaceAccountsVars = (config, accounts) => {
 
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
-      .replace('{{timezone}}', getTimezoneByOffset(device.timezone_offset))
+      .replace('{{timezone}}', 
+        getTimezoneByOffset(device.timezone_offset, device.vendor))
       .replace('{{ntp_server}}', device.ntp_server)
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\n\n/g, '\n');
@@ -156,7 +174,7 @@ const template = (device) => {
   };
 
   const checkProfile = (id) => {
-    if (!device.profiles) return null;
+    if (!device.profiles) return undefined;
 
     return device.profiles.find((item) => {
       return Number.parseInt(item.id) === id;
@@ -164,8 +182,9 @@ const template = (device) => {
   };
 
   const checkPhonebook = (id) => {
-    if (!device.phonebooks) return null;
-
+    //console.log('check phonebook', !device.phonebooks)
+    if (!device.phonebooks) return undefined;
+    
     return device.phonebooks[id - 1];
   };
 
