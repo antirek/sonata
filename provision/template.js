@@ -77,7 +77,7 @@ const replaceAccountsVars = (config, accounts) => {
         const mask = '{{' + (
           ['account', element.line, prop].join('_')
         ) + '}}';
-        config = config.replace(mask, element[prop]);
+        config = config.replace(new RegExp(mask, 'g'), element[prop]);
       }
     }
   });
