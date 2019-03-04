@@ -5,7 +5,6 @@ const preprocess = require('preprocess');
 const url = require('url-parse');
 
 
-
 const getTimezoneByOffset = (offset, vendor) => {
   const offsets = {
     'grandstream': {
@@ -33,8 +32,8 @@ const getTimezoneByOffset = (offset, vendor) => {
       'GMT+09': '+9',
       'GMT+10': '+10',
       'GMT+11': '+11',
-    }
-  }
+    },
+  };
 
   return offsets[vendor] ? offsets[vendor][offset] : null;
 };
@@ -86,8 +85,8 @@ const replaceAccountsVars = (config, accounts) => {
 
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
-      .replace('{{timezone}}', 
-        getTimezoneByOffset(device.timezone_offset, device.vendor))
+      .replace('{{timezone}}',
+          getTimezoneByOffset(device.timezone_offset, device.vendor))
       .replace('{{ntp_server}}', device.ntp_server)
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\n\n/g, '\n');
@@ -182,9 +181,9 @@ const template = (device) => {
   };
 
   const checkPhonebook = (id) => {
-    //console.log('check phonebook', !device.phonebooks)
+    // console.log('check phonebook', !device.phonebooks)
     if (!device.phonebooks) return undefined;
-    
+
     return device.phonebooks[id - 1];
   };
 
