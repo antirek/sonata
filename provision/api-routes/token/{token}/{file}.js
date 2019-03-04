@@ -3,10 +3,16 @@ const strip = require('strip-passwords');
 const ruleVerification = require('./../../../verification').ruleVerification;
 
 const getMacFromFile = (filename) => {
-  const macArray = filename.match(new RegExp('cfg(.*).xml'));
-  if (macArray && macArray[1]) {
-    return macArray[1];
+  const macArray0 = filename.match(new RegExp('cfg(.*).xml'));
+  if (macArray0 && macArray0[1]) {
+    return macArray0[1];
   }
+
+  const macArray1 = filename.match(new RegExp('Config(.*).xml'));
+  if (macArray1 && macArray1[1]) {
+    return macArray1[1];
+  }
+
   const macArray2 = filename.match(new RegExp('cfg(.*)'));
   if (macArray2 && macArray2[1]) {
     return macArray2[1];
