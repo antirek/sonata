@@ -86,5 +86,16 @@
 <!--  Mandatory -->
 <P2395>0</P2395>
 
+<!-- @ifdef PHONEBOOK1 -->
+<!-- Enable Phonebook. 0(Disabled)/1(HTTP)/2(TFTP)/3(HTTPS) --> 
+<P330>{{phonebook_1_protocol}}</P330>
+<!-- Phone Book XML Server Path --> 
+<P331>{{phonebook_1_url}}</P331>
+<!-- Phone Book Download Interval (in minutes) --> 
+<P332>5</P332>
+<!-- Remove Manually-edited entries on Download. Possible values: 0(No)/1(Yes) --> 
+<P333>1</P333>
+<!-- @endif -->
+
 </config> 
 </gs_provision>

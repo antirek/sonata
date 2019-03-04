@@ -39,6 +39,7 @@ module.exports = {
     tgp600: {
       type: 'phone',
       template: 'tgp600.sys',
+      accounts: 8,
     },
   },
   yealink: {
