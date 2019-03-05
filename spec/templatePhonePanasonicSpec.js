@@ -39,6 +39,8 @@ describe('template', () => {
     expect(config.includes('PHONE_NUMBER_1="sip101"')).toBe(true);
     expect(config.includes('SIP_PASS_1="1234"')).toBe(true);
 
+    expect(config.includes('TIME_ZONE="180"')).toBe(true);
+
     done();
   });
 });

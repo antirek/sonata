@@ -33,6 +33,19 @@ const getTimezoneByOffset = (offset, vendor) => {
       'GMT+10': '+10',
       'GMT+11': '+11',
     },
+    'panasonic': {
+      'GMT+01': '60',
+      'GMT+02': '120',
+      'GMT+03': '180',
+      'GMT+04': '240',
+      'GMT+05': '300',
+      'GMT+06': '360',
+      'GMT+07': '420',
+      'GMT+08': '480',
+      'GMT+09': '540',
+      'GMT+10': '600',
+      'GMT+11': '660',
+    },
   };
 
   return offsets[vendor] ? offsets[vendor][offset] : null;

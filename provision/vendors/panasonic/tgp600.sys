@@ -5,7 +5,7 @@ FIRM_FILE_PATH=""
 HTTPD_PORTOPEN_AUTO="Y"
 ADMINPASS="adminpass"
 NTP_ADDR="ntp1.stratum2.ru"
-TIME_ZONE="420"
+TIME_ZONE="{{timezone}}"
 PORT_PUNCH_INTVL="15"
 
 <!-- @ifdef ACCOUNT1 -->
