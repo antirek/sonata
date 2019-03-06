@@ -54,5 +54,10 @@ module.exports = {
       type: 'phone',
       template: 'c58.cfg',
     },
+    x5s: {
+      type: 'phone',
+      template: 'c58.cfg',
+      accounts: 6,
+    },
   },
 };
