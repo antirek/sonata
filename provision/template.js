@@ -161,13 +161,29 @@ const gatewayReplace = (template, device) => {
   return config;
 };
 
+const getDeviceSpec = (vendor, model) => {
+  // console.log(vendor, model);
+  const vendorSpec = devices.find((vendorSpec) => {
+    return vendorSpec.id === vendor;
+  });
+  // console.log(vendorSpec);
+  if (!vendorSpec.models || vendorSpec.models.length < 1) return null;
+
+  const modelSpec = vendorSpec.models.find((modelSpec) => {
+    return modelSpec.id === model;
+  });
+
+  return modelSpec;
+};
+
+
 const template = (device) => {
   const vendor = device.vendor;
   const model = device.model;
   console.log('devices', devices);
 
   const basePath = './provision/vendors/';
-  const deviceSpec = devices[vendor][model];
+  const deviceSpec = getDeviceSpec(vendor, model);
 
   if (!deviceSpec || !deviceSpec.template) {
     return null;

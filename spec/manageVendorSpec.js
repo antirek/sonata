@@ -75,7 +75,10 @@ describe('manage vendor', ()=> {
         })
         .then((json) => {
           console.log('json:', json);
-          // expect(json).toEqual(true);
+          const str = JSON.stringify(json);
+          // console.log(str);
+          expect(str.includes('{"id":"grandstream","name":"grandstream"}'))
+              .toEqual(true);
         })
         .then(() => {
           server.close();
@@ -95,7 +98,10 @@ describe('manage vendor', ()=> {
         })
         .then((json) => {
           console.log('json:', json);
-          // expect(json).toEqual(true);
+          const str = JSON.stringify(json);
+          console.log(str);
+          expect(str.includes('{"id":"gxp1400","name":"GXP1400"}'))
+              .toEqual(true);
         })
         .then(() => {
           server.close();

@@ -10,19 +10,27 @@ module.exports = () => {
     console.log('get request params', req.params);
     const id = req.params.id;
 
+    const getModelsByVendor = (vendor) => {
+      // console.log(vendor, model);
+      const vendorSpec = vendors.find((vendorSpec) => {
+        return vendorSpec.id === vendor;
+      });
+      // console.log(vendorSpec);
+
+      return vendorSpec.models;
+    };
+
+
     (() => {
       return new Promise((resolve, reject) => {
-        const deviceList = vendors[id];
-        const preparedDeviceList = [];
-        for (const device in deviceList) {
-          if (Object.prototype.hasOwnProperty.call(deviceList, device)) {
-            preparedDeviceList.push({
-              id: device,
-              name: device,
-              type: deviceList[device].type,
-            });
-          }
-        }
+        const deviceList = getModelsByVendor(id);
+        const preparedDeviceList = deviceList.map((model) => {
+          return {
+            id: model.id,
+            name: model.name,
+            // type: deviceList[device].type,
+          };
+        });
         res.status(200).json(preparedDeviceList);
         resolve();
       });

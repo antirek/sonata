@@ -14,15 +14,13 @@ module.exports = () => {
 
     (() => {
       return new Promise((resolve, reject) => {
-        const vendorList = [];
-        for (const vendor in vendors) {
-          if (Object.prototype.hasOwnProperty.call(vendors, vendor)) {
-            vendorList.push({
-              id: vendor,
-              name: vendor,
-            });
-          }
-        }
+        const vendorList = vendors.map((vendorSpec) => {
+          return {
+            id: vendorSpec.id,
+            name: vendorSpec.id,
+          };
+        });
+        // console.log(vendorList);
         resolve(vendorList);
       });
     })()

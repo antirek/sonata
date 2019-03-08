@@ -43,7 +43,7 @@ describe('template', () => {
     expect(config.includes('SIP2 Register Pswd :4321')).toBe(true);
     expect(config.includes('SIP2 Register Addr :sip.mobilonsip.ru')).toBe(true);
 
-    //expect(config.includes('TIME_ZONE="180"')).toBe(true);
+    // expect(config.includes('TIME_ZONE="180"')).toBe(true);
 
     done();
   });
