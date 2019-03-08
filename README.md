@@ -5,7 +5,7 @@
 Provisioning server
 
 
-## how work
+## How work
 
 ![](images/scheme.png)
 
@@ -32,3 +32,9 @@ Limited access by
 - mac
 
 - time
+
+## API
+
+- upload config for SIP devices in JSON format
+
+- separated API for provisioning and management
