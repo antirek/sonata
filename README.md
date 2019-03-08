@@ -1,4 +1,7 @@
 # sonata
+
+[![Build Status](https://travis-ci.org/antirek/sonata.svg?branch=master)](https://travis-ci.org/antirek/sonata)
+
 Provisioning server
 
 
