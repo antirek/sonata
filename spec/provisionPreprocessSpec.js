@@ -36,6 +36,7 @@ const app = createApp({
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceWithOneAccount,
+    RequestLog: null,
   },
 });
 
@@ -116,6 +117,7 @@ const app2 = createApp({
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceWithTwoAccounts,
+    RequestLog: null,
   },
 });
 

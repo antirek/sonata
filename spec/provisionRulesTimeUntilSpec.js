@@ -50,6 +50,7 @@ const app = createApp({
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceActual,
+    RequestLog: null,
   },
 });
 
@@ -122,6 +123,7 @@ const app2 = createApp({
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceNonActual,
+    RequestLog: null,
   },
 });
 

@@ -1,36 +1,9 @@
 const template = require('./../../../template');
 const strip = require('strip-passwords');
 const ruleVerification = require('./../../../verification').ruleVerification;
+const helper = require('./../../../../manage/helper');
 
-const getMacFromFile = (filename) => {
-  const macArray0 = filename.match(new RegExp('cfg(.*).xml'));
-  if (macArray0 && macArray0[1]) {
-    return macArray0[1];
-  }
-
-  const macArray1 = filename.match(new RegExp('Config(.*).xml'));
-  if (macArray1 && macArray1[1]) {
-    return macArray1[1];
-  }
-
-  const macArray2 = filename.match(new RegExp('cfg(.*)'));
-  if (macArray2 && macArray2[1]) {
-    return macArray2[1];
-  }
-
-  const macArray3 = filename.match(new RegExp('(.*).xml'));
-  if (macArray3 && macArray3[1]) {
-    return macArray3[1];
-  }
-
-  const macArray4 = filename.match(new RegExp('(.*).cfg'));
-  if (macArray4 && macArray4[1]) {
-    return macArray4[1];
-  }
-};
-
-
-module.exports = (Device) => {
+module.exports = (Device, RequestLog) => {
   /**
   *
   * @param {Object} req
@@ -43,13 +16,18 @@ module.exports = (Device) => {
     console.log('remote ip:', req.remote_ip);
     console.log('remote ip info:', req.ipInfo);
 
+    const log = new RequestLog();
+    log.ip = req.remote_ip;
+    log.request = 'token+mac';
+    log.userAgent = req.headers['user-agent'];
+
     const token = req.params.token;
     console.log('token:', token);
 
     const file = req.params.file;
     console.log('file:', file);
 
-    const mac = getMacFromFile(file);
+    const mac = helper.getMacFromFile(file);
     console.log('mac:', mac);
 
     const requestInfo = {
@@ -60,7 +38,7 @@ module.exports = (Device) => {
     (() => {
       return new Promise((resolve, reject) => {
         if (mac) {
-          resolve(mac.toLowerCase());
+          resolve(mac);
         } else {
           reject(new Error('no mac'));
         }
@@ -77,11 +55,19 @@ module.exports = (Device) => {
           const t = template(device);
           console.log('vendor', device.vendor);
           console.log('config template', t);
+          log.status = 'OK';
           res.status(200).type('application/xml').send(t);
         })
         .catch((err) => {
+          log.status = 'FAIL';
           console.log('error', err);
           res.status(404).send();
+        })
+        .then(() => {
+          log.save();
+        })
+        .catch((err) => {
+          console.log('error', err);
         });
   }
 

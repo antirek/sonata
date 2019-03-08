@@ -1,11 +1,17 @@
 const config = require('config');
 const mongoose = require('mongoose');
+const path = require('path');
+
 const createApp = require('./app').createApp;
 const deviceSchema = require('./models/device');
-const path = require('path');
+const requestLogSchema = require('./models/requestLog');
 
 const Device = mongoose.model(
     'Device', deviceSchema('device')
+);
+
+const RequestLog = mongoose.model(
+    'RequestLog', requestLogSchema('log_request')
 );
 
 mongoose.connect(config.mongodb, {useNewUrlParser: true});
@@ -17,6 +23,7 @@ const manageApp = createApp({
   paths: path.resolve(__dirname, 'manage/api-routes'),
   dependencies: {
     Device,
+    RequestLog,
   },
 });
 
@@ -25,6 +32,7 @@ const provisionApp = createApp({
   paths: path.resolve(__dirname, 'provision/api-routes'),
   dependencies: {
     Device,
+    RequestLog,
   },
 });
 

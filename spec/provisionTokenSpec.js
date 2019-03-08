@@ -39,12 +39,27 @@ const Device = {
   },
 };
 
+/**
+ *
+ */
+class RequestLog {
+  /**
+   *
+   */
+  constructor() {}
+  /**
+   *
+   */
+  save() {}
+}
+
 const createApp = require('./../app').createApp;
 const app = createApp({
   apiDoc: require('./../provision/api-doc.js'),
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device,
+    RequestLog,
   },
 });
 

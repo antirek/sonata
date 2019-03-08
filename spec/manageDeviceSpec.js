@@ -60,6 +60,7 @@ const app = createApp({
   paths: path.resolve(__dirname, './../manage/api-routes'),
   dependencies: {
     Device,
+    RequestLog: null,
   },
 });
 

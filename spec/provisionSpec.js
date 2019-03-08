@@ -45,6 +45,7 @@ const app = createApp({
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device,
+    RequestLog: null,
   },
 });
 
