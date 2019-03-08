@@ -189,7 +189,7 @@ const template = (device) => {
     return null;
   }
 
-  const templatePath = path.resolve(basePath, vendor, deviceSpec.template);
+  const templatePath = path.resolve(basePath, deviceSpec.template);
   // console.log('template path:', templatePath);
   const template = fs.readFileSync(templatePath);
 
