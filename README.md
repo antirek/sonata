@@ -38,3 +38,5 @@ Limited access by
 - upload config for SIP devices in JSON format
 
 - separated API for provisioning and management
+
+- support Swagger 2.0 API spec
