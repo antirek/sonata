@@ -44,13 +44,27 @@ const DeviceActual = {
   },
 };
 
+/**
+ *
+ */
+class RequestLog {
+  /**
+   *
+   */
+  constructor() {}
+  /**
+   *
+   */
+  save() {}
+}
+
 const createApp = require('./../app').createApp;
 const app = createApp({
   apiDoc: require('./../provision/api-doc.js'),
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceActual,
-    RequestLog: null,
+    RequestLog,
   },
 });
 
@@ -123,7 +137,7 @@ const app2 = createApp({
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceNonActual,
-    RequestLog: null,
+    RequestLog,
   },
 });
 

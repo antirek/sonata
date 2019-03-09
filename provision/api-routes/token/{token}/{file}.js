@@ -1,5 +1,6 @@
 const template = require('./../../../template');
 const strip = require('strip-passwords');
+
 const ruleVerification = require('./../../../verification').ruleVerification;
 const helper = require('./../../../../manage/helper');
 
@@ -16,10 +17,12 @@ module.exports = (Device, RequestLog) => {
     console.log('remote ip:', req.remote_ip);
     console.log('remote ip info:', req.ipInfo);
 
-    const log = new RequestLog();
-    log.ip = req.remote_ip;
-    log.request = 'token+mac';
-    log.userAgent = req.headers['user-agent'];
+    const log = new RequestLog({
+      ip: req.remote_ip,
+      request: 'token+mac',
+      userAgent: req.headers['user-agent'],
+      token: req.params.token,
+    });
 
     const token = req.params.token;
     console.log('token:', token);

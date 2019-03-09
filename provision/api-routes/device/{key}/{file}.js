@@ -2,19 +2,10 @@ const template = require('./../../../template');
 const strip = require('strip-passwords');
 
 const ruleVerification = require('./../../../verification').ruleVerification;
+const helper = require('./../../../../manage/helper');
 
-const getMacFromFile = (filename) => {
-  const macArray = filename.match(new RegExp('cfg(.*).xml'));
-  if (macArray && macArray[1]) {
-    return macArray[1];
-  }
-  const macArray2 = filename.match(new RegExp('cfg(.*)'));
-  if (macArray2 && macArray2[1]) {
-    return macArray2[2];
-  }
-};
 
-module.exports = (Device) => {
+module.exports = (Device, RequestLog) => {
   /**
   *
   * @param {Object} req
@@ -27,13 +18,19 @@ module.exports = (Device) => {
     console.log('remote ip:', req.remote_ip);
     console.log('remote ip info:', req.ipInfo);
 
+    const log = new RequestLog({
+      ip: req.remote_ip,
+      request: 'key',
+      userAgent: req.headers['user-agent'],
+    });
+
     const key = req.params.key;
     console.log('key:', key);
 
     const file = req.params.file;
     console.log('file:', file);
 
-    const mac = getMacFromFile(file);
+    const mac = helper.getMacFromFile(file);
     console.log('mac:', mac);
 
     const requestInfo = {
@@ -44,16 +41,28 @@ module.exports = (Device) => {
     Device.findOne({key})
         .then((device) => {
           console.log('db find:', strip(device));
+          if (device.token) {
+            log.token = device.token;
+          }
           return ruleVerification(device, requestInfo);
-        }).then((device) => {
+        })
+        .then((device) => {
           const t = template(device);
           console.log('vendor', device.vendor);
           console.log('config template', t);
+          log.status = 'OK';
           res.status(200).type('application/xml').send(t);
         })
         .catch((err) => {
           console.log('error', err);
+          log.status = 'FAIL';
           res.status(404).send();
+        })
+        .then(() => {
+          log.save();
+        })
+        .catch((err) => {
+          console.log('error', err);
         });
   }
 

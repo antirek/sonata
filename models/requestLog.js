@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 
 const RequestLogSchema = (collection) => {
   return new mongoose.Schema({
+    token: {
+      type: String,
+      required: true,
+    },
+    deviceId: {
+      type: String,
+      required: false,
+    },
     request: {
       type: String,
       required: true,

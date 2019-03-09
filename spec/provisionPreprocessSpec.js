@@ -30,13 +30,27 @@ const DeviceWithOneAccount = {
   },
 };
 
+/**
+ *
+ */
+class RequestLog {
+  /**
+   *
+   */
+  constructor() {}
+  /**
+   *
+   */
+  save() {}
+}
+
 const createApp = require('./../app').createApp;
 const app = createApp({
   apiDoc: require('./../provision/api-doc.js'),
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceWithOneAccount,
-    RequestLog: null,
+    RequestLog,
   },
 });
 
@@ -111,13 +125,12 @@ const DeviceWithTwoAccounts = {
   },
 };
 
-
 const app2 = createApp({
   apiDoc: require('./../provision/api-doc.js'),
   paths: path.resolve(__dirname, './../provision/api-routes'),
   dependencies: {
     Device: DeviceWithTwoAccounts,
-    RequestLog: null,
+    RequestLog,
   },
 });
 

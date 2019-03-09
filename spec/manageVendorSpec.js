@@ -53,6 +53,19 @@ Device.findOneAndRemove = () => {
   return Promise.resolve(device);
 };
 
+/**
+ *
+ */
+class RequestLog {
+  /**
+   *
+   */
+  constructor() {}
+  /**
+   *
+   */
+  save() {}
+}
 
 const createApp = require('../app').createApp;
 const app = createApp({
@@ -60,6 +73,7 @@ const app = createApp({
   paths: path.resolve(__dirname, './../manage/api-routes'),
   dependencies: {
     Device,
+    RequestLog,
   },
 });
 

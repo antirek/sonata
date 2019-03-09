@@ -1,6 +1,6 @@
 const helper = require('./../helper');
 
-module.exports = function(Device) {
+module.exports = (Device) => {
   /**
   *
   * @param {Object} req
