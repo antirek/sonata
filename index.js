@@ -6,15 +6,21 @@ const createApp = require('./app').createApp;
 const deviceSchema = require('./models/device');
 const requestLogSchema = require('./models/requestLog');
 
-const Device = mongoose.model(
+const settingsConn = mongoose.createConnection(config.settings.mongodb, {
+  useNewUrlParser: true,
+});
+
+const logsConn = mongoose.createConnection(config.logs.mongodb, {
+  useNewUrlParser: true,
+});
+
+const Device = settingsConn.model(
     'Device', deviceSchema('device')
 );
 
-const RequestLog = mongoose.model(
+const RequestLog = logsConn.model(
     'RequestLog', requestLogSchema('log_request')
 );
-
-mongoose.connect(config.mongodb, {useNewUrlParser: true});
 
 console.log('config', config);
 

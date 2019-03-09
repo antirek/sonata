@@ -1,5 +1,10 @@
 module.exports = {
-  mongodb: 'mongodb://localhost:27017/sonata',
+  settings: {
+    mongodb: 'mongodb://localhost:27017/sonata',
+  },
+  logs: {
+    mongodb: 'mongodb://localhost:27017/sonata_log',
+  },
   provision: {
     port: 3020,
   },
