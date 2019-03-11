@@ -40,3 +40,11 @@ Limited access by
 - separated API for provisioning and management
 
 - support Swagger 2.0 API spec
+
+### Provision API
+
+![](images/api_provision.png)
+
+### Management API
+
+![](images/api_manage.png)
