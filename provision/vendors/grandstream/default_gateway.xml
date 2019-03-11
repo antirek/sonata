@@ -13,7 +13,7 @@
 <P30>ntp1.stratum2.ru</P30>
 <P84>15</P84>
 <P212>2</P212>
-<P64>TZX-7</P64>
+<P64>{{timezone}}</P64>
 
 <!-- @ifdef PROFILE0 -->
 <!--- Profile0 -->
