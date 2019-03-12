@@ -4,11 +4,9 @@
 
 Small free & open source SIP provisioning server
 
-
 ## How work
 
-![](images/scheme.png)
-
+![Scheme](images/scheme.png)
 
 ## Vendors
 
@@ -21,7 +19,6 @@ Small free & open source SIP provisioning server
 - Yealink
 
 - Digium
-
 
 ## Rules
 
@@ -43,13 +40,12 @@ Limited access by
 
 ### Provision API
 
-![](images/api_provision.png)
+![Provision API](images/api_provision.png)
 
 ### Management API
 
-![](images/api_manage.png)
+![Management API](images/api_manage.png)
 
-
-# Great thanks 
+# Great thanks
 
 @freess @k666r
