@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/antirek/sonata.svg?branch=master)](https://travis-ci.org/antirek/sonata)
 
-Provisioning server
+Small free & open source SIP provisioning server
 
 
 ## How work
@@ -48,3 +48,8 @@ Limited access by
 ### Management API
 
 ![](images/api_manage.png)
+
+
+# Great thanks 
+
+@freess @k666r

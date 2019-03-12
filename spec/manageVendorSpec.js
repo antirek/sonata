@@ -91,7 +91,7 @@ describe('manage vendor', ()=> {
           console.log('json:', json);
           const str = JSON.stringify(json);
           // console.log(str);
-          expect(str.includes('{"id":"grandstream","name":"grandstream"}'))
+          expect(str.includes('{"id":"grandstream","name":"Grandstream"}'))
               .toEqual(true);
         })
         .then(() => {

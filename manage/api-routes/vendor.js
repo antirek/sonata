@@ -17,7 +17,7 @@ module.exports = () => {
         const vendorList = vendors.map((vendorSpec) => {
           return {
             id: vendorSpec.id,
-            name: vendorSpec.id,
+            name: vendorSpec.name,
           };
         });
         // console.log(vendorList);
