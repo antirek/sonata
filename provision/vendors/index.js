@@ -109,4 +109,17 @@ module.exports = [
       },
     ],
   },
+  {
+    id: 'audiocodes',
+    name: 'AudioCodes',
+    models: [
+      {
+        id: '320hd',
+        name: '320HD',
+        type: 'phone',
+        template: 'audiocodes/default.cfg',
+        accounts: 4,
+      },
+    ],
+  },
 ];
