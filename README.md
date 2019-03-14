@@ -20,6 +20,8 @@ Small free & open source SIP provisioning server
 
 - Digium
 
+- AudioCodes
+
 ## Rules
 
 Limited access by
@@ -29,6 +31,16 @@ Limited access by
 - mac
 
 - time
+
+## Scopes
+
+- accounts
+
+- timezones
+
+- phonebooks
+
+- ntp
 
 ## API
 
