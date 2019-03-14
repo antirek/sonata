@@ -74,6 +74,7 @@ const app = createApp({
   dependencies: {
     Device,
     RequestLog,
+    config: null,
   },
 });
 

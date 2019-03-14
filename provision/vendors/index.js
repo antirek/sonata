@@ -3,6 +3,8 @@ module.exports = [
   {
     id: 'grandstream',
     name: 'Grandstream',
+    instruction: 'в поле Protocol выберите "{{protocol}}", \n' +
+                 'в поле Url укажите {{server}}{{qs}}',
     models: [
       {
         id: 'gxp1400',
@@ -54,6 +56,8 @@ module.exports = [
   {
     id: 'panasonic',
     name: 'Panasonic',
+    instruction: 'в поле Protocol выберите "{{protocol}}", \n' +
+                 'в поле Url укажите {{server}}{{qs}}{{filename}}',
     models: [
       {
         id: 'tgp600',

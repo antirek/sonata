@@ -7,6 +7,7 @@ const device = {
   vendor: 'grandstream',
   mac: '001565113af8',
   timezone: 'UTC+03',
+  token: 'ertyeriutyiure',
   ntp_server: 'pool.ntp.org',
   status: true,
   accounts: [
@@ -52,15 +53,6 @@ Device.findOneAndRemove = () => {
   return Promise.resolve(device);
 };
 
-const logs = [
-  {
-    updated_at: '',
-    token: 'token1',
-    ip: '127.0.0.1',
-    status: 'OK',
-  },
-];
-
 /**
  *
  */
@@ -75,24 +67,10 @@ class RequestLog {
   save() {}
 }
 
-RequestLog.find = () => {
-  return {
-    skip: () => {
-      return {
-        limit: () => {
-          return {
-            sort: () => {
-              return {
-                exec: () => {
-                  return Promise.resolve(logs);
-                },
-              };
-            },
-          };
-        },
-      };
-    },
-  };
+const config = {
+  url: {
+    provision: 'http://provision.server.com',
+  },
 };
 
 const createApp = require('./../app').createApp;
@@ -102,15 +80,15 @@ const app = createApp({
   dependencies: {
     Device,
     RequestLog,
-    config: null,
+    config,
   },
 });
 
 describe('manage', ()=> {
-  it('get config on server', (done) => {
+  it('get link for device', (done) => {
     const server = app.listen(3000);
 
-    fetch('http://localhost:3000/v1/log/request/token1/')
+    fetch('http://localhost:3000/v1/link/1/device')
         .then((res) => {
           console.log(res);
           expect(res.status).toBe(200);
@@ -118,9 +96,29 @@ describe('manage', ()=> {
         })
         .then((json) => {
           console.log('json:', json);
-          expect(json[0].status).toEqual('OK');
-          expect(json[0].ip).toEqual('127.0.0.1');
-          expect(json[0].token).toEqual('token1');
+          const url = 'http://provision.server.com/v1/device/' +
+            'sdgjdeu9443908590sfdsf8u984';
+          expect(json.data.url).toEqual(url);
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
+  });
+
+  it('get link for token', (done) => {
+    const server = app.listen(3000);
+
+    fetch('http://localhost:3000/v1/link/1/token')
+        .then((res) => {
+          console.log(res);
+          expect(res.status).toBe(200);
+          return res.json();
+        })
+        .then((json) => {
+          console.log('json:', json);
+          const url = 'http://provision.server.com/v1/token/ertyeriutyiure';
+          expect(json.data.url).toEqual(url);
         })
         .then(() => {
           server.close();

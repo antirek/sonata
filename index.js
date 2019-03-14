@@ -30,6 +30,7 @@ const manageApp = createApp({
   dependencies: {
     Device,
     RequestLog,
+    config,
   },
 });
 

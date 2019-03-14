@@ -11,4 +11,7 @@ module.exports = {
   manage: {
     port: 3021,
   },
+  url: {
+    provision: 'http://provision.server.com',
+  },
 };
