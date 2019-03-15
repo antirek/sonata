@@ -58,6 +58,6 @@ Limited access by
 
 ![Management API](images/api_manage.png)
 
-# Great thanks
+## Great thanks
 
 @freess @k666r

@@ -28,7 +28,7 @@ module.exports = () => {
           return {
             id: model.id,
             name: model.name,
-            // type: deviceList[device].type,
+            scopes: model.scopes,
           };
         });
         res.status(200).json(preparedDeviceList);

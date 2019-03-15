@@ -5,6 +5,12 @@ module.exports = [
     name: 'Grandstream',
     instruction: 'в поле Protocol выберите "{{protocol}}", \n' +
                  'в поле Url укажите {{server}}{{qs}}',
+    scopes: [
+      'accounts',
+      'phonebooks',
+      'timezone',
+      'ntp',
+    ],
     models: [
       {
         id: 'gxp1400',
@@ -58,6 +64,12 @@ module.exports = [
     name: 'Panasonic',
     instruction: 'в поле Protocol выберите "{{protocol}}", \n' +
                  'в поле Url укажите {{server}}{{qs}}{{filename}}',
+    scopes: [
+      'accounts',
+      'phonebooks',
+      'timezone',
+      'ntp',
+    ],
     models: [
       {
         id: 'tgp600',
@@ -71,6 +83,12 @@ module.exports = [
   {
     id: 'yealink',
     name: 'Yealink',
+    scopes: [
+      'accounts',
+      'phonebooks',
+      'timezone',
+      'ntp',
+    ],
     models: [
       {
         id: 't28p',
@@ -84,6 +102,13 @@ module.exports = [
   {
     id: 'fanvil',
     name: 'Fanvil',
+    instruction: 'В поле Server {{server}}, в поле file {{qs}}/{mac}.cfg',
+    scopes: [
+      'accounts',
+      'phonebooks',
+      'timezone',
+      'ntp',
+    ],
     models: [
       {
         id: 'c58',
@@ -103,6 +128,12 @@ module.exports = [
   {
     id: 'digium',
     name: 'Digium',
+    scopes: [
+      'accounts',
+      'phonebooks',
+      'timezone',
+      'ntp',
+    ],
     models: [
       {
         id: 'a25',
@@ -116,6 +147,12 @@ module.exports = [
   {
     id: 'audiocodes',
     name: 'AudioCodes',
+    scopes: [
+      'accounts',
+      'phonebooks',
+      'timezone',
+      'ntp',
+    ],
     models: [
       {
         id: '320hd',
