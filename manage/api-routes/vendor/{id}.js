@@ -28,7 +28,6 @@ module.exports = () => {
           return {
             id: model.id,
             name: model.name,
-            scopes: model.scopes,
           };
         });
         res.status(200).json(preparedDeviceList);

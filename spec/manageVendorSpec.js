@@ -92,7 +92,11 @@ describe('manage vendor', ()=> {
           console.log('json:', json);
           const str = JSON.stringify(json);
           // console.log(str);
-          expect(str.includes('{"id":"grandstream","name":"Grandstream"}'))
+          expect(str.includes('{"id":"grandstream","name":"Grandstream",' +
+            '"scopes":[{"id":"accounts","name":"SIP аккаунты"},' +
+            '{"id":"timezone","name":"Таймзона"},' +
+            '{"id":"phonebooks","name":"Телефонные книги"},' +
+            '{"id":"ntp","name":"Сервер времени (NTP)"}]}'))
               .toEqual(true);
         })
         .then(() => {

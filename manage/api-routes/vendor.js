@@ -1,4 +1,5 @@
 const vendors = require('./../../provision/vendors/index');
+const scopesInfo = require('./../../provision/scopes');
 
 module.exports = () => {
   /**
@@ -18,6 +19,9 @@ module.exports = () => {
           return {
             id: vendorSpec.id,
             name: vendorSpec.name,
+            scopes: scopesInfo.filter((scopeInfo) => {
+              return vendorSpec.scopes.includes(scopeInfo.id);
+            }),
           };
         });
         // console.log(vendorList);
