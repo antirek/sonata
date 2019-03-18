@@ -33,3 +33,29 @@ SIP_DETECT_SSAF_2="Y"
 RTCP_ENABLE_2="Y"
 CW_ENABLE_2="N"
 <!-- @endif -->
+
+<!-- @ifdef ACCOUNT3 -->
+## account 3
+SIP_RGSTR_ADDR_3="{{account_3_sip_register}}"
+SIP_PRXY_ADDR_3="{{account_3_sip_register}}"
+PHONE_NUMBER_3="{{account_3_sip_name}}"
+SIP_AUTHID_3="{{account_3_sip_auth}}"
+SIP_PASS_3="{{account_3_sip_password}}"
+REG_EXPIRE_TIME_3="150"
+SIP_DETECT_SSAF_3="Y"
+RTCP_ENABLE_3="Y"
+CW_ENABLE_3="N"
+<!-- @endif -->
+
+<!-- @ifdef ACCOUNT4 -->
+## account 4
+SIP_RGSTR_ADDR_4="{{account_4_sip_register}}"
+SIP_PRXY_ADDR_4="{{account_4_sip_register}}"
+PHONE_NUMBER_4="{{account_4_sip_name}}"
+SIP_AUTHID_4="{{account_4_sip_auth}}"
+SIP_PASS_4="{{account_4_sip_password}}"
+REG_EXPIRE_TIME_4="150"
+SIP_DETECT_SSAF_4="Y"
+RTCP_ENABLE_4="Y"
+CW_ENABLE_4="N"
+<!-- @endif -->
