@@ -49,7 +49,7 @@ module.exports = (Device, config) => {
   function get(req, res) {
     console.log('get request params', req.params);
 
-    Device.findOne({_id: req.params.id})
+    Device.findOne({key: req.params.id})
         .then((device) => {
           console.log('db return:', JSON.stringify(device));
           if (!device) {
