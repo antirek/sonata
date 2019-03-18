@@ -49,7 +49,7 @@ module.exports = (Device, config) => {
   function get(req, res) {
     console.log('get request params', req.params);
 
-    Device.findOne({key: req.params.id})
+    Device.findOne({key: req.params.key})
         .then((device) => {
           console.log('db return:', JSON.stringify(device));
           if (!device) {
@@ -88,7 +88,7 @@ module.exports = (Device, config) => {
   }
 
   get.apiDoc = {
-    description: 'get provision link by id and type',
+    description: 'get provision link by personal device key and type',
     operationId: 'getProvisionLink',
     tags: ['link'],
     produces: [
@@ -110,11 +110,11 @@ module.exports = (Device, config) => {
   return {
     parameters: [
       {
-        name: 'id',
+        name: 'key',
         in: 'path',
         type: 'string',
         required: true,
-        description: 'id',
+        description: 'key',
       },
       {
         name: 'type',

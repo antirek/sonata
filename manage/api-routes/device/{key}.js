@@ -7,7 +7,7 @@ module.exports = (Device) => {
   function get(req, res) {
     console.log('get request params', req.params);
 
-    Device.findOne({_id: req.params.id})
+    Device.findOne({key: req.params.key})
         .then((device) => {
           console.log('db return:', JSON.stringify(device));
           if (!device) {
@@ -22,7 +22,7 @@ module.exports = (Device) => {
   }
 
   get.apiDoc = {
-    description: 'get by id',
+    description: 'get by device personal key',
     operationId: 'get config',
     tags: ['config'],
     produces: [
@@ -51,7 +51,7 @@ module.exports = (Device) => {
   function del(req, res) {
     console.log('del request params', req.params);
 
-    Device.findOneAndRemove({_id: req.params.id})
+    Device.findOneAndRemove({key: req.params.key})
         .then((device) => {
           console.log('db remove doc:', JSON.stringify(device));
           if (!device) {
@@ -66,7 +66,7 @@ module.exports = (Device) => {
   }
 
   del.apiDoc = {
-    description: 'delete by id',
+    description: 'delete by personal device key',
     operationId: 'delete config',
     tags: ['config'],
     produces: [
@@ -89,11 +89,11 @@ module.exports = (Device) => {
   return {
     parameters: [
       {
-        name: 'id',
+        name: 'key',
         in: 'path',
         type: 'string',
         required: true,
-        description: 'id',
+        description: 'key',
       },
     ],
     get: get,
