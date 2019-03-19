@@ -53,7 +53,7 @@ module.exports = (Device, RequestLog) => {
         .then((device) => {
           console.log('db find:', strip(device));
           if (!device) return Promise.reject(new Error('no device'));
-          
+
           return ruleVerification(device, requestInfo);
         })
         .then((device) => {
