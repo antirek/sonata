@@ -5,7 +5,7 @@ const getUrl = (config, type, device) => {
   let secret;
 
   if (type === 'device') {
-    secret = device.id;
+    secret = device.key;
   } else if (type === 'token') {
     secret = device.token ? device.token : null;
   } else {
