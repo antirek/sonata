@@ -14,4 +14,7 @@ module.exports = {
   url: {
     provision: 'http://provision.server.com',
   },
+  remove: {
+    cron: '0 4 * * *',
+  }
 };
