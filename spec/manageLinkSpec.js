@@ -10,6 +10,7 @@ const device = {
   token: 'ertyeriutyiure',
   ntp_server: 'pool.ntp.org',
   status: true,
+  key: 'lolololo',
   accounts: [
     {
       name: 'манго',
@@ -96,8 +97,7 @@ describe('manage', ()=> {
         })
         .then((json) => {
           console.log('json:', json);
-          const url = 'http://provision.server.com/v1/device/' +
-            'sdgjdeu9443908590sfdsf8u984';
+          const url = 'http://provision.server.com/v1/device/lolololo';
           expect(json.data.url).toEqual(url);
         })
         .then(() => {

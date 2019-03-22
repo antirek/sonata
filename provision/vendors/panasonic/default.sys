@@ -59,3 +59,55 @@ SIP_DETECT_SSAF_4="Y"
 RTCP_ENABLE_4="Y"
 CW_ENABLE_4="N"
 <!-- @endif -->
+
+<!-- @ifdef ACCOUNT5 -->
+## account 5
+SIP_RGSTR_ADDR_5="{{account_5_sip_register}}"
+SIP_PRXY_ADDR_5="{{account_5_sip_register}}"
+PHONE_NUMBER_5="{{account_5_sip_name}}"
+SIP_AUTHID_5="{{account_5_sip_auth}}"
+SIP_PASS_5="{{account_5_sip_password}}"
+REG_EXPIRE_TIME_5="150"
+SIP_DETECT_SSAF_5="Y"
+RTCP_ENABLE_5="Y"
+CW_ENABLE_5="N"
+<!-- @endif -->
+
+<!-- @ifdef ACCOUNT6 -->
+## account 6
+SIP_RGSTR_ADDR_6="{{account_6_sip_register}}"
+SIP_PRXY_ADDR_6="{{account_6_sip_register}}"
+PHONE_NUMBER_6="{{account_6_sip_name}}"
+SIP_AUTHID_6="{{account_6_sip_auth}}"
+SIP_PASS_6="{{account_6_sip_password}}"
+REG_EXPIRE_TIME_6="150"
+SIP_DETECT_SSAF_6="Y"
+RTCP_ENABLE_6="Y"
+CW_ENABLE_6="N"
+<!-- @endif -->
+
+<!-- @ifdef ACCOUNT7 -->
+## account 7
+SIP_RGSTR_ADDR_7="{{account_7_sip_register}}"
+SIP_PRXY_ADDR_7="{{account_7_sip_register}}"
+PHONE_NUMBER_7="{{account_7_sip_name}}"
+SIP_AUTHID_7="{{account_7_sip_auth}}"
+SIP_PASS_7="{{account_7_sip_password}}"
+REG_EXPIRE_TIME_7="150"
+SIP_DETECT_SSAF_7="Y"
+RTCP_ENABLE_7="Y"
+CW_ENABLE_7="N"
+<!-- @endif -->
+
+<!-- @ifdef ACCOUNT8 -->
+## account 8
+SIP_RGSTR_ADDR_8="{{account_8_sip_register}}"
+SIP_PRXY_ADDR_8="{{account_8_sip_register}}"
+PHONE_NUMBER_8="{{account_8_sip_name}}"
+SIP_AUTHID_8="{{account_8_sip_auth}}"
+SIP_PASS_8="{{account_8_sip_password}}"
+REG_EXPIRE_TIME_8="150"
+SIP_DETECT_SSAF_8="Y"
+RTCP_ENABLE_8="Y"
+CW_ENABLE_8="N"
+<!-- @endif -->

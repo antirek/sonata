@@ -41,9 +41,12 @@ module.exports = (Device, RequestLog) => {
     Device.findOne({key})
         .then((device) => {
           console.log('db find:', strip(device));
-          if (device.token) {
+          if (!device) return Promise.reject(new Error('no device'));
+
+          if (device && device.token) {
             log.token = device.token;
           }
+
           return ruleVerification(device, requestInfo);
         })
         .then((device) => {
@@ -51,6 +54,7 @@ module.exports = (Device, RequestLog) => {
           console.log('vendor', device.vendor);
           console.log('config template', t);
           log.status = 'OK';
+
           res.status(200).type('application/xml').send(t);
         })
         .catch((err) => {
