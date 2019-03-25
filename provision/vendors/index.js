@@ -63,7 +63,7 @@ module.exports = [
     id: 'panasonic',
     name: 'Panasonic',
     instruction: 'в поле Protocol выберите "{{protocol}}", \n' +
-                 'в поле Url укажите {{server}}{{qs}}{{filename}}',
+                 'в поле Url укажите {{server}}{{qs}}/{{filename}}',
     scopes: [
       'accounts',
       'phonebooks',
