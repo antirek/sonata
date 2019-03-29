@@ -15,7 +15,7 @@ const RequestLog = logsConn.model(
 
 const removeOldLogs = () => {
   RequestLog.remove({
-    updated_at: moment().subtract(1, 'week'),
+    updated_at: {$lte: moment().subtract(1, 'week').toDate()},
   }).then((res) => {
     console.log('res', res);
   }).catch((err)=> {
