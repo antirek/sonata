@@ -57,6 +57,14 @@ module.exports = [
         accounts: 4,
         profiles: 2,
       },
+      {
+        id: 'gxw4008',
+        name: 'GXW4008',
+        type: 'gateway',
+        template: 'grandstream/default_gateway.xml',
+        accounts: 8,
+        profiles: 2,
+      },
     ],
   },
   {

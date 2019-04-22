@@ -64,4 +64,9 @@ see [sonata-sample](https://github.com/antirek/sonata-sample)
 
 ## Great thanks
 
-@freess @k666r
+- @freess 
+
+- @k666r
+
+- @igorg
+

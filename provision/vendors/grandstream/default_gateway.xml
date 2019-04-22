@@ -14,6 +14,11 @@
 <P84>15</P84>
 <P212>2</P212>
 <P64>{{timezone}}</P64>
+<P52>2</P52>
+<P78>1</P78>
+<P243>1</P243>
+<P850>101</P850>
+<P260>64800</P260>
 
 <!-- @ifdef PROFILE0 -->
 <!--- Profile0 -->
@@ -72,6 +77,42 @@
 <P4123>{{account_4_sip_password}}</P4123>
 <P4183>{{account_4_sip_name}}</P4183>
 <P4153>{{account_4_profile_id}}</P4153>
+<!-- @endif -->
+
+<!--- Line5 -->
+<!-- @ifdef ACCOUNT5 -->
+<P4064>{{account_5_sip_user}}</P4064>
+<P4094>{{account_5_sip_auth}}</P4094>
+<P4124>{{account_5_sip_password}}</P4124>
+<P4184>{{account_5_sip_name}}</P4184>
+<P4154>{{account_5_profile_id}}</P4154>
+<!-- @endif -->
+
+<!--- Line6 -->
+<!-- @ifdef ACCOUNT6 -->
+<P4065>{{account_6_sip_user}}</P4065>
+<P4095>{{account_6_sip_auth}}</P4095>
+<P4125>{{account_6_sip_password}}</P4125>
+<P4185>{{account_6_sip_name}}</P4185>
+<P4155>{{account_6_profile_id}}</P4155>
+<!-- @endif -->
+
+<!--- Line7 -->
+<!-- @ifdef ACCOUNT7 -->
+<P4066>{{account_7_sip_user}}</P4066>
+<P4096>{{account_7_sip_auth}}</P4096>
+<P4126>{{account_7_sip_password}}</P4126>
+<P4186>{{account_7_sip_name}}</P4186>
+<P4156>{{account_7_profile_id}}</P4156>
+<!-- @endif -->
+
+<!--- Line8 -->
+<!-- @ifdef ACCOUNT8 -->
+<P4067>{{account_8_sip_user}}</P4067>
+<P4097>{{account_8_sip_auth}}</P4097>
+<P4127>{{account_8_sip_password}}</P4127>
+<P4187>{{account_8_sip_name}}</P4187>
+<P4157>{{account_8_profile_id}}</P4157>
 <!-- @endif -->
 
 </config>
