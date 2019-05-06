@@ -42,6 +42,8 @@ Limited access by
 
 - ntp
 
+- firmware
+
 ## API
 
 - upload config for SIP devices in JSON format

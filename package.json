@@ -1,4 +1,5 @@
 {
+  "bin": "index.js",
   "name": "sonata",
   "version": "0.0.1",
   "description": "Provisioning server",
@@ -37,5 +38,13 @@
     "eslint-config-google": "^0.11.0",
     "jasmine": "^3.3.1",
     "node-fetch": "^2.3.0"
+  },
+  "pkg": {
+    "assets": [
+       "views/**/*",
+       "public",
+       "images",
+       "node_modules/config/**/*.*"
+    ]
   }
 }

@@ -69,14 +69,14 @@ const phoneReplace = (template, device) => {
   }
 
   if (device.phonebooks && device.phonebooks.length > 0) {
-    //console.log('replace phonebooks');
+    // console.log('replace phonebooks');
     config = replacePhonebooksVars(config, device.phonebooks);
   }
 
-  //console.log('device ------:', device);
-  if (device.firmware) {    
+  // console.log('device ------:', device);
+  if (device.firmware) {
     config = replaceFirmware(config, device.firmware);
-    //console.log('---- 1', config)
+    // console.log('---- 1', config)
   }
 
   return config;

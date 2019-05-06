@@ -3,7 +3,7 @@ module.exports = {
     mongodb: 'mongodb://localhost:27017/sonata',
   },
   logs: {
-    mongodb: 'mongodb://localhost:27017/sonata_log',
+    mongodb: 'mongodb://localhost:27017/sonata_log2',
   },
   provision: {
     port: 3020,
