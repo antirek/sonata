@@ -51,6 +51,11 @@ const replaceAccountsVars = (config, accounts) => {
   return config;
 };
 
+const replaceFirmware = (config, firmware) => {
+  config = config.replace('{{firmware_url}}', firmware.url);
+  return config;
+};
+
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
       .replace('{{timezone}}',
@@ -64,8 +69,14 @@ const phoneReplace = (template, device) => {
   }
 
   if (device.phonebooks && device.phonebooks.length > 0) {
-    console.log('replace phonebooks');
+    //console.log('replace phonebooks');
     config = replacePhonebooksVars(config, device.phonebooks);
+  }
+
+  //console.log('device ------:', device);
+  if (device.firmware) {    
+    config = replaceFirmware(config, device.firmware);
+    //console.log('---- 1', config)
   }
 
   return config;
@@ -171,6 +182,12 @@ const template = (device) => {
     return device.phonebooks[id - 1];
   };
 
+  const checkFirmware = () => {
+    if (!device.firmware) return undefined;
+
+    return true;
+  };
+
   const templateProcess = preprocess.preprocess(template, {
     ACCOUNT1: checkAccount(1),
     ACCOUNT2: checkAccount(2),
@@ -179,11 +196,12 @@ const template = (device) => {
     ACCOUNT5: checkAccount(5),
     ACCOUNT6: checkAccount(6),
     ACCOUNT7: checkAccount(7),
-    ACCOUNT8: checkAccount(8),    
+    ACCOUNT8: checkAccount(8),
     PROFILE0: checkProfile(0),
     PROFILE1: checkProfile(1),
     PHONEBOOK1: checkPhonebook(1),
     PHONEBOOK2: checkPhonebook(2),
+    FIRMWARE: checkFirmware(),
   });
 
   let config;

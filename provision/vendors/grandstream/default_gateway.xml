@@ -3,9 +3,11 @@
 <config version="1">
 
 <!--- common settings -->
-<!-- @ifdef set_firmware_url -->
-<P192>firmware.grandstream.com</P192>
+
+<!-- @ifdef FIRMWARE -->
+<P192>{{firmware_url}}</P192>
 <!-- @endif -->
+
 <P2>admin1</P2>
 <P238>0</P238>
 <P194>1</P194>

@@ -16,5 +16,5 @@ module.exports = {
   },
   remove: {
     cron: '0 4 * * *',
-  }
+  },
 };
