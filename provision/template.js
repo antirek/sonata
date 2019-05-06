@@ -51,8 +51,14 @@ const replaceAccountsVars = (config, accounts) => {
   return config;
 };
 
-const replaceFirmware = (config, firmware) => {
-  config = config.replace('{{firmware_url}}', firmware.url);
+const replaceFirmware = (config, firmware, device) => {
+  if (firmware === true) {
+    console.log('device', device);
+    firmware = getVendorSpec(device.vendor).defaults.firmware;
+  }
+  if (typeof firmware === "object") {
+    config = config.replace('{{firmware_url}}', firmware.url);
+  }
   return config;
 };
 
@@ -75,7 +81,7 @@ const phoneReplace = (template, device) => {
 
   // console.log('device ------:', device);
   if (device.firmware) {
-    config = replaceFirmware(config, device.firmware);
+    config = replaceFirmware(config, device.firmware, device);
     // console.log('---- 1', config)
   }
 
@@ -127,11 +133,15 @@ const gatewayReplace = (template, device) => {
   return config;
 };
 
-const getDeviceSpec = (vendor, model) => {
-  // console.log(vendor, model);
+const getVendorSpec = (vendor) => {  
   const vendorSpec = devices.find((vendorSpec) => {
     return vendorSpec.id === vendor;
   });
+  return vendorSpec;
+}
+
+const getDeviceSpec = (vendor, model) => {
+  const vendorSpec = getVendorSpec(vendor);
   // console.log(vendorSpec);
   if (!vendorSpec.models || vendorSpec.models.length < 1) return null;
 
