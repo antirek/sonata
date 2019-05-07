@@ -62,13 +62,20 @@ const replaceFirmware = (config, firmware, device) => {
   return config;
 };
 
+const replaceTimezone = (config, device) => {
+  console.log('---- device:', device);
+  const tz = timezones.getTimezoneByOffset(device.timezone_offset, device.vendor);
+  console.log('---- tz:', tz);
+  return config.replace('{{timezone}}', tz);
+}
+
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
-      .replace('{{timezone}}',
-          timezones.getTimezoneByOffset(device.timezone_offset, device.vendor))
       .replace('{{ntp_server}}', device.ntp_server)
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\n\n/g, '\n');
+
+  config = replaceTimezone(config, device);
 
   if (device.accounts) {
     config = replaceAccountsVars(config, device.accounts);
@@ -156,7 +163,7 @@ const getDeviceSpec = (vendor, model) => {
 const template = (device) => {
   const vendor = device.vendor;
   const model = device.model;
-  console.log('devices', devices);
+  // console.log('devices', devices);
 
   const basePath = './provision/vendors/';
   const deviceSpec = getDeviceSpec(vendor, model);

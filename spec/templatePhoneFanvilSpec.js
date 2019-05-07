@@ -5,7 +5,7 @@ const panasonicPhone = {
   model: 'x5s',
   vendor: 'fanvil',
   mac: '001565113af8',
-  timezone_offset: 'GMT+03',
+  timezone_offset: 'GMT+07',
   ntp_server: 'pool.ntp.org',
   accounts: [
     {
@@ -43,7 +43,7 @@ describe('template', () => {
     expect(config.includes('SIP2 Register Pswd :4321')).toBe(true);
     expect(config.includes('SIP2 Register Addr :sip.mobilonsip.ru')).toBe(true);
 
-    // expect(config.includes('TIME_ZONE="180"')).toBe(true);
+    expect(config.includes('Time Zone          :28')).toBe(true);
 
     done();
   });
