@@ -89,14 +89,15 @@ describe('manage vendor', ()=> {
           return res.json();
         })
         .then((json) => {
-          console.log('json:', json);
+          // console.log('json:', json);
           const str = JSON.stringify(json);
           // console.log(str);
           expect(str.includes('{"id":"grandstream","name":"Grandstream",' +
             '"scopes":[{"id":"accounts","name":"SIP аккаунты"},' +
             '{"id":"timezone","name":"Таймзона"},' +
             '{"id":"phonebooks","name":"Телефонные книги"},' +
-            '{"id":"ntp","name":"Сервер времени (NTP)"}]}'))
+            '{"id":"ntp","name":"Сервер времени (NTP)"},' +
+            '{"id":"firmware","name":"Прошивка"}]}'))
               .toEqual(true);
         })
         .then(() => {

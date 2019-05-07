@@ -15,6 +15,7 @@ module.exports = [
       'phonebooks',
       'timezone',
       'ntp',
+      'firmware',
     ],
     models: require('./grandstream/models'),
   },
