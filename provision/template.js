@@ -70,11 +70,19 @@ const replaceTimezone = (config, device) => {
   return config.replace('{{timezone}}', tz);
 };
 
+const replaceNtpServer = (config, device) => {
+  if (!device.ntp_server) {
+    return config;
+  }
+  return config.replace('{{ntp_server}}', device.ntp_server);
+};
+
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
-      .replace('{{ntp_server}}', device.ntp_server)
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\n\n/g, '\n');
+
+  config = replaceNtpServer(config, device);
 
   config = replaceTimezone(config, device);
 
@@ -125,10 +133,12 @@ const replaceProfilesVars = (config, profiles) => {
 
 const gatewayReplace = (template, device) => {
   let config = template.toString('utf8')
-      .replace('{{timezone}}', device.timezone)
-      .replace('{{ntp_server}}', device.ntp_server)
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\n\n/g, '\n');
+
+  config = replaceNtpServer(config, device);
+
+  config = replaceTimezone(config, device);
 
   if (device.accounts) {
     config = replaceAccountsVars(config, device.accounts);
@@ -159,7 +169,6 @@ const getDeviceSpec = (vendor, model) => {
 
   return modelSpec;
 };
-
 
 const template = (device) => {
   const vendor = device.vendor;
