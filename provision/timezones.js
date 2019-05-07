@@ -53,6 +53,19 @@ const getTimezoneByOffset = (offset, vendor) => {
       'GMT+10': '40',
       'GMT+11': '44',
     },
+    'digium': {
+      'GMT+01': '4',
+      'GMT+02': '8',
+      'GMT+03': '12',
+      'GMT+04': '16',
+      'GMT+05': '20',
+      'GMT+06': '24',
+      'GMT+07': '28',
+      'GMT+08': '32',
+      'GMT+09': '36',
+      'GMT+10': '40',
+      'GMT+11': '44',
+    },
   };
 
   return offsets[vendor] ? offsets[vendor][offset] : null;
