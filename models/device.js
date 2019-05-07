@@ -44,6 +44,9 @@ const DeviceSchema = (collection) => {
     rules: {
       'type': Object,
     },
+    firmware: {
+      type: mongoose.Schema.Types.Mixed,
+    },
   }, {
     collection: collection,
     timestamps: {

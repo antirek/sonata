@@ -56,7 +56,7 @@ const replaceFirmware = (config, firmware, device) => {
     console.log('device', device);
     firmware = getVendorSpec(device.vendor).defaults.firmware;
   }
-  if (typeof firmware === "object") {
+  if (typeof firmware === 'object') {
     config = config.replace('{{firmware_url}}', firmware.url);
   }
   return config;
@@ -64,10 +64,11 @@ const replaceFirmware = (config, firmware, device) => {
 
 const replaceTimezone = (config, device) => {
   console.log('---- device:', device);
-  const tz = timezones.getTimezoneByOffset(device.timezone_offset, device.vendor);
+  const tz = timezones
+      .getTimezoneByOffset(device.timezone_offset, device.vendor);
   console.log('---- tz:', tz);
   return config.replace('{{timezone}}', tz);
-}
+};
 
 const phoneReplace = (template, device) => {
   let config = template.toString('utf8')
@@ -140,12 +141,12 @@ const gatewayReplace = (template, device) => {
   return config;
 };
 
-const getVendorSpec = (vendor) => {  
+const getVendorSpec = (vendor) => {
   const vendorSpec = devices.find((vendorSpec) => {
     return vendorSpec.id === vendor;
   });
   return vendorSpec;
-}
+};
 
 const getDeviceSpec = (vendor, model) => {
   const vendorSpec = getVendorSpec(vendor);

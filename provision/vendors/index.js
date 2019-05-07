@@ -7,8 +7,8 @@ module.exports = [
                  'в поле Url укажите {{server}}{{qs}}',
     defaults: {
       firmware: {
-        url: 'firmware.grandstream.com'
-      }
+        url: 'firmware.grandstream.com',
+      },
     },
     scopes: [
       'accounts',
