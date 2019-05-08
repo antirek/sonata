@@ -128,14 +128,20 @@ const replaceProfilesVars = (config, profiles) => {
   return config;
 };
 
+const removeComments = (config) => {
+  return config.replace(/<!--[\s\S]*?-->/g, '');
+}
+
+const removeEmptyStrings = (config) => {
+  return config.replace(/\n\n/g, '\n');
+}
 
 const gatewayReplace = (template, device) => {
-  let config = template.toString('utf8')
-      .replace(/<!--[\s\S]*?-->/g, '')
-      .replace(/\n\n/g, '\n');
+  let config = template.toString('utf8');
 
+  config = removeComments(config);
+  config = removeEmptyStrings(config);
   config = replaceNtpServer(config, device);
-
   config = replaceTimezone(config, device);
 
   if (device.accounts) {
