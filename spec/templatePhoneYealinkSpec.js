@@ -30,7 +30,6 @@ const yealinkPhoneWithTwoAccounts = {
 };
 
 
-
 describe('template', () => {
   it('do good', (done) => {
     const config = template(yealinkPhoneWithTwoAccounts);
