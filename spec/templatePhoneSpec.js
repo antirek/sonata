@@ -1,3 +1,4 @@
+const template = require('./../template');
 
 const grandstreamPhone = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -27,8 +28,6 @@ const grandstreamPhone = {
     },
   ],
 };
-
-const template = require('./../provision/template');
 
 describe('template', () => {
   it('do good', (done) => {

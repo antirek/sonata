@@ -1,5 +1,5 @@
 
-const template = require('./../provision/template');
+const template = require('./../template');
 
 const grandstreamPhone = {
   id: 'sdgjdeu9443908590sfdsf8u984',

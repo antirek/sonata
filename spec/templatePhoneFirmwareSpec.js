@@ -1,4 +1,4 @@
-const template = require('./../provision/template');
+const template = require('./../template');
 
 const grandstreamPhoneFirmware = {
   id: 'sdgjdeu9443908590sfdsf8u984',

@@ -1,3 +1,4 @@
+const template = require('./../template');
 
 const yealinkPhoneWithTwoAccounts = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -28,7 +29,7 @@ const yealinkPhoneWithTwoAccounts = {
   ],
 };
 
-const template = require('./../provision/template');
+
 
 describe('template', () => {
   it('do good', (done) => {

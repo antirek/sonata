@@ -1,7 +1,7 @@
 
-const devices = require('./vendors/index');
+const devices = require('./../provision/vendors/');
 const url = require('url-parse');
-const timezones = require('./timezones');
+const timezones = require('./../provision/vendors/timezones');
 
 const replacePhonebooksVars = (config, phonebooks) => {
   phonebooks.forEach((element, id) => {
