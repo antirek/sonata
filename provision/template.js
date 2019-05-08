@@ -170,24 +170,8 @@ const getDeviceSpec = (vendor, model) => {
   return modelSpec;
 };
 
-const template = (device) => {
-  const vendor = device.vendor;
-  const model = device.model;
-  // console.log('devices', devices);
 
-  const basePath = './provision/vendors/';
-  const deviceSpec = getDeviceSpec(vendor, model);
-
-  if (!deviceSpec || !deviceSpec.template) {
-    return null;
-  }
-
-  const templatePath = path.resolve(basePath, deviceSpec.template);
-  // console.log('template path:', templatePath);
-  const template = fs.readFileSync(templatePath);
-
-  // console.log('template', template);
-
+const preprocessTemplate = (template, device) => {
   const checkAccount = (id) => {
     return device.accounts.find((item) => {
       return Number.parseInt(item.line) === id;
@@ -230,6 +214,30 @@ const template = (device) => {
     PHONEBOOK2: checkPhonebook(2),
     FIRMWARE: checkFirmware(),
   });
+
+  return templateProcess;
+};
+
+
+const template = (device) => {
+  const vendor = device.vendor;
+  const model = device.model;
+  // console.log('devices', devices);
+
+  const basePath = './provision/vendors/';
+  const deviceSpec = getDeviceSpec(vendor, model);
+
+  if (!deviceSpec || !deviceSpec.template) {
+    return null;
+  }
+
+  const templatePath = path.resolve(basePath, deviceSpec.template);
+  // console.log('template path:', templatePath);
+  const template = fs.readFileSync(templatePath);
+
+  // console.log('template', template);
+
+  const templateProcess = preprocessTemplate(template, device);
 
   let config;
   if (deviceSpec.type === 'phone') {
