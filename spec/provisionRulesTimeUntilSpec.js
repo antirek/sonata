@@ -1,5 +1,6 @@
 const path = require('path');
 const fetch = require('node-fetch');
+const template = require('./../template/').template;
 
 const deviceActual = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -65,6 +66,7 @@ const app = createApp({
   dependencies: {
     Device: DeviceActual,
     RequestLog,
+    template,
   },
 });
 
@@ -138,6 +140,7 @@ const app2 = createApp({
   dependencies: {
     Device: DeviceNonActual,
     RequestLog,
+    template,
   },
 });
 

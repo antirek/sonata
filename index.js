@@ -6,6 +6,8 @@ const createApp = require('./app').createApp;
 const deviceSchema = require('./models/device');
 const requestLogSchema = require('./models/requestLog');
 
+const template = require('./template/index').template;
+
 const settingsConn = mongoose.createConnection(config.settings.mongodb, {
   useNewUrlParser: true,
 });
@@ -40,6 +42,7 @@ const provisionApp = createApp({
   dependencies: {
     Device,
     RequestLog,
+    template,
   },
 });
 

@@ -1,10 +1,10 @@
-const template = require('./../../../../../template/').template;
+
 const strip = require('strip-passwords');
 
 const ruleVerification = require('./../../../verification').ruleVerification;
 const helper = require('./../../../../../api/manage/helper');
 
-module.exports = (Device, RequestLog) => {
+module.exports = (Device, RequestLog, template) => {
   /**
   *
   * @param {Object} req
