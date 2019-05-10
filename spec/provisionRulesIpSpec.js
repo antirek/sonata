@@ -1,6 +1,8 @@
 const path = require('path');
 const fetch = require('node-fetch');
 const template = require('./../template/').template;
+const verification = require('./../api/provision/verification')
+    .ruleVerification;
 
 const deviceActual = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -65,6 +67,7 @@ const app = createApp({
     Device: DeviceActual,
     RequestLog,
     template,
+    verification,
   },
 });
 

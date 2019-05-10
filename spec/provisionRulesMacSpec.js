@@ -1,6 +1,25 @@
 const path = require('path');
 const fetch = require('node-fetch');
 
+const template = require('./../template/').template;
+const verification = require('./../api/provision/verification')
+    .ruleVerification;
+
+/**
+ *
+ */
+class RequestLog {
+  /**
+     *
+     */
+  constructor() {}
+  /**
+     *
+     */
+  save() {}
+}
+
+
 const deviceActual = {
   id: 'sdgjdeu9443908590sfdsf8u984',
   model: 'gxp1620',
@@ -42,12 +61,15 @@ const DeviceActual = {
   },
 };
 
-const createApp = require('./../app').createApp;
+const createApp = require('../app').createApp;
 const app = createApp({
-  apiDoc: require('./../api/provision/api-doc.js'),
+  apiDoc: require('../api/provision/api-doc.js'),
   paths: path.resolve(__dirname, './../api/provision/api-routes'),
   dependencies: {
     Device: DeviceActual,
+    RequestLog,
+    template,
+    verification,
   },
 });
 
@@ -135,10 +157,13 @@ const DeviceActualWithDisabledMacRule = {
 
 
 const app2 = createApp({
-  apiDoc: require('./../provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../provision/api-routes'),
+  apiDoc: require('./../api/provision/api-doc.js'),
+  paths: path.resolve(__dirname, './../api/provision/api-routes'),
   dependencies: {
     Device: DeviceActualWithDisabledMacRule,
+    RequestLog,
+    template,
+    verification,
   },
 });
 

@@ -1,10 +1,8 @@
 
 const strip = require('strip-passwords');
-
-const ruleVerification = require('./../../../verification').ruleVerification;
 const helper = require('./../../../../../api/manage/helper');
 
-module.exports = (Device, RequestLog, template) => {
+module.exports = (Device, RequestLog, template, verification) => {
   /**
   *
   * @param {Object} req
@@ -54,7 +52,7 @@ module.exports = (Device, RequestLog, template) => {
           console.log('db find:', strip(device));
           if (!device) return Promise.reject(new Error('no device'));
 
-          return ruleVerification(device, requestInfo);
+          return verification(device, requestInfo);
         })
         .then((device) => {
           const t = template(device);

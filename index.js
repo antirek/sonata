@@ -7,6 +7,7 @@ const deviceSchema = require('./models/device');
 const requestLogSchema = require('./models/requestLog');
 
 const template = require('./template/index').template;
+const verification = require('./api/provision/verification').ruleVerification;
 
 const settingsConn = mongoose.createConnection(config.settings.mongodb, {
   useNewUrlParser: true,
@@ -43,6 +44,7 @@ const provisionApp = createApp({
     Device,
     RequestLog,
     template,
+    verification,
   },
 });
 
