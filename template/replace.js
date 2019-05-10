@@ -1,7 +1,8 @@
 
-const devices = require('./../provision/vendors/');
+
 const url = require('url-parse');
-const timezones = require('./../provision/vendors/timezones');
+const timezones = require('./../vendors/timezones');
+const spec = require('./../vendors/spec');
 
 const replacePhonebooksVars = (config, phonebooks) => {
   phonebooks.forEach((element, id) => {
@@ -51,7 +52,7 @@ const replaceAccountsVars = (config, accounts) => {
 const replaceFirmware = (config, firmware, device) => {
   if (firmware === true) {
     console.log('device', device);
-    firmware = getVendorSpec(device.vendor).defaults.firmware;
+    firmware = spec.getVendorSpec(device.vendor).defaults.firmware;
   }
   if (typeof firmware === 'object') {
     config = config.replace('{{firmware_url}}', firmware.url);
@@ -155,29 +156,8 @@ const gatewayReplace = (template, device) => {
   return config;
 };
 
-const getVendorSpec = (vendor) => {
-  const vendorSpec = devices.find((vendorSpec) => {
-    return vendorSpec.id === vendor;
-  });
-  return vendorSpec;
-};
-
-const getDeviceSpec = (vendor, model) => {
-  const vendorSpec = getVendorSpec(vendor);
-  // console.log(vendorSpec);
-  if (!vendorSpec.models || vendorSpec.models.length < 1) return null;
-
-  const modelSpec = vendorSpec.models.find((modelSpec) => {
-    return modelSpec.id === model;
-  });
-
-  return modelSpec;
-};
-
 
 module.exports = {
   gatewayReplace,
   phoneReplace,
-  getDeviceSpec,
-  getVendorSpec,
 };
