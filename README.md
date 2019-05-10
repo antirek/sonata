@@ -6,7 +6,7 @@ Small free & open source SIP provisioning server
 
 ## How work
 
-![Scheme](images/scheme.png)
+![Scheme](docs/images/scheme.png)
 
 ## Vendors
 
@@ -54,11 +54,11 @@ Limited access by
 
 ### Provision API
 
-![Provision API](images/api_provision.png)
+![Provision API](docs/images/api_provision.png)
 
 ### Management API
 
-![Management API](images/api_manage.png)
+![Management API](docs/images/api_manage.png)
 
 ## Sample
 

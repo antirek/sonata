@@ -1,8 +1,8 @@
-const template = require('./../../../../template/').template;
+const template = require('./../../../../../template/').template;
 const strip = require('strip-passwords');
 
 const ruleVerification = require('./../../../verification').ruleVerification;
-const helper = require('./../../../../manage/helper');
+const helper = require('./../../../../../api/manage/helper');
 
 
 module.exports = (Device, RequestLog) => {

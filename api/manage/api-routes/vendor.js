@@ -1,5 +1,5 @@
-const vendors = require('./../../vendors/index');
-const scopesInfo = require('./../../provision/scopes');
+const vendors = require('./../../../vendors/index');
+const scopesInfo = require('./../../../api/provision/scopes');
 
 module.exports = () => {
   /**

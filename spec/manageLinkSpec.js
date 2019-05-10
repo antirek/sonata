@@ -76,8 +76,8 @@ const config = {
 
 const createApp = require('./../app').createApp;
 const app = createApp({
-  apiDoc: require('./../manage/api-doc.js'),
-  paths: path.resolve(__dirname, './../manage/api-routes'),
+  apiDoc: require('./../api/manage/api-doc.js'),
+  paths: path.resolve(__dirname, './../api/manage/api-routes'),
   dependencies: {
     Device,
     RequestLog,

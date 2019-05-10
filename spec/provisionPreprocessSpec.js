@@ -46,8 +46,8 @@ class RequestLog {
 
 const createApp = require('./../app').createApp;
 const app = createApp({
-  apiDoc: require('./../provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../provision/api-routes'),
+  apiDoc: require('./../api/provision/api-doc.js'),
+  paths: path.resolve(__dirname, './../api/provision/api-routes'),
   dependencies: {
     Device: DeviceWithOneAccount,
     RequestLog,
@@ -126,8 +126,8 @@ const DeviceWithTwoAccounts = {
 };
 
 const app2 = createApp({
-  apiDoc: require('./../provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../provision/api-routes'),
+  apiDoc: require('./../api/provision/api-doc.js'),
+  paths: path.resolve(__dirname, './../api/provision/api-routes'),
   dependencies: {
     Device: DeviceWithTwoAccounts,
     RequestLog,

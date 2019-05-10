@@ -1,4 +1,4 @@
-const vendors = require('./../../../vendors/index');
+const vendors = require('./../../../../vendors/index');
 
 module.exports = () => {
   /**
