@@ -19,4 +19,8 @@ module.exports = [
     id: 'firmware',
     name: 'Прошивка',
   },
+  {
+    id: 'softkeys',
+    name: 'Кнопки быстрого набора',
+  },
 ];

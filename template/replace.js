@@ -130,11 +130,11 @@ const replaceProfilesVars = (config, profiles) => {
 
 const removeComments = (config) => {
   return config.replace(/<!--[\s\S]*?-->/g, '');
-}
+};
 
 const removeEmptyStrings = (config) => {
   return config.replace(/\n\n/g, '\n');
-}
+};
 
 const gatewayReplace = (template, device) => {
   let config = template.toString('utf8');

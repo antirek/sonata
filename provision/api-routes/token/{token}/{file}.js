@@ -1,4 +1,4 @@
-const template = require('./../../../../template/');
+const template = require('./../../../../template/').template;
 const strip = require('strip-passwords');
 
 const ruleVerification = require('./../../../verification').ruleVerification;

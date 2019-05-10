@@ -1,4 +1,4 @@
-const template = require('./../template');
+const template = require('./../template').template;
 
 const grandstreamGatewayWithTwoAccounts = {
   id: 'sdgjdeu9443908590sfdsf8u984',
