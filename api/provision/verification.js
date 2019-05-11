@@ -14,6 +14,8 @@ const isExpiredUntilTimeRule = (device) => {
 };
 
 const isMacRule = (device) => {
+  // console.log('isMacRule',
+  // device.rules && device.rules.mac && device.rules.hasOwnProperty('mac'));
   return device.rules && device.rules.mac && device.rules.hasOwnProperty('mac');
 };
 
@@ -70,7 +72,7 @@ const ruleVerification = (device, requestInfo) => {
   }
 
   if (isMacRule(device) && !isValidMac(device, requestInfo.mac)) {
-    console.log('mac', mac);
+    // console.log('mac', requestInfo.mac);
     return Promise.reject(new Error('device mac is not valid'));
   }
 
