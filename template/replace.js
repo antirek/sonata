@@ -1,7 +1,4 @@
-
-
 const url = require('url-parse');
-// const timezones = require('./../vendors/timezones');
 const vendors = require('./../vendors/index');
 
 const replacePhonebooksVars = (config, phonebooks) => {
@@ -76,7 +73,7 @@ const replaceNtpServer = (config, device) => {
 };
 
 const phoneReplace = (template, device) => {
-  let config = template.toString('utf8')
+  let config = template
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\n\n/g, '\n');
 
@@ -138,7 +135,7 @@ const removeEmptyStrings = (config) => {
 };
 
 const gatewayReplace = (template, device) => {
-  let config = template.toString('utf8');
+  let config = template;
 
   config = removeComments(config);
   config = removeEmptyStrings(config);

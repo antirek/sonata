@@ -25,7 +25,7 @@ const getConfigTemplate = (vendor, model) => {
   // console.log('template path:', templatePath);
   const template = fs.readFileSync(templatePath);
 
-  return template;
+  return template.toString('utf8');
 };
 
 const getVendorSpec = (vendor) => {

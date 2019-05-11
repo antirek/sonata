@@ -33,24 +33,11 @@ const template = (device) => {
   const model = device.model;
 
   const deviceSpec = vendors.getDeviceSpec(vendor, model);
-  // console.log('devices', devices);
-  /*
-  const basePath = './vendors/';
-  const deviceSpec = vendors.getDeviceSpec(vendor, model);
-
-  if (!deviceSpec || !deviceSpec.template) {
-    return null;
-  }
-
-  const templatePath = path.resolve(basePath, deviceSpec.template);
-  // console.log('template path:', templatePath);
-  */
   const template = vendors.getConfigTemplate(vendor, model);
 
   if (!template) {
     return null;
   }
-  // console.log('template', template);
 
   const templateProcess = preprocess(template, device);
 
