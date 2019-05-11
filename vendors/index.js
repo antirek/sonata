@@ -1,10 +1,15 @@
 const vendorSpecs = require('./spec');
 const getTimezoneByOffset = require('./timezones').getTimezoneByOffset;
+const scopes = require('./scopes');
 const path = require('path');
 const fs = require('fs');
 
 const getVendorsList = () => {
   return vendorSpecs;
+};
+
+const getScopesList = () => {
+  return scopes;
 };
 
 const getConfigTemplate = (vendor, model) => {
@@ -49,4 +54,5 @@ module.exports = {
   getVendorSpec,
   getTimezoneByOffset,
   getConfigTemplate,
+  getScopesList,
 };

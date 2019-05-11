@@ -1,5 +1,5 @@
-const vendors = require('./../../../vendors/index').getVendorsList();
-const scopesInfo = require('./../../../api/provision/scopes');
+const vendors = require('./../../../vendors/index');
+const scopesInfo = vendors.getScopesList();
 
 module.exports = () => {
   /**
@@ -11,11 +11,11 @@ module.exports = () => {
     console.log('request params', req.params);
     console.log('request body:', JSON.stringify(req.body));
 
-    console.log('vendors:', vendors);
+    console.log('vendors:', vendors.getVendorsList());
 
     (() => {
       return new Promise((resolve, reject) => {
-        const vendorList = vendors.map((vendorSpec) => {
+        const vendorList = vendors.getVendorsList().map((vendorSpec) => {
           return {
             id: vendorSpec.id,
             name: vendorSpec.name,
@@ -63,4 +63,3 @@ module.exports = () => {
     get,
   };
 };
-
