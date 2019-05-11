@@ -3,7 +3,8 @@ const path = require('path');
 
 const replace = require('./replace');
 const preprocess = require('./preprocess');
-const spec = require('./../vendors/spec');
+
+const vendors = require('./../vendors/index');
 
 const doProfiles = (device) => {
   const profiles = [];
@@ -36,7 +37,7 @@ const template = (device) => {
   // console.log('devices', devices);
 
   const basePath = './vendors/';
-  const deviceSpec = spec.getDeviceSpec(vendor, model);
+  const deviceSpec = vendors.getDeviceSpec(vendor, model);
 
   if (!deviceSpec || !deviceSpec.template) {
     return null;

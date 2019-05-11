@@ -1,4 +1,4 @@
-const vendors = require('./../../../vendors/index');
+const vendors = require('./../../../vendors/index').getVendorsList();
 const scopesInfo = require('./../../../api/provision/scopes');
 
 module.exports = () => {

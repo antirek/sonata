@@ -1,8 +1,8 @@
 
 
 const url = require('url-parse');
-const timezones = require('./../vendors/timezones');
-const spec = require('./../vendors/spec');
+// const timezones = require('./../vendors/timezones');
+const vendors = require('./../vendors/index');
 
 const replacePhonebooksVars = (config, phonebooks) => {
   phonebooks.forEach((element, id) => {
@@ -52,7 +52,7 @@ const replaceAccountsVars = (config, accounts) => {
 const replaceFirmware = (config, firmware, device) => {
   if (firmware === true) {
     console.log('device', device);
-    firmware = spec.getVendorSpec(device.vendor).defaults.firmware;
+    firmware = vendors.getVendorSpec(device.vendor).defaults.firmware;
   }
   if (typeof firmware === 'object') {
     config = config.replace('{{firmware_url}}', firmware.url);
@@ -62,7 +62,7 @@ const replaceFirmware = (config, firmware, device) => {
 
 const replaceTimezone = (config, device) => {
   console.log('---- device:', device);
-  const tz = timezones
+  const tz = vendors
       .getTimezoneByOffset(device.timezone_offset, device.vendor);
   console.log('---- tz:', tz);
   return config.replace('{{timezone}}', tz);

@@ -1,5 +1,5 @@
 const urlParse = require('url-parse');
-const vendors = require('./../../../../../vendors/index');
+const vendors = require('./../../../../../vendors/index').getVendorsList();
 
 const getUrl = (config, type, device) => {
   let secret;

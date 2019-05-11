@@ -6,6 +6,7 @@ const createApp = require('./app').createApp;
 const deviceSchema = require('./models/device');
 const requestLogSchema = require('./models/requestLog');
 
+// const vendors = require('./vendors/index');
 const template = require('./template/index').template;
 const verification = require('./api/provision/verification').ruleVerification;
 
