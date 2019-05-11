@@ -1,6 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
 const replace = require('./replace');
 const preprocess = require('./preprocess');
 
@@ -34,8 +31,10 @@ const doProfiles = (device) => {
 const template = (device) => {
   const vendor = device.vendor;
   const model = device.model;
-  // console.log('devices', devices);
 
+  const deviceSpec = vendors.getDeviceSpec(vendor, model);
+  // console.log('devices', devices);
+  /*
   const basePath = './vendors/';
   const deviceSpec = vendors.getDeviceSpec(vendor, model);
 
@@ -45,8 +44,12 @@ const template = (device) => {
 
   const templatePath = path.resolve(basePath, deviceSpec.template);
   // console.log('template path:', templatePath);
-  const template = fs.readFileSync(templatePath);
+  */
+  const template = vendors.getConfigTemplate(vendor, model);
 
+  if (!template) {
+    return null;
+  }
   // console.log('template', template);
 
   const templateProcess = preprocess(template, device);
