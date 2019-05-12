@@ -72,13 +72,19 @@ const replaceNtpServer = (config, device) => {
   return config.replace('{{ntp_server}}', device.ntp_server);
 };
 
+const removeComments = (config) => {
+  return config.replace(/<!--[\s\S]*?-->/g, '');
+};
+
+const removeEmptyStrings = (config) => {
+  return config.replace(/\n\n/g, '\n');
+};
+
 const phoneReplace = (template, device) => {
-  let config = template
-      .replace(/<!--[\s\S]*?-->/g, '')
-      .replace(/\n\n/g, '\n');
-
+  let config = template;
+  config = removeComments(config);
+  config = removeEmptyStrings(config);
   config = replaceNtpServer(config, device);
-
   config = replaceTimezone(config, device);
 
   if (device.accounts) {
@@ -126,25 +132,8 @@ const replaceProfilesVars = (config, profiles) => {
   return config;
 };
 
-const removeComments = (config) => {
-  return config.replace(/<!--[\s\S]*?-->/g, '');
-};
-
-const removeEmptyStrings = (config) => {
-  return config.replace(/\n\n/g, '\n');
-};
-
 const gatewayReplace = (template, device) => {
-  let config = template;
-
-  config = removeComments(config);
-  config = removeEmptyStrings(config);
-  config = replaceNtpServer(config, device);
-  config = replaceTimezone(config, device);
-
-  if (device.accounts) {
-    config = replaceAccountsVars(config, device.accounts);
-  }
+  let config = phoneReplace(template, device);
 
   if (device.profiles) {
     config = replaceProfilesVars(config, device.profiles);
@@ -152,7 +141,6 @@ const gatewayReplace = (template, device) => {
 
   return config;
 };
-
 
 module.exports = {
   gatewayReplace,
