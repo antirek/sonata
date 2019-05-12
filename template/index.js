@@ -39,14 +39,18 @@ const template = (device) => {
     return null;
   }
 
+  if (deviceSpec.type === 'gateway' && !device.profiles) {
+    device = doProfiles(device);
+  }
+  
   const templateProcess = preprocess(template, device);
 
   let config;
   if (deviceSpec.type === 'phone') {
     config = replace.phoneReplace(templateProcess, device);
-  } else if (deviceSpec.type === 'gateway') {
+  } else if (deviceSpec.type === 'gateway') {    
     config = replace.gatewayReplace(templateProcess, device);
-  }
+  } 
 
   return config;
 };

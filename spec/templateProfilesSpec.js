@@ -1,7 +1,6 @@
 
 const template = require('./../template');
 
-
 const configWithoutProfiles= {
   id: 'sdgjdeu9443908590sfdsf8u984',
   model: 'dp715',

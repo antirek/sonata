@@ -7,16 +7,6 @@ const grandstreamGatewayWithTwoAccounts = {
   mac: '001565113a78',
   timezone_offset: 'GMT+03',
   ntp_server: 'pool.ntp.org',
-  profiles: [
-    {
-      sip_register: 'sip.mobilon.ru',
-      id: 0,
-    },
-    {
-      sip_register: 'sip.mangosip.ru',
-      id: 1,
-    },
-  ],
   accounts: [
     {
       name: 'мобилон',
@@ -25,7 +15,7 @@ const grandstreamGatewayWithTwoAccounts = {
       sip_user: 'sip101',
       sip_password: '1234',
       sip_auth: 'sip101',
-      profile_id: 0,
+      sip_register: 'sip.mobilon.ru',
     },
     {
       name: 'манго',
@@ -34,7 +24,7 @@ const grandstreamGatewayWithTwoAccounts = {
       sip_user: 'sip102',
       sip_password: '4321',
       sip_auth: 'sip102',
-      profile_id: 1,
+      sip_register: 'sip.mangosip.ru',
     },
   ],
 };
@@ -73,12 +63,6 @@ const grandstreamGatewayWithOneAccount = {
   mac: '001565113a78',
   timezone_offset: 'GMT+03',
   ntp_server: 'pool.ntp.org',
-  profiles: [
-    {
-      sip_register: 'sip.mobilon.ru',
-      id: 0,
-    },
-  ],
   accounts: [
     {
       name: 'мобилон',
@@ -87,7 +71,7 @@ const grandstreamGatewayWithOneAccount = {
       sip_user: 'sip101',
       sip_password: '1234',
       sip_auth: 'sip101',
-      profile_id: 0,
+      sip_register: 'sip.mobilon.ru',
     },
   ],
 };
