@@ -1,4 +1,6 @@
-const template = require('./../template').template;
+const vendors = require('./../vendors');
+const TemplateBuilder = require('./../template/').Builder;
+const template = new TemplateBuilder(vendors);
 
 const yealinkPhoneWithTwoAccounts = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -32,7 +34,7 @@ const yealinkPhoneWithTwoAccounts = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(yealinkPhoneWithTwoAccounts);
+    const config = template.template(yealinkPhoneWithTwoAccounts);
     console.log('config:', config);
 
     expect(config.includes('account.1.enable = 1')).toBe(true);
@@ -71,7 +73,7 @@ const yealinkPhoneWithOneAccount = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(yealinkPhoneWithOneAccount);
+    const config = template.template(yealinkPhoneWithOneAccount);
     console.log('config:', config);
 
     expect(config.includes('account.1.enable = 1')).toBe(true);

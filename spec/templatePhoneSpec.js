@@ -1,4 +1,6 @@
-const template = require('./../template').template;
+const vendors = require('./../vendors');
+const TemplateBuilder = require('./../template/').Builder;
+const template = new TemplateBuilder(vendors);
 
 const grandstreamPhone = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -31,7 +33,7 @@ const grandstreamPhone = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(grandstreamPhone);
+    const config = template.template(grandstreamPhone);
     // console.log('config:', config);
     expect(config.includes('<config version="1">')).toBe(true);
     expect(config.includes('<P47>sip.mangosip.ru</P47>')).toBe(true);
@@ -80,7 +82,7 @@ const grandstreamPhoneNoTemplate = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(grandstreamPhoneNoTemplate);
+    const config = template.template(grandstreamPhoneNoTemplate);
     // console.log('config:', config);
     expect(config).toBe(null);
 
@@ -123,7 +125,8 @@ const grandstreamPhoneWithDisabledAccountsTemplate = {
 
 describe('template', () => {
   it('do good with enabled and disabled accounts', (done) => {
-    const config = template(grandstreamPhoneWithDisabledAccountsTemplate);
+    const config = template
+        .template(grandstreamPhoneWithDisabledAccountsTemplate);
     // console.log('config:', config);
     expect(config.includes('<P271>0</P271>')).toBe(true);
     expect(config.includes('<P401>1</P401>')).toBe(true);

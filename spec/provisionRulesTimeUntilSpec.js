@@ -1,8 +1,4 @@
-const path = require('path');
 const fetch = require('node-fetch');
-const template = require('./../template/').template;
-const verification = require('./../api/provision/verification')
-    .ruleVerification;
 
 const deviceActual = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -36,7 +32,8 @@ const deviceActual = {
   ],
   rules: {
     time: {
-      until: (new Date((new Date()).getTime() + 10*60000)).toISOString(),
+      until: (new Date((new Date()).getTime() + 10*60000))
+          .toISOString(),
     },
   },
 };
@@ -47,32 +44,8 @@ const DeviceActual = {
   },
 };
 
-/**
- *
- */
-class RequestLog {
-  /**
-   *
-   */
-  constructor() {}
-  /**
-   *
-   */
-  save() {}
-}
-
-const createApp = require('./../app').createApp;
-const app = createApp({
-  apiDoc: require('./../api/provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../api/provision/api-routes'),
-  dependencies: {
-    Device: DeviceActual,
-    RequestLog,
-    template,
-    verification,
-  },
-});
-
+const createApp = require('./createProvisionApp');
+const app = createApp({Device: DeviceActual});
 
 describe('provision', ()=> {
   it('get xml config actual until time', (done) => {
@@ -92,7 +65,6 @@ describe('provision', ()=> {
         });
   });
 });
-
 
 const deviceNonActual = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -126,7 +98,8 @@ const deviceNonActual = {
   ],
   rules: {
     time: {
-      until: (new Date((new Date()).getTime() - 30*60000)).toISOString(),
+      until: (new Date((new Date()).getTime() - 30*60000))
+          .toISOString(),
     },
   },
 };
@@ -137,17 +110,7 @@ const DeviceNonActual = {
   },
 };
 
-const app2 = createApp({
-  apiDoc: require('./../api/provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../api/provision/api-routes'),
-  dependencies: {
-    Device: DeviceNonActual,
-    RequestLog,
-    template,
-    verification,
-  },
-});
-
+const app2 = createApp({Device: DeviceNonActual});
 
 describe('provision', ()=> {
   it('get xml config expired until time', (done) => {

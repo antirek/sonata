@@ -46,7 +46,7 @@ module.exports = (Device, RequestLog, template, verification) => {
           return verification(device, requestInfo);
         })
         .then((device) => {
-          const t = template(device);
+          const t = template.template(device);
           console.log('vendor', device.vendor);
           console.log('config template', t);
           log.status = 'OK';

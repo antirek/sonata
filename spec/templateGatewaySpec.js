@@ -1,4 +1,6 @@
-const template = require('./../template').template;
+const vendors = require('./../vendors');
+const TemplateBuilder = require('./../template/').Builder;
+const template = new TemplateBuilder(vendors);
 
 const grandstreamGatewayWithTwoAccounts = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -41,7 +43,7 @@ const grandstreamGatewayWithTwoAccounts = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(grandstreamGatewayWithTwoAccounts);
+    const config = template.template(grandstreamGatewayWithTwoAccounts);
     console.log('config:', config);
 
     expect(config.includes('<P2>admin1</P2>')).toBe(true);
@@ -94,7 +96,7 @@ const grandstreamGatewayWithOneAccount = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(grandstreamGatewayWithOneAccount);
+    const config = template.template(grandstreamGatewayWithOneAccount);
     console.log('config:', config);
 
     expect(config.includes('<P2>admin1</P2>')).toBe(true);

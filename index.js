@@ -6,8 +6,10 @@ const createApp = require('./app').createApp;
 const deviceSchema = require('./models/device');
 const requestLogSchema = require('./models/requestLog');
 
-// const vendors = require('./vendors/index');
-const template = require('./template/index').template;
+const vendors = require('./vendors/index');
+const TBuilder = require('./template/index').Builder;
+
+const template = new TBuilder(vendors);
 const verification = require('./api/provision/verification').ruleVerification;
 
 const settingsConn = mongoose.createConnection(config.settings.mongodb, {

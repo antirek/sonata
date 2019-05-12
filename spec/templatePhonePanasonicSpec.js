@@ -1,4 +1,6 @@
-const template = require('./../template').template;
+const vendors = require('./../vendors');
+const TemplateBuilder = require('./../template/').Builder;
+const template = new TemplateBuilder(vendors);
 
 const panasonicPhone = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -32,7 +34,7 @@ const panasonicPhone = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(panasonicPhone);
+    const config = template.template(panasonicPhone);
     console.log('config:', config);
 
     expect(config.includes('SIP_RGSTR_ADDR_1="sip.mangosip.ru"')).toBe(true);

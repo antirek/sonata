@@ -1,4 +1,6 @@
-const template = require('./../template').template;
+const vendors = require('./../vendors');
+const TemplateBuilder = require('./../template/').Builder;
+const template = new TemplateBuilder(vendors);
 
 const grandstreamPhoneFirmware = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -34,7 +36,7 @@ const grandstreamPhoneFirmware = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(grandstreamPhoneFirmware);
+    const config = template.template(grandstreamPhoneFirmware);
     console.log('config:', config);
     expect(config.includes('<config version="1">')).toBe(true);
     expect(config.includes('<P47>sip.mangosip.ru</P47>')).toBe(true);
@@ -83,7 +85,7 @@ const grandstreamPhoneFirmwareTrue = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(grandstreamPhoneFirmwareTrue);
+    const config = template.template(grandstreamPhoneFirmwareTrue);
     console.log('config:', config);
     expect(config.includes('<config version="1">')).toBe(true);
     expect(config.includes('<P47>sip.mangosip.ru</P47>')).toBe(true);

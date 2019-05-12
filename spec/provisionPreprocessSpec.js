@@ -1,8 +1,5 @@
-const path = require('path');
+
 const fetch = require('node-fetch');
-const template = require('./../template/').template;
-const verification = require('./../api/provision/verification')
-    .ruleVerification;
 
 const deviceWithOneAccount = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -33,32 +30,8 @@ const DeviceWithOneAccount = {
   },
 };
 
-/**
- *
- */
-class RequestLog {
-  /**
-   *
-   */
-  constructor() {}
-  /**
-   *
-   */
-  save() {}
-}
-
-const createApp = require('./../app').createApp;
-const app = createApp({
-  apiDoc: require('./../api/provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../api/provision/api-routes'),
-  dependencies: {
-    Device: DeviceWithOneAccount,
-    RequestLog,
-    template,
-    verification,
-  },
-});
-
+const createApp = require('./createProvisionApp');
+const app = createApp({Device: DeviceWithOneAccount});
 
 describe('provision device with one account', ()=> {
   it('get xml config', (done) => {
@@ -130,17 +103,7 @@ const DeviceWithTwoAccounts = {
   },
 };
 
-const app2 = createApp({
-  apiDoc: require('./../api/provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../api/provision/api-routes'),
-  dependencies: {
-    Device: DeviceWithTwoAccounts,
-    RequestLog,
-    template,
-    verification,
-  },
-});
-
+const app2 = createApp({Device: DeviceWithTwoAccounts});
 
 describe('provision device with two accounts', ()=> {
   it('get xml config', (done) => {

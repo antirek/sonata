@@ -1,5 +1,7 @@
 
-const template = require('./../template').template;
+const vendors = require('./../vendors');
+const TemplateBuilder = require('./../template').Builder;
+
 
 const grandstreamPhone = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -29,7 +31,8 @@ const grandstreamPhone = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(grandstreamPhone);
+    const template = new TemplateBuilder(vendors);
+    const config = template.template(grandstreamPhone);
     // console.log('config:', config);
 
     expect(config.includes('<config version="1">')).toBe(true);
@@ -79,7 +82,9 @@ const yealinkPhone = {
 
 describe('template', () => {
   it('do good', (done) => {
-    const config = template(yealinkPhone);
+    const template = new TemplateBuilder(vendors);
+    const config = template.template(yealinkPhone);
+
     // console.log('config:', config);
 
     expect(config.includes(

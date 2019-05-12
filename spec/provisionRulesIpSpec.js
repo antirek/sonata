@@ -1,8 +1,4 @@
-const path = require('path');
 const fetch = require('node-fetch');
-const template = require('./../template/').template;
-const verification = require('./../api/provision/verification')
-    .ruleVerification;
 
 const deviceActual = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -45,32 +41,8 @@ const DeviceActual = {
   },
 };
 
-/**
- *
- */
-class RequestLog {
-  /**
-   *
-   */
-  constructor() {}
-  /**
-   *
-   */
-  save() {}
-}
-
-const createApp = require('./../app').createApp;
-const app = createApp({
-  apiDoc: require('./../api/provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../api/provision/api-routes'),
-  dependencies: {
-    Device: DeviceActual,
-    RequestLog,
-    template,
-    verification,
-  },
-});
-
+const createApp = require('./createProvisionApp');
+const app = createApp({Device: DeviceActual});
 
 describe('provision', () => {
   it('get xml config with valid ip', (done) => {

@@ -1,9 +1,7 @@
 const replace = require('./replace');
 const preprocess = require('./preprocess');
 
-const vendors = require('./../vendors/index');
-
-const doProfiles = (device) => {
+doProfiles = (device) => {
   const profiles = [];
   let profileId = 0;
   if (device.accounts) {
@@ -27,35 +25,52 @@ const doProfiles = (device) => {
   return device;
 };
 
-
-const template = (device) => {
-  const vendor = device.vendor;
-  const model = device.model;
-
-  const deviceSpec = vendors.getDeviceSpec(vendor, model);
-  const template = vendors.getConfigTemplate(vendor, model);
-
-  if (!template) {
-    return null;
+/**
+ *
+ */
+class Builder {
+  /**
+   *
+   * @param {*} vendors
+   */
+  constructor(vendors) {
+    this.vendors = vendors;
   }
 
-  if (deviceSpec.type === 'gateway' && !device.profiles) {
-    device = doProfiles(device);
-  }
+  /**
+   *
+   * @param {*} device
+   * @return {*}
+   */
+  template(device) {
+    const vendor = device.vendor;
+    const model = device.model;
 
-  const templateProcess = preprocess(template, device);
+    const deviceSpec = this.vendors.getDeviceSpec(vendor, model);
+    const template = this.vendors.getConfigTemplate(vendor, model);
 
-  let config;
-  if (deviceSpec.type === 'phone') {
-    config = replace.phoneReplace(templateProcess, device);
-  } else if (deviceSpec.type === 'gateway') {
-    config = replace.gatewayReplace(templateProcess, device);
-  }
+    if (!template) {
+      return null;
+    }
 
-  return config;
-};
+    if (deviceSpec.type === 'gateway' && !device.profiles) {
+      device = doProfiles(device);
+    }
+
+    const templateProcess = preprocess(template, device);
+
+    let config;
+    if (deviceSpec.type === 'phone') {
+      config = replace.phoneReplace(templateProcess, device);
+    } else if (deviceSpec.type === 'gateway') {
+      config = replace.gatewayReplace(templateProcess, device);
+    }
+
+    return config;
+  };
+}
 
 module.exports = {
-  template,
+  Builder,
   doProfiles,
 };

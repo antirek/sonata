@@ -1,7 +1,10 @@
 const path = require('path');
 const fetch = require('node-fetch');
 
-const template = require('./../template/').template;
+const vendors = require('./../vendors');
+const TemplateBuilder = require('./../template/').Builder;
+const template = new TemplateBuilder(vendors);
+
 const verification = require('./../api/provision/verification')
     .ruleVerification;
 
