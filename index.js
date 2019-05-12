@@ -32,8 +32,8 @@ console.log('config', config);
 
 const manageApp = createApp({
   desciption: 'Manage API',
-  apiDoc: require('./manage/api-doc.js'),
-  paths: path.resolve(__dirname, 'manage/api-routes'),
+  apiDoc: require('./api/manage/api-doc.js'),
+  paths: path.resolve(__dirname, 'api/manage/api-routes'),
   dependencies: {
     Device,
     RequestLog,
@@ -43,8 +43,8 @@ const manageApp = createApp({
 
 const provisionApp = createApp({
   desciption: 'Provision API',
-  apiDoc: require('./provision/api-doc.js'),
-  paths: path.resolve(__dirname, 'provision/api-routes'),
+  apiDoc: require('./api/provision/api-doc.js'),
+  paths: path.resolve(__dirname, 'api/provision/api-routes'),
   dependencies: {
     Device,
     RequestLog,
