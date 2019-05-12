@@ -90,3 +90,29 @@ describe('rules', () => {
         .toBeRejected();
   });
 });
+
+
+describe('rules', () => {
+  it('check valid ip rule', (done) => {
+    const deviceTrue = {
+      updated_at: (new Date()).toISOString(),
+      status: true,
+    };
+
+    rules.ruleVerification(deviceTrue, {})
+        .then((result) => {
+          expect(result).toBe(deviceTrue);
+          done();
+        });
+  });
+
+  it('check not valid ip rule', () => {
+    const deviceFalse = {
+      updated_at: (new Date()).toISOString(),
+      status: false,
+    };
+
+    expectAsync(rules.ruleVerification(deviceFalse, {}))
+        .toBeRejected();
+  });
+});

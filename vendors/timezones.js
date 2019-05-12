@@ -1,6 +1,6 @@
 
 const getTimezoneByOffset = (offset, vendor) => {
-  //console.log(offset, vendor);
+  // console.log(offset, vendor);
   const offsets = {
     'grandstream': {
       'GMT+01': 'CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00',
@@ -70,7 +70,7 @@ const getTimezoneByOffset = (offset, vendor) => {
   };
 
   const tz = offsets[vendor] ? offsets[vendor][offset] : null;
-  //console.log('-- 1 tz:', tz)
+  // console.log('-- 1 tz:', tz)
   return tz;
 };
 
