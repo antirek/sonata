@@ -1,5 +1,8 @@
 {
-  "bin": "index.js",
+  "bin": {
+    "sonata": "bin/sonata",
+    "log-cleaner": "bin/log-cleaner"
+  },
   "name": "sonata",
   "version": "0.0.1",
   "description": "Provisioning server",
