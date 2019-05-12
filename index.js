@@ -10,7 +10,10 @@ const vendors = require('./vendors/index');
 const TBuilder = require('./template/index').Builder;
 
 const template = new TBuilder(vendors);
-const verification = require('./api/provision/verification').ruleVerification;
+const helpers = {
+  mac: require('./helpers/mac'),
+  rules: require('./helpers/rules'),
+};
 
 const settingsConn = mongoose.createConnection(config.settings.mongodb, {
   useNewUrlParser: true,
@@ -38,6 +41,7 @@ const manageApp = createApp({
     Device,
     RequestLog,
     config,
+    helpers,
   },
 });
 
@@ -49,7 +53,7 @@ const provisionApp = createApp({
     Device,
     RequestLog,
     template,
-    verification,
+    helpers,
   },
 });
 

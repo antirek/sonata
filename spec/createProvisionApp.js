@@ -4,8 +4,11 @@ const merge = require('merge');
 const vendors = require('./../vendors');
 const TemplateBuilder = require('./../template/').Builder;
 const template = new TemplateBuilder(vendors);
-const verification = require('./../api/provision/verification')
-    .ruleVerification;
+
+const helpers = {
+  rules: require('./../helpers/rules'),
+  mac: require('./../helpers/mac'),
+};
 
 /**
  *
@@ -31,7 +34,7 @@ const createProvisionApp = (deps) => {
     dependencies: merge({
       RequestLog,
       template,
-      verification,
+      helpers,
     }, deps),
   });
   return app;

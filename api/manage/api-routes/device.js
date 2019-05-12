@@ -1,6 +1,6 @@
-const helper = require('./../helper');
+// const helper = require('./../helper');
 
-module.exports = (Device) => {
+module.exports = (Device, helpers) => {
   /**
   *
   * @param {Object} req
@@ -16,7 +16,7 @@ module.exports = (Device) => {
     console.log('mac:', req.body.mac);
 
     const device = req.body;
-    device.mac = helper.prepareMAC(device.mac);
+    device.mac = helpers.mac.prepareMAC(device.mac);
     console.log('device prepared for db:', device);
 
     Device.findOneAndUpdate({key}, device, {

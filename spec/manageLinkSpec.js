@@ -1,6 +1,11 @@
 const path = require('path');
 const fetch = require('node-fetch');
 
+const helpers = {
+  mac: require('./../helpers/mac'),
+  rules: require('./../helpers/rules'),
+};
+
 const device = {
   id: 'sdgjdeu9443908590sfdsf8u984',
   model: 'gxp1600',
@@ -82,6 +87,7 @@ const app = createApp({
     Device,
     RequestLog,
     config,
+    helpers,
   },
 });
 

@@ -1,12 +1,4 @@
-const path = require('path');
 const fetch = require('node-fetch');
-
-const vendors = require('./../vendors');
-const TemplateBuilder = require('./../template/').Builder;
-const template = new TemplateBuilder(vendors);
-
-const verification = require('./../api/provision/verification')
-    .ruleVerification;
 
 const device = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -46,31 +38,8 @@ const Device = {
   },
 };
 
-/**
- *
- */
-class RequestLog {
-  /**
-   *
-   */
-  constructor() {}
-  /**
-   *
-   */
-  save() {}
-}
-
-const createApp = require('./../app').createApp;
-const app = createApp({
-  apiDoc: require('./../api/provision/api-doc.js'),
-  paths: path.resolve(__dirname, './../api/provision/api-routes'),
-  dependencies: {
-    Device,
-    RequestLog,
-    template,
-    verification,
-  },
-});
+const createApp = require('./createProvisionApp');
+const app = createApp({Device});
 
 describe('provision', () => {
   it('get xml config by token', (done) => {

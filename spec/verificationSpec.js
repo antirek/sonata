@@ -1,5 +1,5 @@
 
-const rules = require('./../api/provision/verification');
+const rules = require('./../helpers/rules');
 
 const deviceExpired = {
   updated_at: '2019-01-18T15:41:15.645Z',

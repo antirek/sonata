@@ -1,7 +1,7 @@
 const strip = require('strip-passwords');
-const helper = require('./../../../../../api/manage/helper');
+// const helper = require('./../../../../../api/manage/helper');
 
-module.exports = (Device, RequestLog, template, verification) => {
+module.exports = (Device, RequestLog, template, helpers) => {
   /**
   *
   * @param {Object} req
@@ -26,7 +26,7 @@ module.exports = (Device, RequestLog, template, verification) => {
     const file = req.params.file;
     console.log('file:', file);
 
-    const mac = helper.getMacFromFile(file);
+    const mac = helpers.mac.getMacFromFile(file);
     console.log('mac:', mac);
 
     const requestInfo = {
@@ -43,7 +43,7 @@ module.exports = (Device, RequestLog, template, verification) => {
             log.token = device.token;
           }
 
-          return verification(device, requestInfo);
+          return helpers.rules.ruleVerification(device, requestInfo);
         })
         .then((device) => {
           const t = template.template(device);

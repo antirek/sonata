@@ -1,5 +1,5 @@
 
-const helper = require('./../api/manage/helper');
+const helper = require('./../helpers/mac');
 
 describe('helper', () => {
   describe('mac prepare', () => {
