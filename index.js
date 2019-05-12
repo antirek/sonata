@@ -29,6 +29,7 @@ const RequestLog = logsConn.model(
 console.log('config', config);
 
 const manageApp = createApp({
+  desciption: 'Manage API',
   apiDoc: require('./manage/api-doc.js'),
   paths: path.resolve(__dirname, 'manage/api-routes'),
   dependencies: {
@@ -39,6 +40,7 @@ const manageApp = createApp({
 });
 
 const provisionApp = createApp({
+  desciption: 'Provision API',
   apiDoc: require('./provision/api-doc.js'),
   paths: path.resolve(__dirname, 'provision/api-routes'),
   dependencies: {

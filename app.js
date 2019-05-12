@@ -31,7 +31,7 @@ const createApp = (api) => {
   });
 
   app.get('/', (req, res) => {
-    res.send('hello world');
+    res.send(api.description || '');
   });
 
   return app;
