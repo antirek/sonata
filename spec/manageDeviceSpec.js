@@ -1,10 +1,4 @@
-const path = require('path');
 const fetch = require('node-fetch');
-
-const helpers = {
-  mac: require('./../helpers/mac'),
-  rules: require('./../helpers/rules'),
-};
 
 const device = {
   id: 'sdgjdeu9443908590sfdsf8u984',
@@ -57,31 +51,8 @@ Device.findOneAndRemove = () => {
   return Promise.resolve(device);
 };
 
-/**
- *
- */
-class RequestLog {
-  /**
-   *
-   */
-  constructor() {}
-  /**
-   *
-   */
-  save() {}
-}
-
-const createApp = require('./../app').createApp;
-const app = createApp({
-  apiDoc: require('./../api/manage/api-doc.js'),
-  paths: path.resolve(__dirname, './../api/manage/api-routes'),
-  dependencies: {
-    Device,
-    RequestLog,
-    config: null,
-    helpers,
-  },
-});
+const createApp = require('./createManageApp');
+const app = createApp({Device});
 
 describe('manage', ()=> {
   it('get config on server', (done) => {
