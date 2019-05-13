@@ -6,35 +6,34 @@ const helpers = {
   rules: require('./../helpers/rules'),
 };
 
-
 /**
  *
  */
 class RequestLog {
-    /**
+  /**
      *
      */
-    constructor() {}
-    /**
+  constructor() {}
+  /**
      *
      */
-    save() {}
-  }
-  
-  const createManageApp = (deps) => {
-    const createApp = require('./../app').createApp;
+  save() {}
+}
 
-    const app = createApp({
-      apiDoc: require('./../api/manage/api-doc.js'),
-      paths: path.resolve(__dirname, './../api/manage/api-routes'),
-      dependencies: merge({        
-        RequestLog,
-        config: null,
-        helpers,
-      }, deps),
-    });
+const createManageApp = (deps) => {
+  const createApp = require('./../app').createApp;
 
-    return app;
-  };
+  const app = createApp({
+    apiDoc: require('./../api/manage/api-doc.js'),
+    paths: path.resolve(__dirname, './../api/manage/api-routes'),
+    dependencies: merge({
+      RequestLog,
+      config: null,
+      helpers,
+    }, deps),
+  });
 
-  module.exports = createManageApp
+  return app;
+};
+
+module.exports = createManageApp;

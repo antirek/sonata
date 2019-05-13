@@ -13,16 +13,13 @@ const getScopesList = () => {
 };
 
 const getConfigTemplate = (vendor, model) => {
-  const basePath = './vendors/';
   const deviceSpec = getDeviceSpec(vendor, model);
-
-
   if (!deviceSpec || !deviceSpec.template) {
     return null;
   }
 
-  const templatePath = path.resolve(basePath, deviceSpec.template);
-  // console.log('template path:', templatePath);
+  const templatePath = path.resolve(__dirname, deviceSpec.template);
+  console.log('template path:', templatePath);
   const template = fs.readFileSync(templatePath);
 
   return template.toString('utf8');

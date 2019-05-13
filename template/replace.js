@@ -92,14 +92,11 @@ const phoneReplace = (template, device) => {
   }
 
   if (device.phonebooks && device.phonebooks.length > 0) {
-    // console.log('replace phonebooks');
     config = replacePhonebooksVars(config, device.phonebooks);
   }
 
-  // console.log('device ------:', device);
   if (device.firmware) {
     config = replaceFirmware(config, device.firmware, device);
-    // console.log('---- 1', config)
   }
 
   return config;
@@ -124,7 +121,7 @@ const replaceProfilesVars = (config, profiles) => {
         const mask = '{{' + (
           ['profile', element.id, prop].join('_')
         ) + '}}';
-          // console.log(mask)
+        // console.log(mask)
         config = config.replace(mask, element[prop]);
       }
     }
