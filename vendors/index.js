@@ -1,8 +1,16 @@
 const vendorSpecs = require('./spec');
-const getTimezoneByOffset = require('./timezones').getTimezoneByOffset;
 const scopes = require('./scopes');
 const path = require('path');
 const fs = require('fs');
+
+const getTimezoneByOffset = (vendor, offset) => {
+  const vendorSpec = getVendorSpec(vendor);
+  // console.log('vendor spec', vendorSpec.timezones);
+
+  const tz = vendorSpec.timezones ? vendorSpec.timezones[offset] : null;
+  // console.log('-- 1 tz:', tz)
+  return tz;
+};
 
 const getVendorsList = () => {
   return vendorSpecs;

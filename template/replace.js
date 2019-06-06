@@ -60,7 +60,7 @@ const replaceFirmware = (config, firmware, device) => {
 const replaceTimezone = (config, device) => {
   console.log('---- device:', device);
   const tz = vendors
-      .getTimezoneByOffset(device.timezone_offset, device.vendor);
+      .getTimezoneByOffset(device.vendor, device.timezone_offset);
   console.log('---- tz:', tz);
   return config.replace('{{timezone}}', tz);
 };

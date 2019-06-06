@@ -9,4 +9,5 @@ module.exports = {
     'ntp',
   ],
   models: require('./models'),
+  timezones: null,
 };
