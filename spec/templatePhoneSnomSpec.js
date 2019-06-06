@@ -46,8 +46,12 @@ describe('template', () => {
     expect(config.includes(
         '<user_host idx="1" perm="">sip.mangosip.ru</user_host>'))
         .toBe(true);
-
-    // expect(config.includes('TIME_ZONE="180"')).toBe(true);
+    expect(config.includes(
+        '<timezone>RUS+3</timezone>'))
+        .toBe(true);
+    expect(config.includes(
+        '<user_realname idx="1" perm="">манго</user_realname>'))
+        .toBe(true);
 
     done();
   });

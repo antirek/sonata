@@ -3,13 +3,16 @@
 <phone-settings e="2">
 
 <language perm="">Russian</language>
+<web_language perm="">Russian</web_language>
 <attended_transfer_on_ringing perm="">on</attended_transfer_on_ringing>
 <was_never_registered perm="">off</was_never_registered>
+
+<timezone>{{timezone}}</timezone>
 
 <!-- @ifdef ACCOUNT1 -->
 <!-- Account 1 Name  -->
 <user_active idx="1" perm="">on</user_active>
-<user_realname idx="1" perm="">{{account_1_sip_name}}</user_realname>
+<user_realname idx="1" perm="">{{account_1_name}}</user_realname>
 <user_name idx="1" perm="">{{account_1_sip_name}}</user_name>
 <user_pass idx="1" perm="">{{account_1_sip_password}}</user_pass>
 <user_host idx="1" perm="">{{account_1_sip_register}}</user_host>
@@ -21,6 +24,21 @@
 <user_ice idx="1" perm="">off</user_ice>
 <!-- @endif -->
 
+
+<!-- @ifdef ACCOUNT2 -->
+<!-- Account 2 Name  -->
+<user_active idx="2" perm="">on</user_active>
+<user_realname idx="2" perm="">{{account_2_name}}</user_realname>
+<user_name idx="2" perm="">{{account_2_sip_name}}</user_name>
+<user_pass idx="2" perm="">{{account_2_sip_password}}</user_pass>
+<user_host idx="2" perm="">{{account_2_sip_register}}</user_host>
+<user_expiry idx="2" perm="">3600</user_expiry>
+<user_server_type idx="2" perm="">Default</user_server_type>
+<user_srtp idx="2" perm="">off</user_srtp>
+<user_mailbox idx="2" perm="">*97</user_mailbox>
+<user_symmetrical_rtp idx="2" perm="">on</user_symmetrical_rtp>
+<user_ice idx="2" perm="">off</user_ice>
+<!-- @endif -->
 
 </phone-settings>
 </settings>
