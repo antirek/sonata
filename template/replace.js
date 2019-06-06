@@ -1,5 +1,6 @@
 const url = require('url-parse');
-const vendors = require('./../vendors/index');
+const VendorStore = require('./../vendors/index');
+const vendors = new VendorStore();
 
 const replacePhonebooksVars = (config, phonebooks) => {
   phonebooks.forEach((element, id) => {

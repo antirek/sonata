@@ -6,7 +6,12 @@ const createApp = require('./app').createApp;
 const deviceSchema = require('./models/device');
 const requestLogSchema = require('./models/requestLog');
 
-const vendors = require('./vendors/index');
+const VendorStore = require('./vendors/index');
+const vendors = new VendorStore();
+
+console.log('vendors', vendors);
+
+
 const TBuilder = require('./template/index').Builder;
 
 const template = new TBuilder(vendors);

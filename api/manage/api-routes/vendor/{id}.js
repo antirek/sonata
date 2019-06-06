@@ -1,4 +1,5 @@
-const vendors = require('./../../../../vendors/index').getVendorsList();
+const VendorStore = require('./../../../../vendors/index');
+const vendors = (new VendorStore()).getVendorsList();
 
 module.exports = () => {
   /**

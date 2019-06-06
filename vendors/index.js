@@ -1,63 +1,105 @@
-const vendorSpecs = require('./spec');
 const scopes = require('./scopes');
 const path = require('path');
 const fs = require('fs');
 
-const getTimezoneByOffset = (vendor, offset) => {
-  const vendorSpec = getVendorSpec(vendor);
-  // console.log('vendor spec', vendorSpec.timezones);
-
-  const tz = vendorSpec.timezones ? vendorSpec.timezones[offset] : null;
-  // console.log('-- 1 tz:', tz)
-  return tz;
-};
-
-const getVendorsList = () => {
-  return vendorSpecs;
-};
-
-const getScopesList = () => {
-  return scopes;
-};
-
-const getConfigTemplate = (vendor, model) => {
-  const deviceSpec = getDeviceSpec(vendor, model);
-  if (!deviceSpec || !deviceSpec.template) {
-    return null;
+/**
+ *
+ */
+class VendorStore {
+  /**
+   * @param {Object} options
+   */
+  constructor(options = {}) {
+    this.vendorSpecPath = options.vendorSpecPath;
   }
 
-  const templatePath = path.resolve(__dirname, deviceSpec.template);
-  console.log('template path:', templatePath);
-  const template = fs.readFileSync(templatePath);
+  /**
+   * @return {*}
+   */
+  getVendorSpecs() {
+    const dirs = (p) => {
+      return fs.readdirSync(p)
+          .filter((f) => fs.statSync(path.join(p, f)).isDirectory());
+    };
 
-  return template.toString('utf8');
-};
+    const dirList = dirs(__dirname);
 
-const getVendorSpec = (vendor) => {
-  const vendorSpec = vendorSpecs.find((vendorSpec) => {
-    return vendorSpec.id === vendor;
-  });
-  return vendorSpec;
-};
+    const specs = dirList.map( (dir) => {
+      const r = path.join(__dirname, dir, '/spec');
+      return require(r);
+    });
+    return specs;
+  }
 
-const getDeviceSpec = (vendor, model) => {
-  const vendorSpec = getVendorSpec(vendor);
-  // console.log(vendorSpec);
-  if (!vendorSpec.models || vendorSpec.models.length < 1) return null;
+  /**
+   * @param {string} vendor
+   * @param {string} offset
+   * @return {*}
+   */
+  getTimezoneByOffset(vendor, offset) {
+    const vendorSpec = this.getVendorSpec(vendor);
+    const tz = vendorSpec.timezones ? vendorSpec.timezones[offset] : null;
+    return tz;
+  };
 
-  const modelSpec = vendorSpec.models.find((modelSpec) => {
-    return modelSpec.id === model;
-  });
+  /**
+   * @return {*}
+   */
+  getVendorsList() {
+    return this.getVendorSpecs();
+  };
 
-  return modelSpec;
-};
+  /**
+   * @return {*}
+   */
+  getScopesList() {
+    return scopes;
+  };
 
+  /**
+   * @param {string} vendor
+   * @param {string} model
+   * @return {*}
+   */
+  getConfigTemplate(vendor, model) {
+    const deviceSpec = this.getDeviceSpec(vendor, model);
+    if (!deviceSpec || !deviceSpec.template) {
+      return null;
+    }
 
-module.exports = {
-  getVendorsList,
-  getDeviceSpec,
-  getVendorSpec,
-  getTimezoneByOffset,
-  getConfigTemplate,
-  getScopesList,
-};
+    const templatePath = path.resolve(__dirname, deviceSpec.template);
+    const template = fs.readFileSync(templatePath);
+
+    return template.toString('utf8');
+  };
+
+  /**
+   * @param {string} vendor
+   * @return {*}
+   */
+  getVendorSpec(vendor) {
+    const vendorSpec = this.getVendorSpecs().find((vendorSpec) => {
+      return vendorSpec.id === vendor;
+    });
+    return vendorSpec;
+  };
+
+  /**
+   * @param {string} vendor
+   * @param {string} model
+   * @return {*}
+   */
+  getDeviceSpec(vendor, model) {
+    const vendorSpec = this.getVendorSpec(vendor);
+    // console.log(vendorSpec);
+    if (!vendorSpec.models || vendorSpec.models.length < 1) return null;
+
+    const modelSpec = vendorSpec.models.find((modelSpec) => {
+      return modelSpec.id === model;
+    });
+
+    return modelSpec;
+  };
+}
+
+module.exports = VendorStore;

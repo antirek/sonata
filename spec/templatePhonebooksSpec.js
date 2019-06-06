@@ -1,5 +1,7 @@
 
-const vendors = require('./../vendors');
+const VendorStore = require('./../vendors');
+const vendors = new VendorStore();
+
 const TemplateBuilder = require('./../template').Builder;
 
 

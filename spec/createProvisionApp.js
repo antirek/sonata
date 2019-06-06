@@ -1,7 +1,9 @@
 const path = require('path');
 const merge = require('merge');
 
-const vendors = require('./../vendors');
+const VendorStore = require('./../vendors');
+const vendors = new VendorStore();
+
 const TemplateBuilder = require('./../template/').Builder;
 const template = new TemplateBuilder(vendors);
 

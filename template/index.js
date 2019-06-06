@@ -31,10 +31,10 @@ doProfiles = (device) => {
 class Builder {
   /**
    *
-   * @param {*} vendors
+   * @param {*} vendorStore
    */
-  constructor(vendors) {
-    this.vendors = vendors;
+  constructor(vendorStore) {
+    this.vendors = vendorStore;
   }
 
   /**
