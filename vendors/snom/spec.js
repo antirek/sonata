@@ -2,8 +2,8 @@ module.exports = {
   version: '1.0',
   id: 'snom',
   name: 'Snom',
-  instruction: 'в поле Protocol выберите "{{protocol}}", \n' +
-                   'в поле Url укажите {{server}}{{qs}}',
+  instruction: 'в Setup / Advanced / Update / Setting URL ' +
+               'укажите {{protocol}}{{server}}{{qs}}/{mac}.xml',
   defaults: {
     firmware: {
       url: 'firmware.snom.com',
