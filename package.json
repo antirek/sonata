@@ -8,7 +8,7 @@
   "description": "Provisioning server",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine",
+    "test": "jest",
     "start": "node index",
     "lint-fix": "npx eslint --fix ."
   },
@@ -40,7 +40,7 @@
     "eslint": "^5.12.0",
     "eslint-config-google": "^0.11.0",
     "husky": "^2.2.0",
-    "jasmine": "^3.3.1",
+    "jest": "^24.8.0",
     "merge": "^1.2.1",
     "node-fetch": "^2.3.0"
   },

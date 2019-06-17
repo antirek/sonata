@@ -48,14 +48,17 @@ describe('rules', () => {
   });
 
 
-  it('check not valid mac rule', () => {
+  it('check not valid mac rule', async () => {
     const requestInfoInvalid = {
       mac: 'aa:aa:aa:aa:aa:bb',
     };
 
-    expectAsync(rules.ruleVerification(device, requestInfoInvalid))
-        .toBeRejected();
+    // expectAsync(rules.ruleVerification(device, requestInfoInvalid))
+    //    .toBeRejected();
     // done();
+    //  await expect(fetchData()).rejects.toThrow('error');
+    await expect(rules.ruleVerification(device, requestInfoInvalid))
+        .rejects.toThrow('device mac is not valid');
   });
 });
 
@@ -81,13 +84,16 @@ describe('rules', () => {
         });
   });
 
-  it('check not valid ip rule', () => {
+  it('check not valid ip rule', async () => {
     const requestInfoInvalid = {
       remote_ip: '192.168.200.2',
     };
 
-    expectAsync(rules.ruleVerification(device, requestInfoInvalid))
-        .toBeRejected();
+    await expect(rules.ruleVerification(device, requestInfoInvalid))
+        .rejects.toThrow('device ip is not valid');
+
+    // expectAsync(rules.ruleVerification(device, requestInfoInvalid))
+    //    .toBeRejected();
   });
 });
 
@@ -106,13 +112,16 @@ describe('rules', () => {
         });
   });
 
-  it('check not valid ip rule', () => {
+  it('check not valid ip rule', async () => {
     const deviceFalse = {
       updated_at: (new Date()).toISOString(),
       status: false,
     };
 
-    expectAsync(rules.ruleVerification(deviceFalse, {}))
-        .toBeRejected();
+    await expect(rules.ruleVerification(deviceFalse, {}))
+        .rejects.toThrow('device config status disabled');
+
+    // expectAsync(rules.ruleVerification(deviceFalse, {}))
+    //     .toBeRejected();
   });
 });
