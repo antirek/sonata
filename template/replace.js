@@ -32,6 +32,37 @@ const replacePhonebooksVars = (config, phonebooks) => {
   return config;
 };
 
+const getTypeId = (name) => {
+  const types = {
+    'speeddial': '1',
+    'dtmf': '4',
+  }
+  return types[name];
+}
+
+
+const replaceFunctionkeysVars = (config, functionkeys) => {
+  functionkeys.forEach((element, id) => {
+    const maskName = '{{' + (
+      ['functionkey', id + 1, 'name'].join('_')
+    ) + '}}';
+    config = config.replace(maskName, element.name);
+
+    const maskValue = '{{' + (
+      ['functionkey', id + 1, 'value'].join('_')
+    ) + '}}';
+    config = config.replace(maskValue, element.value);
+
+    const maskType = '{{' + (
+      ['functionkey', id + 1, 'type'].join('_')
+    ) + '}}';
+    config = config.replace(maskType, getTypeId(element.type));
+  });
+  
+  return config;
+};
+
+
 const replaceAccountsVars = (config, accounts) => {
   accounts.forEach((element) => {
     element = findEnabledAndSet(element);
@@ -94,6 +125,10 @@ const phoneReplace = (template, device) => {
 
   if (device.phonebooks && device.phonebooks.length > 0) {
     config = replacePhonebooksVars(config, device.phonebooks);
+  }
+
+  if (device.functionkeys && device.functionkeys.length > 0) {
+    config = replaceFunctionkeysVars(config, device.functionkeys);
   }
 
   if (device.firmware) {

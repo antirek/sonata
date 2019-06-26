@@ -20,7 +20,7 @@ module.exports = [
     name: 'Прошивка',
   },
   {
-    id: 'softkeys',
+    id: 'functionkeys',
     name: 'Кнопки быстрого набора',
   },
 ];

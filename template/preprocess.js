@@ -22,6 +22,12 @@ const preprocessTemplate = (template, device) => {
     return device.phonebooks[id - 1];
   };
 
+  const checkFunctionkey = (id) => {    
+    if (!device.functionkeys) return undefined;
+
+    return device.functionkeys[id - 1];
+  };
+
   const checkFirmware = () => {
     if (!device.firmware) return undefined;
 
@@ -41,6 +47,11 @@ const preprocessTemplate = (template, device) => {
     PROFILE1: checkProfile(1),
     PHONEBOOK1: checkPhonebook(1),
     PHONEBOOK2: checkPhonebook(2),
+    FUNCTIONKEY1: checkFunctionkey(1),
+    FUNCTIONKEY2: checkFunctionkey(2),
+    FUNCTIONKEY3: checkFunctionkey(3),
+    FUNCTIONKEY4: checkFunctionkey(4),
+    FUNCTIONKEY5: checkFunctionkey(5),
     FIRMWARE: checkFirmware(),
   });
 
