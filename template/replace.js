@@ -32,16 +32,26 @@ const replacePhonebooksVars = (config, phonebooks) => {
   return config;
 };
 
-const getTypeId = (name) => {
+const getTypeId = (vendor, name) => {
   const types = {
-    'speeddial': '1',
-    'dtmf': '4',
-  }
-  return types[name];
-}
+    fanvil: {
+      speeddial: '1',
+      line: '2',
+      keyevent: '3',
+      dtmf: '4',
+    },
+    snom: {
+      speeddial: 'speed',
+      keyevent: 'keyevent',
+      dtmf: 'dtmf',
+      line: 'line',
+    },
+  };
+  return types[vendor][name];
+};
 
 
-const replaceFunctionkeysVars = (config, functionkeys) => {
+const replaceFunctionkeysVars = (config, functionkeys, device) => {
   functionkeys.forEach((element, id) => {
     const maskName = '{{' + (
       ['functionkey', id + 1, 'name'].join('_')
@@ -56,9 +66,9 @@ const replaceFunctionkeysVars = (config, functionkeys) => {
     const maskType = '{{' + (
       ['functionkey', id + 1, 'type'].join('_')
     ) + '}}';
-    config = config.replace(maskType, getTypeId(element.type));
+    config = config.replace(maskType, getTypeId(device.vendor, element.type));
   });
-  
+
   return config;
 };
 
@@ -128,7 +138,7 @@ const phoneReplace = (template, device) => {
   }
 
   if (device.functionkeys && device.functionkeys.length > 0) {
-    config = replaceFunctionkeysVars(config, device.functionkeys);
+    config = replaceFunctionkeysVars(config, device.functionkeys, device);
   }
 
   if (device.firmware) {

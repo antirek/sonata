@@ -22,7 +22,7 @@ const preprocessTemplate = (template, device) => {
     return device.phonebooks[id - 1];
   };
 
-  const checkFunctionkey = (id) => {    
+  const checkFunctionkey = (id) => {
     if (!device.functionkeys) return undefined;
 
     return device.functionkeys[id - 1];
@@ -43,15 +43,19 @@ const preprocessTemplate = (template, device) => {
     ACCOUNT6: checkAccount(6),
     ACCOUNT7: checkAccount(7),
     ACCOUNT8: checkAccount(8),
+
     PROFILE0: checkProfile(0),
     PROFILE1: checkProfile(1),
+
     PHONEBOOK1: checkPhonebook(1),
     PHONEBOOK2: checkPhonebook(2),
+
     FUNCTIONKEY1: checkFunctionkey(1),
     FUNCTIONKEY2: checkFunctionkey(2),
     FUNCTIONKEY3: checkFunctionkey(3),
     FUNCTIONKEY4: checkFunctionkey(4),
     FUNCTIONKEY5: checkFunctionkey(5),
+
     FIRMWARE: checkFirmware(),
   });
 

@@ -40,5 +40,24 @@
 <user_ice idx="2" perm="">off</user_ice>
 <!-- @endif -->
 
+
+<functionKeys>
+  <!-- @ifdef FUNCTIONKEY1 -->
+    <fkey idx="0" context="active" label="{{functionkey_1_name}}" perm="">{{functionkey_1_type}} {{functionkey_1_value}}</fkey>
+  <!-- @endif -->
+  <!-- @ifdef FUNCTIONKEY2 -->
+    <fkey idx="1" context="active" label="{{functionkey_2_name}}" perm="">{{functionkey_2_type}} {{functionkey_2_value}}</fkey>
+  <!-- @endif -->
+  <!-- @ifdef FUNCTIONKEY3 -->
+    <fkey idx="2" context="active" label="{{functionkey_3_name}}" perm="">{{functionkey_3_type}} {{functionkey_3_value}}</fkey>
+  <!-- @endif -->
+  <!-- @ifdef FUNCTIONKEY4 -->
+    <fkey idx="3" context="active" label="{{functionkey_4_name}}" perm="">{{functionkey_4_type}} {{functionkey_4_value}}</fkey>
+  <!-- @endif -->
+  <!-- @ifdef FUNCTIONKEY5 -->
+    <fkey idx="4" context="active" label="{{functionkey_5_name}}" perm="">{{functionkey_5_type}} {{functionkey_5_value}}</fkey>
+  <!-- @endif -->
+</functionKeys>
+
 </phone-settings>
 </settings>

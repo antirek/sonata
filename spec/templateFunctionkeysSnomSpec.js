@@ -5,10 +5,10 @@ const vendors = new VendorStore();
 const TemplateBuilder = require('./../template').Builder;
 
 
-const fanvilPhone = {
+const snomPhone = {
   id: 'sdgjdeu9443908590sfdsf8u984',
-  model: 'x5s',
-  vendor: 'fanvil',
+  model: 'd785',
+  vendor: 'snom',
   mac: '001565113af8',
   timezone_offset: 'GMT+03',
   ntp_server: 'pool.ntp.org',
@@ -42,15 +42,17 @@ const fanvilPhone = {
 describe('template', () => {
   it('do good', (done) => {
     const template = new TemplateBuilder(vendors);
-    const config = template.template(fanvilPhone);
+    const config = template.template(snomPhone);
     console.log('config:', config);
+    expect(config.includes(
+        '<fkey idx="0" context="active" label="emergency" perm="">' +
+      'dtmf 01</fkey>'
+    )).toBe(true);
+    expect(config.includes(
+        '<fkey idx="1" context="active" label="thanks" perm="">' +
+      'speed 89135292926</fkey>'
+    )).toBe(true);
 
-    expect(config.includes('Fkey1 Type         :4')).toBe(true);
-    expect(config.includes('Fkey1 Value        :01')).toBe(true);
-    expect(config.includes('Fkey1 Title        :emergency')).toBe(true);
-    expect(config.includes('Fkey2 Type         :1')).toBe(true);
-    expect(config.includes('Fkey2 Value        :89135292926')).toBe(true);
-    expect(config.includes('Fkey2 Title        :thanks')).toBe(true);
     done();
   });
 });
