@@ -42,7 +42,7 @@
     "husky": "^2.7.0",
     "jest": "^24.9.0",
     "merge": "^1.2.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "pkg": {
     "assets": [
