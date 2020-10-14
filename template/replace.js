@@ -9,8 +9,8 @@ const replacePhonebooksVars = (config, phonebooks) => {
     ) + '}}';
       // console.log('mask url', maskUrl);
     const pbUrl = url(element.url);
-    config = config.replace(maskUrl, pbUrl['host'] + pbUrl['pathname']
-        + pbUrl['query'] + pbUrl['hash']);
+    config = config.replace(maskUrl, pbUrl['host'] + pbUrl['pathname'] +
+        pbUrl['query'] + pbUrl['hash']);
 
     const maskProtocol = '{{' + (
       ['phonebook', id + 1, 'protocol'].join('_')

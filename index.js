@@ -29,11 +29,11 @@ const logsConn = mongoose.createConnection(config.logs.mongodb, {
 });
 
 const Device = settingsConn.model(
-    'Device', deviceSchema('device')
+    'Device', deviceSchema('device'),
 );
 
 const RequestLog = logsConn.model(
-    'RequestLog', requestLogSchema('log_request')
+    'RequestLog', requestLogSchema('log_request'),
 );
 
 console.log('config', config);

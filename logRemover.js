@@ -10,7 +10,7 @@ const logsConn = mongoose.createConnection(config.logs.mongodb, {
 });
 
 const RequestLog = logsConn.model(
-    'RequestLog', requestLogSchema('log_request')
+    'RequestLog', requestLogSchema('log_request'),
 );
 
 const removeOldLogs = () => {

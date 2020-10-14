@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const openapi = require('express-openapi');
 const expressip = require('express-ip');
 
@@ -15,7 +14,7 @@ const getIP = (req, res, next) => {
 const createApp = (api) => {
   const app = express();
 
-  app.use(bodyParser.json());
+  app.use(express.json());
   app.use(cors());
 
   app.use(getIP);

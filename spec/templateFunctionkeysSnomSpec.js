@@ -46,11 +46,11 @@ describe('template', () => {
     console.log('config:', config);
     expect(config.includes(
         '<fkey idx="0" context="active" label="emergency" perm="">' +
-      'dtmf 01</fkey>'
+      'dtmf 01</fkey>',
     )).toBe(true);
     expect(config.includes(
         '<fkey idx="1" context="active" label="thanks" perm="">' +
-      'speed 89135292926</fkey>'
+      'speed 89135292926</fkey>',
     )).toBe(true);
 
     done();
