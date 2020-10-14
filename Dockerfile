@@ -1,4 +1,4 @@
-FROM node:8.9
+FROM node:12.19.0
 
 RUN apt-get update
 ARG NODE_ENV

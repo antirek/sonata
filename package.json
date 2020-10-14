@@ -8,7 +8,7 @@
   "description": "Provisioning server",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "start": "node index",
     "lint-fix": "npx eslint --fix ."
   },
@@ -23,14 +23,14 @@
   },
   "homepage": "https://github.com/antirek/sonata#readme",
   "dependencies": {
-    "config": "^3.3.1",
+    "config": "^3.3.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-ip": "^1.0.4",
     "express-openapi": "^4.6.5",
     "ip-range-check": "0.0.2",
-    "moment": "^2.25.3",
-    "mongoose": "^5.9.12",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.9",
     "node-cron": "^2.0.3",
     "preprocess": "^3.2.0",
     "strip-passwords": "^1.1.2",
@@ -42,7 +42,7 @@
     "husky": "^2.7.0",
     "jest": "^24.9.0",
     "merge": "^1.2.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "pkg": {
     "assets": [
