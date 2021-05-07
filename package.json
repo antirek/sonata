@@ -34,7 +34,7 @@
     "node-cron": "^2.0.3",
     "preprocess": "^3.2.0",
     "strip-passwords": "^1.1.2",
-    "url-parse": "^1.4.7"
+    "url-parse": "^1.5.0"
   },
   "devDependencies": {
     "eslint": "^7.11.0",
